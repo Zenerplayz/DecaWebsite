@@ -12,7 +12,7 @@ export const officers: Officer[] = [
   { name: "Lauren R", role: "VP of Competition" },
   { name: "Sam X", role: "VP of Leadership Development" },
   { name: "Alex S", role: "Marketing Associate" },
-  { name: "Eric Kay", role: "Partnership Associate" },
+  { name: "Eric K", role: "Partnership Associate" },
   { name: "Caitlin M", role: "Community Outreach Associate" },
   { name: "Polina C", role: "Competition Associate" },
   { name: "Maya M", role: "Leadership Development Associate" },
@@ -163,7 +163,7 @@ export const faqs: FaqItem[] = [
   {
     question: "Who can join Sycamore DECA?",
     answer:
-      "Any Sycamore High School student, grades 9–12. No business classes or experience required.",
+      "Any Sycamore High School student, grades 9–12, who is taking (or has taken) a marketing class.",
   },
   {
     question: "When and where do we meet?",
@@ -172,7 +172,7 @@ export const faqs: FaqItem[] = [
   {
     question: "Do I have to compete?",
     answer:
-      "Competition is the heart of DECA, but you choose your level — many members start as volunteers or spectators before competing.",
+      "Competition is the heart of DECA, so part of being in DECA is competing!",
   },
   {
     question: "What is a role-play event?",
