@@ -32,11 +32,11 @@ export default function Socials() {
           Latest on Instagram
         </h2>
         <div className="card mt-8 p-4">
-          <div className="behold-widget" data-url={site.beholdWidgetUrl} />
+          <behold-widget feed-id={site.beholdFeedId} />
         </div>
       </div>
 
-      {site.beholdWidgetUrl ? (
+      {site.beholdFeedId ? (
         <Script
           src="https://w.behold.so/widget.js"
           type="module"
