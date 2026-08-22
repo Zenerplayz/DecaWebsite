@@ -1,68 +1,98 @@
 import Link from "next/link";
-import { CheckCircle, MapPin, Users } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import { faqs } from "@/data/content";
 import { site } from "@/data/site";
 
 export const metadata = { title: "Join" };
 
 const steps = [
-  { icon: MapPin, title: "Visit Mr. Steedly", desc: "Stop by his room in the marketing wing — he’ll get you signed up." },
-  { icon: Users, title: "Come to meetings", desc: "Dates and locations are posted on the calendar. That’s it — you’re in." },
+  {
+    numeral: "01",
+    title: "Visit Mr. Steedly",
+    desc: "Stop by his room in the marketing wing — he’ll get you signed up.",
+  },
+  {
+    numeral: "02",
+    title: "Come to meetings",
+    desc: "Dates and locations are posted on the calendar. That’s it — you’re in.",
+  },
 ];
 
 export default function Join() {
   return (
     <section className="pt-16">
       <div className="container-page py-16">
-        <div className="mx-auto max-w-xl text-center">
+        {/* Masthead */}
+        <header className="max-w-2xl">
           <span className="eyebrow">Join Us</span>
           <h1 className="font-display text-4xl font-bold tracking-tight text-pine-950 sm:text-5xl">
             Become a member
           </h1>
-          <p className="mt-4 text-lg text-pine-600">
-            In a marketing class? Then you’re in.
+          <p className="mt-5 text-lg leading-relaxed text-pine-600">
+            In a marketing class?{" "}
+            <em className="font-display italic text-pine-800">
+              Then you’re already in.
+            </em>
           </p>
-        </div>
+        </header>
 
-        <div className="mx-auto mt-12 grid max-w-2xl gap-5 md:grid-cols-2">
-          {steps.map((s, i) => (
-            <div key={s.title} className="card relative p-7">
-              <span className="absolute right-6 top-6 font-display text-3xl font-bold text-pine-200">
-                {i + 1}
+        {/* Steps — open typographic sequence */}
+        <ol className="mx-auto mt-14 max-w-2xl border-t border-pine-900/10 sm:mt-16">
+          {steps.map((s) => (
+            <li key={s.numeral} className="rule flex items-start gap-6 py-10 sm:gap-10 sm:py-12">
+              <span className="ghost-numeral shrink-0" aria-hidden="true">
+                {s.numeral}
               </span>
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-pine-950 text-gold-400">
-                <s.icon className="h-5 w-5" />
+              <div className="pt-1 sm:pt-2">
+                <h2 className="font-display text-xl font-semibold text-pine-950 sm:text-2xl">
+                  {s.title}
+                </h2>
+                <p className="mt-2 max-w-md leading-relaxed text-pine-600">{s.desc}</p>
               </div>
-              <h2 className="mt-4 font-display font-bold text-pine-950">{s.title}</h2>
-              <p className="mt-1.5 text-sm text-pine-600">{s.desc}</p>
-            </div>
+            </li>
           ))}
-        </div>
+        </ol>
 
-        <div className="mt-10 text-center">
-          <Link href="/calendar" className="btn-gold">
-            See Meeting Dates
+        <div className="mx-auto max-w-2xl">
+          <Link href="/calendar" className="text-link">
+            See meeting dates
+            <ArrowRight aria-hidden="true" className="h-4 w-4" />
           </Link>
         </div>
 
-        <div className="mx-auto mt-16 max-w-2xl">
-          <h2 className="text-center font-display text-2xl font-bold text-pine-950">FAQ</h2>
-          <div className="card mt-6 divide-y divide-pine-100 overflow-hidden">
+        {/* FAQ — borderless accordion */}
+        <section aria-labelledby="faq-heading" className="mx-auto mt-20 max-w-2xl sm:mt-24">
+          <h2 id="faq-heading" className="font-display text-2xl font-bold text-pine-950 sm:text-3xl">
+            Questions, answered
+          </h2>
+          <div className="mt-6">
             {faqs.map((f) => (
-              <details key={f.question} className="group p-6">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-pine-950 marker:hidden [&::-webkit-details-marker]:hidden">
+              <details key={f.question} className="group rule">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 font-display text-lg font-medium text-pine-950 marker:hidden [&::-webkit-details-marker]:hidden">
                   {f.question}
-                  <CheckCircle className="h-4 w-4 shrink-0 text-gold-500 opacity-0 transition group-open:opacity-100" />
+                  <ChevronDown
+                    aria-hidden="true"
+                    className="h-4 w-4 shrink-0 text-gold-600 transition-transform duration-200 group-open:rotate-180 motion-reduce:transition-none"
+                  />
                 </summary>
-                <p className="mt-3 text-sm leading-relaxed text-pine-600">{f.answer}</p>
+                <p className="max-w-xl pb-6 pr-8 leading-relaxed text-pine-600">{f.answer}</p>
               </details>
             ))}
           </div>
-          <p className="mt-6 text-center text-sm text-pine-600">
-            Questions? Email{" "}
-            <Link href={`mailto:${site.advisorEmail}`} className="font-semibold text-pine-800 underline decoration-gold-400 underline-offset-2">
-              {site.advisorEmail}
-            </Link>
+        </section>
+
+        {/* Contact CTA */}
+        <div className="mx-auto mt-16 max-w-2xl rule pt-12 pb-4 sm:mt-20">
+          <span className="eyebrow">Still have questions?</span>
+          <p className="font-display text-2xl font-medium leading-snug text-pine-950 sm:text-3xl">
+            Email{" "}
+            <a
+              href={`mailto:${site.advisorEmail}`}
+              className="text-link italic"
+            >
+              {site.advisorName}
+            </a>{" "}
+            — he’ll take care of the rest.
           </p>
         </div>
       </div>

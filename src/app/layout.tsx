@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Inter, Sora } from "next/font/google";
+import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 
-const display = Sora({
+const display = Fraunces({
   subsets: ["latin"],
-  variable: "--font-sora",
-  weight: ["500", "600", "700", "800"],
+  style: ["normal", "italic"],
+  variable: "--font-fraunces",
 });
 
 const sans = Inter({

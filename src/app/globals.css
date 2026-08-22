@@ -56,7 +56,7 @@
 }
 
 @theme inline {
-  --font-display: var(--font-sora);
+  --font-display: var(--font-fraunces);
   --font-sans: var(--font-inter);
 }
 
@@ -115,6 +115,21 @@ html {
   }
 
   .eyebrow {
-    @apply mb-3 inline-flex items-center gap-2 rounded-full border border-gold-300/60 bg-gold-50 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-gold-700;
+    @apply mb-4 block text-xs font-bold uppercase tracking-[0.2em] text-gold-700;
+  }
+
+  /* Editorial hairline divider — the replacement for card borders */
+  .rule {
+    @apply border-t border-pine-900/10;
+  }
+
+  /* Typographic inline link with arrow affordance */
+  .text-link {
+    @apply inline-flex items-center gap-1.5 font-semibold text-pine-800 underline decoration-gold-400 decoration-2 underline-offset-4 transition-colors hover:text-gold-700;
+  }
+
+  /* Oversized ghost numeral for editorial step/index lists */
+  .ghost-numeral {
+    @apply font-display text-[3.5rem] leading-none font-semibold text-pine-200/80 sm:text-5xl;
   }
 }

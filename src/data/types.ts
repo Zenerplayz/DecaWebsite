@@ -57,3 +57,10 @@ export interface SocialLink {
   url: string;
   handle: string;
 }
+
+export interface ChapterPhoto {
+  src: string;
+  alt: string;
+  /** Instagram post URL, when the photo came from the @sycamore.deca feed. */
+  permalink?: string;
+}

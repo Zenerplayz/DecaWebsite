@@ -8,21 +8,23 @@ import {
   ChevronLeft,
   ChevronRight,
   Clock,
-  Trophy,
   RotateCcw,
-  Sparkles,
 } from "lucide-react";
 import { shuffle } from "@/data/questions";
 import type { ClusterInfo, PracticeQuestion } from "@/data/types";
+import { cn } from "@/lib/utils";
 
 type Stage = "setup" | "quiz" | "results";
 type DifficultyFilter = "all" | "easy" | "medium" | "hard";
 
 const difficultyStyles: Record<PracticeQuestion["difficulty"], string> = {
-  easy: "bg-leaf-100 text-leaf-700",
-  medium: "bg-gold-100 text-gold-700",
-  hard: "bg-pine-950 text-white",
+  easy: "text-leaf-600",
+  medium: "text-gold-700",
+  hard: "text-pine-950",
 };
+
+/* Editorial small-caps group label */
+const groupLabel = "text-xs font-bold uppercase tracking-[0.2em] text-gold-700";
 
 const lengthOptions = [
   { value: 10, label: "10 questions" },
@@ -201,92 +203,111 @@ function Setup({
   ];
 
   return (
-    <div className="card mx-auto max-w-3xl p-6 sm:p-8">
-      <div className="flex items-center gap-2">
-        <Sparkles className="h-5 w-5 text-gold-500" />
-        <h2 className="font-display text-xl font-bold text-pine-950">
-          Build your test
-        </h2>
-      </div>
+    <div className="mx-auto max-w-3xl">
+      <h2 className="font-display text-3xl font-bold tracking-tight text-pine-950 sm:text-4xl">
+        Build your <span className="italic text-pine-700">test</span>
+      </h2>
 
-      <p className="mt-6 text-sm font-semibold uppercase tracking-wider text-pine-600">
-        Cluster
-      </p>
-      <div className="mt-3 grid gap-3 sm:grid-cols-2">
-        <button
-          type="button"
-          onClick={() => onCluster("all")}
-          className={`rounded-xl border px-4 py-3 text-left transition-all duration-200 ${
-            clusterId === "all"
-              ? "border-gold-500 bg-gold-50 ring-2 ring-gold-500"
-              : "border-pine-200 bg-white hover:border-pine-400 hover:bg-pine-50"
-          }`}
-        >
-          <span className="block font-semibold text-pine-950">All clusters</span>
-          <span className="text-sm text-pine-600">Mixed practice</span>
-        </button>
-        {clusters.map((c) => (
+      <div className="mt-10">
+        <p className={groupLabel}>Cluster</p>
+        <div className="mt-4 grid gap-2.5 sm:grid-cols-2">
           <button
-            key={c.id}
             type="button"
-            onClick={() => onCluster(c.id)}
-            className={`rounded-xl border px-4 py-3 text-left transition-all duration-200 ${
-              clusterId === c.id
-                ? "border-gold-500 bg-gold-50 ring-2 ring-gold-500"
-                : "border-pine-200 bg-white hover:border-pine-400 hover:bg-pine-50"
-            }`}
-          >
-            <span className="block font-semibold text-pine-950">{c.name}</span>
-            <span className="text-sm text-pine-600">{c.shortName}</span>
-          </button>
-        ))}
-      </div>
-
-      <p className="mt-6 text-sm font-semibold uppercase tracking-wider text-pine-600">
-        Difficulty
-      </p>
-      <div className="mt-3 flex flex-wrap gap-2">
-        {difficultyChips.map((d) => (
-          <button
-            key={d.value}
-            type="button"
-            onClick={() => onDifficulty(d.value)}
-            className={`rounded-full border px-4 py-1.5 text-sm font-semibold transition-all duration-200 ${
-              difficulty === d.value
+            aria-pressed={clusterId === "all"}
+            onClick={() => onCluster("all")}
+            className={cn(
+              "rounded-lg border px-4 py-3 text-left transition-colors duration-200",
+              clusterId === "all"
                 ? "border-pine-900 bg-pine-900 text-white"
-                : "border-pine-200 bg-white text-pine-700 hover:border-pine-400 hover:bg-pine-50"
-            }`}
+                : "border-pine-900/15 bg-white/60 text-pine-950 hover:border-pine-400",
+            )}
           >
-            {d.label}
+            <span className="block font-semibold">All clusters</span>
+            <span
+              className={cn(
+                "text-sm",
+                clusterId === "all" ? "text-pine-100" : "text-pine-500",
+              )}
+            >
+              Mixed practice
+            </span>
           </button>
-        ))}
+          {clusters.map((c) => (
+            <button
+              key={c.id}
+              type="button"
+              aria-pressed={clusterId === c.id}
+              onClick={() => onCluster(c.id)}
+              className={cn(
+                "rounded-lg border px-4 py-3 text-left transition-colors duration-200",
+                clusterId === c.id
+                  ? "border-pine-900 bg-pine-900 text-white"
+                  : "border-pine-900/15 bg-white/60 text-pine-950 hover:border-pine-400",
+              )}
+            >
+              <span className="block font-semibold">{c.name}</span>
+              <span
+                className={cn(
+                  "text-sm",
+                  clusterId === c.id ? "text-pine-100" : "text-pine-500",
+                )}
+              >
+                {c.shortName}
+              </span>
+            </button>
+          ))}
+        </div>
       </div>
 
-      <p className="mt-6 text-sm font-semibold uppercase tracking-wider text-pine-600">
-        Length
-      </p>
-      <div className="mt-3 flex flex-wrap gap-2">
-        {lengthOptions.map((opt) => (
-          <button
-            key={opt.value}
-            type="button"
-            onClick={() => onLength(opt.value)}
-            disabled={opt.value !== 0 && opt.value > availableCount}
-            className={`rounded-full border px-4 py-1.5 text-sm font-semibold transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-40 ${
-              length === opt.value
-                ? "border-pine-900 bg-pine-900 text-white"
-                : "border-pine-200 bg-white text-pine-700 hover:border-pine-400 hover:bg-pine-50"
-            }`}
-          >
-            {opt.value === 0
-              ? `All available (${availableCount})`
-              : `${opt.label}${opt.value > availableCount ? ` — only ${availableCount}` : ""}`}
-          </button>
-        ))}
+      <div className="rule mt-10 pt-8">
+        <p className={groupLabel}>Difficulty</p>
+        <div className="mt-4 flex flex-wrap gap-2">
+          {difficultyChips.map((d) => (
+            <button
+              key={d.value}
+              type="button"
+              aria-pressed={difficulty === d.value}
+              onClick={() => onDifficulty(d.value)}
+              className={cn(
+                "rounded-full border px-4 py-1.5 text-sm font-semibold transition-colors duration-200",
+                difficulty === d.value
+                  ? "border-pine-900 bg-pine-900 text-white"
+                  : "border-pine-900/15 bg-transparent text-pine-700 hover:border-pine-400",
+              )}
+            >
+              {d.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="rule mt-10 pt-8">
+        <p className={groupLabel}>Length</p>
+        <div className="mt-4 flex flex-wrap gap-2">
+          {lengthOptions.map((opt) => (
+            <button
+              key={opt.value}
+              type="button"
+              aria-pressed={length === opt.value}
+              onClick={() => onLength(opt.value)}
+              disabled={opt.value !== 0 && opt.value > availableCount}
+              className={cn(
+                "rounded-full border px-4 py-1.5 text-sm font-semibold transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-40",
+                length === opt.value
+                  ? "border-pine-900 bg-pine-900 text-white"
+                  : "border-pine-900/15 bg-transparent text-pine-700 hover:border-pine-400",
+              )}
+            >
+              {opt.value === 0
+                ? `All available (${availableCount})`
+                : `${opt.label}${opt.value > availableCount ? ` — only ${availableCount}` : ""}`}
+            </button>
+          ))}
+        </div>
       </div>
 
       {availableCount < 1 ? (
-        <div className="mt-8 rounded-xl border border-dashed border-pine-200 bg-pine-50 p-6 text-center">
+        <div className="mt-12 border-l-2 border-gold-400 pl-5">
           <p className="font-semibold text-pine-950">
             No questions match those filters yet.
           </p>
@@ -295,9 +316,9 @@ function Setup({
           </p>
         </div>
       ) : (
-        <div className="mt-8 flex flex-col items-center justify-between gap-4 sm:flex-row">
+        <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-pine-900/10 pt-8 sm:flex-row sm:items-center">
           <p className="flex items-center gap-2 text-sm text-pine-600">
-            <Clock className="h-4 w-4 text-gold-500" />
+            <Clock aria-hidden="true" className="h-4 w-4 text-gold-600" />
             {plannedCount} question{plannedCount === 1 ? "" : "s"} ready
           </p>
           <button type="button" onClick={onStart} className="btn-gold w-full sm:w-auto">
@@ -328,11 +349,11 @@ function Quiz({
 }: QuizProps) {
   if (deck.length === 0) {
     return (
-      <div className="card mx-auto max-w-3xl p-8 text-center">
-        <p className="font-semibold text-pine-950">
+      <div className="mx-auto max-w-3xl py-16 text-center">
+        <p className="font-display text-xl font-semibold text-pine-950">
           No questions match those filters.
         </p>
-        <p className="mt-1 text-sm text-pine-600">
+        <p className="mt-2 text-sm text-pine-600">
           Head back and adjust your setup to start practicing.
         </p>
       </div>
@@ -346,15 +367,19 @@ function Quiz({
 
   return (
     <div className="mx-auto max-w-3xl">
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex items-baseline justify-between gap-4">
         <p className="text-sm font-semibold text-pine-700">
-          Question {current + 1} of {deck.length}
+          Question{" "}
+          <span className="font-display text-base font-bold text-pine-950">
+            {current + 1}
+          </span>{" "}
+          of {deck.length}
         </p>
-        <p className="text-sm text-pine-600">{answeredCount} answered</p>
+        <p className="text-sm text-pine-500">{answeredCount} answered</p>
       </div>
-      <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-pine-100">
+      <div className="mt-3 h-1 w-full overflow-hidden rounded-full bg-pine-100">
         <div
-          className="h-full rounded-full bg-gradient-to-r from-pine-600 to-pine-400 transition-all duration-300"
+          className="h-full rounded-full bg-pine-700 transition-all duration-300"
           style={{ width: `${percent}%` }}
           role="progressbar"
           aria-label="Quiz progress"
@@ -364,19 +389,22 @@ function Quiz({
         />
       </div>
 
-      <div className="card mt-6 p-6 sm:p-8">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="badge bg-pine-100 text-pine-700">{question.category}</span>
-          <span className={`badge ${difficultyStyles[question.difficulty]}`}>
+      <article className="mt-10">
+        <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-bold uppercase tracking-[0.15em]">
+          <span className="text-pine-500">{question.category}</span>
+          <span aria-hidden="true" className="text-pine-300">
+            ·
+          </span>
+          <span className={difficultyStyles[question.difficulty]}>
             {question.difficulty}
           </span>
-        </div>
+        </p>
 
-        <h2 className="mt-4 font-display text-xl font-bold leading-snug text-pine-950 sm:text-2xl">
+        <h2 className="mt-4 font-display text-3xl font-semibold leading-tight tracking-tight text-pine-950 sm:text-4xl">
           {question.prompt}
         </h2>
 
-        <div className="mt-6 flex flex-col gap-3">
+        <div className="mt-8 flex flex-col gap-2.5">
           {question.choices.map((choice, index) => {
             const selected = answers[question.id] === index;
             return (
@@ -385,13 +413,19 @@ function Quiz({
                 type="button"
                 aria-pressed={selected}
                 onClick={() => onAnswer(question.id, index)}
-                className={`w-full rounded-xl border px-4 py-3 text-left font-medium transition-all duration-200 ${
+                className={cn(
+                  "w-full rounded-lg border px-5 py-3.5 text-left transition-colors duration-200",
                   selected
-                    ? "border-gold-500 bg-gold-50 ring-2 ring-gold-500 text-pine-950"
-                    : "border-pine-200 bg-white text-pine-800 hover:border-pine-400 hover:bg-pine-50"
-                }`}
+                    ? "border-pine-900 bg-pine-900 text-white"
+                    : "border-pine-900/15 bg-white/60 text-pine-800 hover:border-pine-400 hover:bg-white",
+                )}
               >
-                <span className="mr-3 font-bold text-gold-600">
+                <span
+                  className={cn(
+                    "mr-4 font-display text-lg font-semibold",
+                    selected ? "text-gold-300" : "text-gold-600",
+                  )}
+                >
                   {String.fromCharCode(65 + index)}.
                 </span>
                 {choice}
@@ -400,20 +434,16 @@ function Quiz({
           })}
         </div>
 
-        <div className="mt-8 flex items-center justify-between gap-3">
+        <div className="mt-10 flex items-center justify-between gap-3 border-t border-pine-900/10 pt-6">
           <button
             type="button"
             onClick={() => onNavigate(current - 1)}
             disabled={current === 0}
             className="btn-outline px-4 py-2 text-sm disabled:invisible"
           >
-            <ChevronLeft className="h-4 w-4" /> Prev
+            <ChevronLeft aria-hidden="true" className="h-4 w-4" /> Prev
           </button>
-          <button
-            type="button"
-            onClick={onFinish}
-            className="text-sm font-semibold text-pine-600 underline-offset-4 transition-colors hover:text-gold-600 hover:underline"
-          >
+          <button type="button" onClick={onFinish} className="text-link text-sm">
             Finish early
           </button>
           {isLast ? (
@@ -426,11 +456,11 @@ function Quiz({
               onClick={() => onNavigate(current + 1)}
               className="btn-outline px-4 py-2 text-sm"
             >
-              Next <ChevronRight className="h-4 w-4" />
+              Next <ChevronRight aria-hidden="true" className="h-4 w-4" />
             </button>
           )}
         </div>
-      </div>
+      </article>
     </div>
   );
 }
@@ -463,107 +493,95 @@ function Results({ deck, answers, onRetake, onNewSetup }: ResultsProps) {
 
   return (
     <div className="mx-auto max-w-3xl">
-      <div className="card overflow-hidden">
-        <div className="bg-gradient-to-br from-pine-900 to-pine-700 px-6 py-10 text-center sm:px-10">
-          <Trophy className="mx-auto h-10 w-10 text-gold-300" />
-          <p className="mt-4 font-display text-5xl font-bold text-white sm:text-6xl">
-            {correctCount}/{total}
-          </p>
-          <p className="mt-2 text-lg font-semibold text-gold-300">{percent}%</p>
-          <p className="mt-3 text-base text-pine-100">{scoreCopy(percent)}</p>
-        </div>
+      <div className="border-b border-pine-900/10 pb-10 text-center sm:pb-12">
+        <p className={groupLabel}>Your score</p>
+        <p className="mt-4 font-display text-6xl font-bold tracking-tight text-pine-950 sm:text-7xl">
+          {correctCount}
+          <span className="text-pine-600">/{total}</span>
+        </p>
+        <p className="mt-4 font-display text-xl italic text-pine-700">
+          {scoreCopy(percent)}
+        </p>
+        <p className="mt-1.5 text-sm text-pine-500">{percent}% correct</p>
+      </div>
 
-        <div className="p-6 sm:p-8">
-          <h3 className="font-display text-lg font-bold text-pine-950">
-            Breakdown by category
-          </h3>
-          <div className="mt-4 flex flex-col gap-3">
-            {breakdown.map(([category, stat]) => {
-              const pct = Math.round((stat.correct / stat.total) * 100);
-              return (
-                <div key={category}>
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="font-medium text-pine-800">{category}</span>
-                    <span className="text-pine-600">
-                      {stat.correct}/{stat.total}
-                    </span>
-                  </div>
-                  <div className="mt-1 h-2 w-full overflow-hidden rounded-full bg-pine-100">
-                    <div
-                      className="h-full rounded-full bg-gradient-to-r from-gold-500 to-gold-300 transition-all duration-500"
-                      style={{ width: `${pct}%` }}
-                    />
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+      <section className="mt-10">
+        <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-pine-500">
+          Breakdown by category
+        </h3>
+        <ul className="mt-2 divide-y divide-pine-900/10">
+          {breakdown.map(([category, stat]) => (
+            <li key={category} className="flex items-baseline justify-between gap-4 py-3">
+              <span className="text-sm font-medium text-pine-900">{category}</span>
+              <span className="font-display text-lg font-semibold text-pine-700">
+                {stat.correct}
+                <span className="text-pine-600">/{stat.total}</span>
+              </span>
+            </li>
+          ))}
+        </ul>
+      </section>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <button type="button" onClick={onRetake} className="btn-gold w-full sm:w-auto">
-              <RotateCcw className="h-4 w-4" /> Retake same set
-            </button>
-            <button type="button" onClick={onNewSetup} className="btn-outline w-full sm:w-auto">
-              New setup
-            </button>
-          </div>
-        </div>
+      <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+        <button type="button" onClick={onRetake} className="btn-gold w-full sm:w-auto">
+          <RotateCcw aria-hidden="true" className="h-4 w-4" /> Retake same set
+        </button>
+        <button type="button" onClick={onNewSetup} className="btn-outline w-full sm:w-auto">
+          New setup
+        </button>
       </div>
 
       {missed.length > 0 && (
-        <div className="mt-8">
-          <h3 className="font-display text-lg font-bold text-pine-950">
+        <section className="mt-12">
+          <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-pine-500">
             Review missed questions ({missed.length})
           </h3>
-          <div className="mt-4 flex flex-col gap-4">
+          <ol className="mt-2 divide-y divide-pine-900/10">
             {missed.map((q) => {
               const userChoice = answers[q.id];
               return (
-                <div key={q.id} className="card p-5 sm:p-6">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="badge bg-pine-100 text-pine-700">{q.category}</span>
-                    <span className={`badge ${difficultyStyles[q.difficulty]}`}>
-                      {q.difficulty}
+                <li key={q.id} className="py-6">
+                  <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-bold uppercase tracking-[0.15em]">
+                    <span className="text-pine-500">{q.category}</span>
+                    <span aria-hidden="true" className="text-pine-300">
+                      ·
                     </span>
-                  </div>
-                  <p className="mt-3 font-semibold leading-snug text-pine-950">
+                    <span className={difficultyStyles[q.difficulty]}>{q.difficulty}</span>
+                  </p>
+                  <p className="mt-2 font-display text-lg font-semibold leading-snug text-pine-950">
                     {q.prompt}
                   </p>
-                  <div className="mt-4 flex flex-col gap-2">
-                    {userChoice !== undefined && (
-                      <div className="flex items-start gap-2 rounded-xl border border-pine-200 bg-white px-3 py-2">
-                        <span className="badge bg-pine-900 text-white">
-                          <X className="h-3 w-3" /> Your answer
+                  <div className="mt-4 flex flex-col gap-2 text-sm">
+                    {userChoice !== undefined ? (
+                      <p className="flex items-start gap-2.5 text-pine-600">
+                        <X aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-gold-700" />
+                        <span>
+                          You chose:{" "}
+                          <span className="line-through decoration-gold-700/60">
+                            {q.choices[userChoice]}
+                          </span>
                         </span>
-                        <span className="text-sm text-pine-800 line-through decoration-gold-700/60">
-                          {q.choices[userChoice]}
-                        </span>
-                      </div>
+                      </p>
+                    ) : (
+                      <p className="italic text-pine-500">Not answered</p>
                     )}
-                    {userChoice === undefined && (
-                      <p className="text-sm italic text-pine-600">Not answered</p>
-                    )}
-                    <div className="flex items-start gap-2 rounded-xl border border-leaf-200 bg-leaf-50 px-3 py-2">
-                      <span className="badge bg-leaf-600 text-white">
-                        <Check className="h-3 w-3" /> Correct
-                      </span>
-                      <span className="text-sm font-medium text-leaf-700">
-                        {q.choices[q.correctIndex]}
-                      </span>
-                    </div>
+                    <p className="flex items-start gap-2.5 font-medium text-pine-800">
+                      <Check aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-pine-600" />
+                      <span>Correct: {q.choices[q.correctIndex]}</span>
+                    </p>
                   </div>
-                  <p className="mt-4 rounded-xl bg-pine-50 px-4 py-3 text-sm leading-relaxed text-pine-700">
+                  <p className="mt-4 border-l-2 border-gold-300 pl-4 text-sm leading-relaxed text-pine-600">
                     {q.explanation}
                   </p>
-                </div>
+                </li>
               );
             })}
-          </div>
-        </div>
+          </ol>
+        </section>
       )}
 
       {missed.length === 0 && total > 0 && (
-        <p className="card mt-8 p-6 text-center font-semibold text-leaf-700">
+        <p className="mt-12 border-t border-pine-900/10 pt-8 text-center font-display text-xl italic text-leaf-700">
           Perfect run — you missed nothing. Keep that streak alive.
         </p>
       )}
