@@ -20,7 +20,7 @@ export default function Join() {
             Become a member
           </h1>
           <p className="mt-4 text-lg text-pine-600">
-            In a marketing class? Then you’re in. The best time was September — the second-best time is today.
+            In a marketing class? Then you’re in.
           </p>
         </div>
 
