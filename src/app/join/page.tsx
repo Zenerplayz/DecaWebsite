@@ -1,14 +1,14 @@
 import Link from "next/link";
-import { CheckCircle, CreditCard, FileText, Users } from "lucide-react";
+import { CheckCircle, CreditCard, MapPin, Users } from "lucide-react";
 import { faqs } from "@/data/content";
 import { site } from "@/data/site";
 
 export const metadata = { title: "Join" };
 
 const steps = [
-  { icon: FileText, title: "Fill out the form", desc: "Two minutes, no experience needed." },
+  { icon: MapPin, title: "Visit Mr. Steedly", desc: "Stop by his room in the marketing wing — he’ll get you signed up." },
   { icon: CreditCard, title: `Pay dues (${site.duesAmount})`, desc: "Covers local, state & national membership." },
-  { icon: Users, title: "Show up Thursday", desc: `${site.meetingInfo}. That’s it — you’re in.` },
+  { icon: Users, title: "Come to meetings", desc: "Dates and locations are posted on the calendar. That’s it — you’re in." },
 ];
 
 export default function Join() {
@@ -41,9 +41,9 @@ export default function Join() {
         </div>
 
         <div className="mt-10 text-center">
-          <a href={site.joinUrl} className="btn-gold">
-            Open Membership Form
-          </a>
+          <Link href="/calendar" className="btn-gold">
+            See Meeting Dates
+          </Link>
         </div>
 
         <div className="mx-auto mt-16 max-w-2xl">

@@ -7,19 +7,16 @@ export const site = {
   tagline: "Where leaders are made.",
   mission:
     "We prepare emerging leaders and entrepreneurs in marketing, finance, hospitality, and management — through competition, connection, and community.",
-  meetingInfo: "Thursdays · 2:30 PM · Room 214",
   googleCalendarEmbedUrl:
     "https://calendar.google.com/calendar/embed?src=ae898793d0b05de6b58f1f66d3a310fe3971304fcf43eb5c8b534488fade9400%40group.calendar.google.com&ctz=America%2FNew_York",
   beholdWidgetUrl: "", // TODO: Paste your Behold.so widget URL here (behold.so → create widget → copy the URL in data-url="...")
-  advisorName: "[Advisor Name]",
-  advisorEmail: "sycamoredeca@example.org",
-  joinUrl: "#",
+  advisorName: "Mr. Steedly",
+  advisorEmail: "steedlym@sycamoreschools.org",
   duesAmount: "$25",
   stats: [
     { value: "150+", label: "Active Members" },
-    { value: "14", label: "State Qualifiers ’25" },
-    { value: "12", label: "Years Strong" },
-    { value: "3", label: "ICDC Appearances" },
+    { value: "125", label: "State Qualifiers ’25" },
+    { value: "40+", label: "ICDC Qualifiers" },
   ],
   values: [
     {
@@ -41,18 +38,8 @@ export const site = {
   socials: [
     {
       platform: "Instagram",
-      url: "https://instagram.com/sycamoredeca",
-      handle: "@sycamoredeca",
-    },
-    {
-      platform: "TikTok",
-      url: "https://tiktok.com/@sycamoredeca",
-      handle: "@sycamoredeca",
-    },
-    {
-      platform: "X",
-      url: "https://x.com/sycamoredeca",
-      handle: "@sycamoredeca",
+      url: "https://instagram.com/sycamore.deca",
+      handle: "@sycamore.deca",
     },
   ] as SocialLink[],
   nav: [

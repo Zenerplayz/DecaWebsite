@@ -1,5 +1,4 @@
 import type {
-  AwardEntry,
   ChapterEvent,
   ClusterInfo,
   FaqItem,
@@ -8,21 +7,19 @@ import type {
 } from "@/data/types";
 
 export const officers: Officer[] = [
-  { name: "Ava Mitchell", role: "President", blurb: "Runs the show and represents Sycamore DECA across the district." },
-  { name: "Jordan Lee", role: "VP of Competition", blurb: "Keeps our practice tests and role-play prep sharp." },
-  { name: "Sofia Reyes", role: "VP of Marketing", blurb: "Owns the chapter brand, socials, and spirit." },
-  { name: "Ethan Brooks", role: "Secretary", blurb: "Meeting notes, attendance, and keeping everyone in the loop." },
-  { name: "Maya Patel", role: "Treasurer", blurb: "Manages dues, budgets, and fundraiser money." },
-  { name: "Liam Carter", role: "Historian", blurb: "Captures every win, trip, and chapter memory." },
-];
-
-export const awards: AwardEntry[] = [
-  { year: "2026", title: "14 District Qualifiers", detail: "Strongest district showing in chapter history.", level: "District" },
-  { year: "2026", title: "State Finalist — Sports & Entertainment Marketing", detail: "Top 8 in Ohio at SCDC.", level: "State" },
-  { year: "2025", title: "ICDC Appearance", detail: "Represented Sycamore at Internationals in Orlando.", level: "International" },
-  { year: "2025", title: "Chapter of the Month", detail: "Recognized by the state association.", level: "Chapter" },
-  { year: "2024", title: "6 State Qualifiers", detail: "Six members advanced past districts.", level: "State" },
-  { year: "2023", title: "First ICDC Qualifier", detail: "The run starts here.", level: "International" },
+  { name: "Alp O", role: "President" },
+  { name: "Kat S", role: "VP of Marketing" },
+  { name: "Myra S", role: "VP of Partnerships" },
+  { name: "Brooke R", role: "VP of Community Outreach" },
+  { name: "Lauren R", role: "VP of Competition" },
+  { name: "Sam X", role: "VP of Leadership Development" },
+  { name: "Alex S", role: "Marketing Associate" },
+  { name: "Eric Kay", role: "Partnership Associate" },
+  { name: "Caitlin M", role: "Community Outreach Associate" },
+  { name: "Polina C", role: "Competition Associate" },
+  { name: "Maya M", role: "Leadership Development Associate" },
+  { name: "Vihaan J", role: "Executive Associate" },
+  { name: "Sebi S", role: "Operations Associate" },
 ];
 
 export const events: ChapterEvent[] = [
@@ -192,7 +189,7 @@ export const faqs: FaqItem[] = [
   },
   {
     question: "When and where do we meet?",
-    answer: "Thursdays at 2:30 PM in Room 214. Can’t make it? Meeting recaps go out by email.",
+    answer: "Meeting dates, times, and locations are posted on our Calendar page.",
   },
   {
     question: "Do I have to compete?",
@@ -206,15 +203,13 @@ export const faqs: FaqItem[] = [
   },
   {
     question: "How do I sign up?",
-    answer: "Fill out the membership form linked on our Join page before the dues deadline.",
+    answer: "Visit Mr. Steedly’s room in the marketing wing to sign up, then pay dues before the deadline.",
   },
 ];
 
 export const highlights: HighlightPost[] = [
   { id: "h1", platform: "Instagram", date: "2026-08-14", tag: "Chapter Life", title: "Officer retreat ’26", blurb: "Planning a bigger year than ever at the officer retreat." },
   { id: "h2", platform: "Instagram", date: "2026-07-28", tag: "ICDC", title: "Orlando throwback", blurb: "Throwback to representing Sycamore on the international stage." },
-  { id: "h3", platform: "TikTok", date: "2026-07-10", tag: "Prep", title: "Role-play in 60 seconds", blurb: "How to structure a winning role-play answer, fast." },
-  { id: "h4", platform: "X", date: "2026-06-22", tag: "Fundraiser", title: "Car wash results", blurb: "Raised $800 toward conference travel. Thank you, Sycamore!" },
-  { id: "h5", platform: "Instagram", date: "2026-06-05", tag: "Alumni", title: "Alumni mentor night", blurb: "Former members came back to judge practice rounds." },
-  { id: "h6", platform: "Instagram", date: "2026-05-30", tag: "Awards", title: "Banquet highlights", blurb: "Celebrating a record-breaking competition season." },
+  { id: "h3", platform: "Instagram", date: "2026-06-05", tag: "Alumni", title: "Alumni mentor night", blurb: "Former members came back to judge practice rounds." },
+  { id: "h4", platform: "Instagram", date: "2026-05-30", tag: "Awards", title: "Banquet highlights", blurb: "Celebrating a record-breaking competition season." },
 ];

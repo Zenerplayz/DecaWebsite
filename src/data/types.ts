@@ -1,18 +1,9 @@
-export type EventLevel = "District" | "State" | "International" | "Chapter";
-
 export interface Officer {
   name: string;
   role: string;
   email?: string;
   photo?: string;
   blurb?: string;
-}
-
-export interface AwardEntry {
-  year: string;
-  title: string;
-  detail: string;
-  level: EventLevel;
 }
 
 export type EventType = "meeting" | "competition" | "deadline" | "social";

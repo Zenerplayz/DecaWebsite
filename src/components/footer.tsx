@@ -76,7 +76,7 @@ export default function Footer() {
         <div>
           <h3 className="font-display text-sm font-bold uppercase tracking-wider text-gold-400">Contact</h3>
           <ul className="mt-4 space-y-3 text-sm">
-            <li className="flex items-center gap-2.5"><Clock className="h-4 w-4 shrink-0 text-gold-400" />{site.meetingInfo}</li>
+            <li className="flex items-center gap-2.5"><Clock className="h-4 w-4 shrink-0 text-gold-400" /><Link href="/calendar" className="transition hover:text-white">Meetings — see the Calendar</Link></li>
             <li className="flex items-center gap-2.5">
               <Mail className="h-4 w-4 shrink-0 text-gold-400" />
               <a href={`mailto:${site.advisorEmail}`} className="transition hover:text-white">{site.advisorEmail}</a>
