@@ -1,5 +1,26 @@
 # Sycamore DECA — Website Plan
 
+> ## 📌 SESSION STATUS (updated Aug 21, 2026)
+>
+> **Done:**
+> - Site fully built as a static Next.js app (`src/data/` holds all content)
+> - Google Calendar iframe wired into `/calendar` (URL lives in `src/data/site.ts`)
+> - Behold widget placeholder ready in `src/data/site.ts` (`beholdWidgetUrl`)
+> - `.gitignore` verified; `.opencode/` added to it
+> - Git installed & configured (user: Sebis Chuermeyer, sebischuermeyer1@gmail.com)
+> - Repo initialized, branch `main`, committed and **pushed**:
+>   https://github.com/Zenerplayz/DecaWebsite
+>
+> **Not done yet (pick up here):**
+> 1. **Vercel deploy NOT done** — decawebsite.vercel.app returns 404.
+>    User must import repo at vercel.com → Add New → Project → Import DecaWebsite.
+> 2. **QA test incomplete** — build + lint pass, all 10 routes prerender statically,
+>    but live page-by-page check was interrupted. Note: starting a background
+>    `npm start` from opencode's shell hung twice; next session either use
+>    `npm run dev` manually in a separate terminal, or deploy first and QA the
+>    live URL directly.
+> 3. Fill the "BEFORE LAUNCH" checklist below (placeholders).
+
 > ## ⚠️ BEFORE LAUNCH — DO THESE THINGS
 >
 > **Every opencode session should check this list and nag until it's done.**
@@ -10,7 +31,6 @@
 > - [ ] `src/data/site.ts` → `beholdWidgetUrl` is still empty — sign up at behold.so with the chapter Instagram, create the widget, paste the URL
 > - [ ] `src/data/content.ts` → all officers, awards, events, highlights are SAMPLE data — swap for real chapter info
 > - [ ] `src/data/questions/*` → sample practice questions — review/replace before promoting to members
-> - [ ] Run git init + push to GitHub (commands in §5) and deploy on Vercel
 
 ---
 
