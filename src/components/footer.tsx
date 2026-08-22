@@ -39,7 +39,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="font-display text-sm font-bold uppercase tracking-wider text-gold-400">Chapter</h3>
+          <h2 className="font-display text-sm font-bold uppercase tracking-wider text-gold-400">Chapter</h2>
           <ul className="mt-4 space-y-2.5 text-sm">
             {site.nav.map((item) => (
               <li key={item.href}>
@@ -57,24 +57,15 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="font-display text-sm font-bold uppercase tracking-wider text-gold-400">Resources</h3>
+          <h2 className="font-display text-sm font-bold uppercase tracking-wider text-gold-400">Resources</h2>
           <ul className="mt-4 space-y-2.5 text-sm">
             <li><Link href="/compete" className="transition hover:text-white">Competition Hub</Link></li>
-            <li>
-              <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-xs text-pine-400">
-                Practice Tests — coming soon
-              </span>
-            </li>
-            <li>
-              <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-xs text-pine-400">
-                AI Role-Play Judge — coming soon
-              </span>
-            </li>
+            <li><Link href="/compete/practice" className="transition hover:text-white">Practice Tests</Link></li>
           </ul>
         </div>
 
         <div>
-          <h3 className="font-display text-sm font-bold uppercase tracking-wider text-gold-400">Contact</h3>
+          <h2 className="font-display text-sm font-bold uppercase tracking-wider text-gold-400">Contact</h2>
           <ul className="mt-4 space-y-3 text-sm">
             <li className="flex items-center gap-2.5"><Clock className="h-4 w-4 shrink-0 text-gold-400" /><Link href="/calendar" className="transition hover:text-white">Meetings — see the Calendar</Link></li>
             <li className="flex items-center gap-2.5">

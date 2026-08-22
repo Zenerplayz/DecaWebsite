@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CheckCircle, CreditCard, MapPin, Users } from "lucide-react";
+import { CheckCircle, MapPin, Users } from "lucide-react";
 import { faqs } from "@/data/content";
 import { site } from "@/data/site";
 
@@ -7,7 +7,6 @@ export const metadata = { title: "Join" };
 
 const steps = [
   { icon: MapPin, title: "Visit Mr. Steedly", desc: "Stop by his room in the marketing wing — he’ll get you signed up." },
-  { icon: CreditCard, title: `Pay dues (${site.duesAmount})`, desc: "Covers local, state & national membership." },
   { icon: Users, title: "Come to meetings", desc: "Dates and locations are posted on the calendar. That’s it — you’re in." },
 ];
 
@@ -25,10 +24,10 @@ export default function Join() {
           </p>
         </div>
 
-        <div className="mx-auto mt-12 grid max-w-4xl gap-5 md:grid-cols-3">
+        <div className="mx-auto mt-12 grid max-w-2xl gap-5 md:grid-cols-2">
           {steps.map((s, i) => (
             <div key={s.title} className="card relative p-7">
-              <span className="absolute right-6 top-6 font-display text-3xl font-bold text-pine-100">
+              <span className="absolute right-6 top-6 font-display text-3xl font-bold text-pine-200">
                 {i + 1}
               </span>
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-pine-950 text-gold-400">
@@ -59,7 +58,7 @@ export default function Join() {
               </details>
             ))}
           </div>
-          <p className="mt-6 text-center text-sm text-pine-500">
+          <p className="mt-6 text-center text-sm text-pine-600">
             Questions? Email{" "}
             <Link href={`mailto:${site.advisorEmail}`} className="font-semibold text-pine-800 underline decoration-gold-400 underline-offset-2">
               {site.advisorEmail}

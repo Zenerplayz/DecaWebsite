@@ -6,18 +6,6 @@ export interface Officer {
   blurb?: string;
 }
 
-export type EventType = "meeting" | "competition" | "deadline" | "social";
-
-export interface ChapterEvent {
-  id: string;
-  title: string;
-  date: string;
-  time: string;
-  location: string;
-  type: EventType;
-  description: string;
-}
-
 export type DecaEventCategory =
   | "Principles"
   | "Series"
@@ -54,44 +42,12 @@ export interface PracticeQuestion {
   explanation: string;
 }
 
-export interface RubricScore {
-  dimension: string;
-  score: number;
-}
-
-export interface RoleplayScenario {
-  id: string;
-  clusterId: string;
-  title: string;
-  situation: string[];
-  indicators: string[];
-  demoFeedback: {
-    scores: RubricScore[];
-    strengths: string[];
-    improvements: string[];
-  };
-}
-
 export interface FaqItem {
   question: string;
   answer: string;
 }
 
-export interface HighlightPost {
-  id: string;
-  platform: "Instagram" | "TikTok" | "X";
-  date: string;
-  tag: string;
-  title: string;
-  blurb: string;
-}
-
 export interface ValuePillar {
-  title: string;
-  description: string;
-}
-
-export interface GuideStep {
   title: string;
   description: string;
 }

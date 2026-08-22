@@ -36,6 +36,15 @@ function scoreCopy(percent: number): string {
   return "Every pro started here — run it again.";
 }
 
+function shuffleChoices(q: PracticeQuestion): PracticeQuestion {
+  const order = shuffle([0, 1, 2, 3]);
+  return {
+    ...q,
+    choices: order.map((i) => q.choices[i]) as PracticeQuestion["choices"],
+    correctIndex: order.indexOf(q.correctIndex),
+  };
+}
+
 export default function QuizClient({
   questions,
   clusters,
@@ -83,7 +92,7 @@ function QuizInner({
     length === 0 ? availableCount : Math.min(length, availableCount);
 
   const startQuiz = () => {
-    const selected = shuffle(pool).slice(0, plannedCount);
+    const selected = shuffle(pool).slice(0, plannedCount).map(shuffleChoices);
     setDeck(selected);
     setAnswers({});
     setCurrent(0);
@@ -348,6 +357,7 @@ function Quiz({
           className="h-full rounded-full bg-gradient-to-r from-pine-600 to-pine-400 transition-all duration-300"
           style={{ width: `${percent}%` }}
           role="progressbar"
+          aria-label="Quiz progress"
           aria-valuenow={percent}
           aria-valuemin={0}
           aria-valuemax={100}
@@ -373,6 +383,7 @@ function Quiz({
               <button
                 key={index}
                 type="button"
+                aria-pressed={selected}
                 onClick={() => onAnswer(question.id, index)}
                 className={`w-full rounded-xl border px-4 py-3 text-left font-medium transition-all duration-200 ${
                   selected

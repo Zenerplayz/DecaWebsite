@@ -9,10 +9,9 @@ export const site = {
     "We prepare emerging leaders and entrepreneurs in marketing, finance, hospitality, and management — through competition, connection, and community.",
   googleCalendarEmbedUrl:
     "https://calendar.google.com/calendar/embed?src=ae898793d0b05de6b58f1f66d3a310fe3971304fcf43eb5c8b534488fade9400%40group.calendar.google.com&ctz=America%2FNew_York",
-  beholdWidgetUrl: "", // TODO: Paste your Behold.so widget URL here (behold.so → create widget → copy the URL in data-url="...")
+  beholdWidgetUrl: "https://w.behold.so/9z5NZ99pscFkKMuzDq6Q",
   advisorName: "Mr. Steedly",
   advisorEmail: "steedlym@sycamoreschools.org",
-  duesAmount: "$25",
   stats: [
     { value: "150+", label: "Active Members" },
     { value: "125", label: "State Qualifiers ’25" },

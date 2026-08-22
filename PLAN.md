@@ -25,12 +25,15 @@
 >
 > **Every opencode session should check this list and nag until it's done.**
 >
-> - [ ] `src/data/site.ts` → `advisorName` is still `"[Advisor Name]"` — put the real advisor in
-> - [ ] `src/data/site.ts` → `advisorEmail` is still a fake address (`sycamoredeca@example.org`)
-> - [ ] `src/data/site.ts` → `joinUrl` is still `"#"` — link the real Google Form / membership form
-> - [ ] `src/data/site.ts` → `beholdWidgetUrl` is still empty — sign up at behold.so with the chapter Instagram, create the widget, paste the URL
-> - [ ] `src/data/content.ts` → all officers, awards, events, highlights are SAMPLE data — swap for real chapter info
-> - [ ] `src/data/questions/*` → sample practice questions — review/replace before promoting to members
+> - [x] `src/data/site.ts` → advisor is Mr. Steedly (steedlym@sycamoreschools.org)
+> - [x] `joinUrl` removed — joining = visit Mr. Steedly's room in the marketing wing
+> - [x] Officers roster filled in (13 real officers, no blurbs)
+> - [x] Socials — Instagram only: @sycamore.deca
+> - [x] Stats — 150+ members, 125 state qualifiers '25, 40+ ICDC qualifiers
+> - [x] Awards section removed; hardcoded events removed (Google Calendar is sole source)
+> - [x] Dues references cut (amount unknown); "Est. 2014" removed
+> - [x] `beholdWidgetUrl` set (feed 9z5NZ99pscFkKMuzDq6Q); sample highlight cards removed — /socials shows the live Instagram feed
+> - [ ] Final QA pass after content complete (user plans a full review + subagent sweep)
 
 ---
 

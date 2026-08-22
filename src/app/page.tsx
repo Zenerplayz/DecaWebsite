@@ -9,7 +9,7 @@ export default function Home() {
         <div className="container-page relative py-24 text-center sm:py-32">
           <span className="eyebrow animate-fade-up">
             <Sparkles className="h-3.5 w-3.5" />
-            {site.school} · Est. 2014
+            {site.school}
           </span>
           <h1 className="mx-auto mt-6 max-w-3xl font-display text-4xl font-bold tracking-tight text-pine-950 sm:text-6xl lg:text-7xl">
             Where leaders are{" "}
@@ -42,7 +42,7 @@ export default function Home() {
           {site.stats.map((s) => (
             <div key={s.label} className="text-center">
               <p className="font-display text-3xl font-bold text-pine-950 sm:text-4xl">{s.value}</p>
-              <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-pine-500">{s.label}</p>
+              <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-pine-600">{s.label}</p>
             </div>
           ))}
         </div>

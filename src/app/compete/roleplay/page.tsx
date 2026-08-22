@@ -1,6 +1,5 @@
 import Link from "next/link";
 import {
-  Sparkles,
   Timer,
   ClipboardCheck,
   Mic,
@@ -132,7 +131,7 @@ export default function Roleplay() {
                 <p className="mt-4 font-display text-xl font-bold text-pine-950">
                   {s.value}
                 </p>
-                <p className="text-xs font-bold uppercase tracking-[0.14em] text-gold-600">
+                <p className="text-xs font-bold uppercase tracking-[0.14em] text-gold-700">
                   {s.label}
                 </p>
                 <p className="mt-3 text-sm leading-relaxed text-pine-600">
@@ -238,18 +237,17 @@ export default function Roleplay() {
 
         <div className="mt-16 overflow-hidden rounded-3xl bg-pine-950 px-8 py-12 text-center shadow-lift sm:px-12">
           <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 text-gold-400">
-            <Sparkles className="h-6 w-6" />
+            <Target className="h-6 w-6" />
           </div>
           <h2 className="mt-5 font-display text-3xl font-bold tracking-tight text-white">
-            AI Role-Play Judge — coming soon
+            Put it into practice
           </h2>
           <p className="mx-auto mt-4 max-w-xl leading-relaxed text-pine-200">
-            Soon members will be able to record practice presentations and get
-            rubric-scored feedback on their performance indicators, structure,
-            use of case facts, and delivery — the same way district judges score.
+            The best role-play prep is reps — run cluster practice tests to drill
+            the exam knowledge behind every performance indicator.
           </p>
           <Link href="/compete/practice" className="btn-outline-light mt-8">
-            Practice tests are live
+            Take a practice test
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

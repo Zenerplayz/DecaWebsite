@@ -49,6 +49,16 @@ export default function About() {
             </article>
           ))}
         </div>
+
+        <p className="mt-10 text-center text-sm text-pine-600">
+          Chapter Advisor:{" "}
+          <a
+            href={`mailto:${site.advisorEmail}`}
+            className="font-semibold text-pine-800 underline decoration-gold-400 underline-offset-2"
+          >
+            {site.advisorName}
+          </a>
+        </p>
       </div>
     </section>
   );

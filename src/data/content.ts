@@ -1,8 +1,6 @@
 import type {
-  ChapterEvent,
   ClusterInfo,
   FaqItem,
-  HighlightPost,
   Officer,
 } from "@/data/types";
 
@@ -21,21 +19,6 @@ export const officers: Officer[] = [
   { name: "Vihaan J", role: "Executive Associate" },
   { name: "Sebi S", role: "Operations Associate" },
 ];
-
-export const events: ChapterEvent[] = [
-  { id: "e1", title: "First Chapter Meeting", date: "2026-08-27", time: "2:30 PM", location: "Room 214", type: "meeting", description: "Kickoff, this year’s calendar, and how to register." },
-  { id: "e2", title: "Dues Deadline", date: "2026-09-11", time: "End of day", location: "Online", type: "deadline", description: "Submit $25 dues to be officially registered." },
-  { id: "e3", title: "Back-to-School Bowling Social", date: "2026-09-18", time: "4:00 PM", location: "Crossgate Lanes", type: "social", description: "Meet the chapter off-campus. Snacks provided." },
-  { id: "e4", title: "Role-Play Practice Night", date: "2026-10-02", time: "6:00 PM", location: "Room 214", type: "competition", description: "Mock role-plays judged by alumni and officers." },
-  { id: "e5", title: "District Competition", date: "2026-12-09", time: "All day", location: "TBD", type: "competition", description: "District CDC — your first shot at qualifying for state." },
-];
-
-export const eventTypeStyles: Record<ChapterEvent["type"], string> = {
-  meeting: "bg-pine-100 text-pine-700",
-  competition: "bg-gold-100 text-gold-700",
-  deadline: "bg-pine-900 text-white",
-  social: "bg-leaf-100 text-leaf-700",
-};
 
 export const clusters: ClusterInfo[] = [
   {
@@ -183,11 +166,6 @@ export const faqs: FaqItem[] = [
       "Any Sycamore High School student, grades 9–12. No business classes or experience required.",
   },
   {
-    question: "How much are dues?",
-    answer:
-      "$25 for the year, which covers local, state, and national membership. Talk to an officer about assistance options.",
-  },
-  {
     question: "When and where do we meet?",
     answer: "Meeting dates, times, and locations are posted on our Calendar page.",
   },
@@ -203,13 +181,6 @@ export const faqs: FaqItem[] = [
   },
   {
     question: "How do I sign up?",
-    answer: "Visit Mr. Steedly’s room in the marketing wing to sign up, then pay dues before the deadline.",
+    answer: "Visit Mr. Steedly’s room in the marketing wing — he’ll get you registered.",
   },
-];
-
-export const highlights: HighlightPost[] = [
-  { id: "h1", platform: "Instagram", date: "2026-08-14", tag: "Chapter Life", title: "Officer retreat ’26", blurb: "Planning a bigger year than ever at the officer retreat." },
-  { id: "h2", platform: "Instagram", date: "2026-07-28", tag: "ICDC", title: "Orlando throwback", blurb: "Throwback to representing Sycamore on the international stage." },
-  { id: "h3", platform: "Instagram", date: "2026-06-05", tag: "Alumni", title: "Alumni mentor night", blurb: "Former members came back to judge practice rounds." },
-  { id: "h4", platform: "Instagram", date: "2026-05-30", tag: "Awards", title: "Banquet highlights", blurb: "Celebrating a record-breaking competition season." },
 ];
