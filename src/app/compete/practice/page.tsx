@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
 import { practiceQuestions } from "@/data/questions";
 import { clusters } from "@/data/content";
 import QuizClient from "./quiz-client";
+import { pageMetadata } from "@/data/seo";
 
-export const metadata: Metadata = { title: "Practice Tests" };
+export const metadata = pageMetadata("/compete/practice");
 
 export default function PracticePage() {
   return (

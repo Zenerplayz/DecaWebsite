@@ -1,7 +1,8 @@
 import { ArrowUpRight, Bell } from "lucide-react";
 import { site } from "@/data/site";
+import { pageMetadata } from "@/data/seo";
 
-export const metadata = { title: "Calendar" };
+export const metadata = pageMetadata("/calendar");
 
 export default function CalendarPage() {
   return (

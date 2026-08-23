@@ -72,7 +72,7 @@ export default function Footer() {
               <Mail className="h-4 w-4 shrink-0 text-gold-400" />
               <a href={`mailto:${site.advisorEmail}`} className="transition hover:text-white">{site.advisorEmail}</a>
             </li>
-            <li className="flex items-center gap-2.5"><MapPin className="h-4 w-4 shrink-0 text-gold-400" />{site.school}</li>
+            <li className="flex items-center gap-2.5"><MapPin className="h-4 w-4 shrink-0 text-gold-400" />{site.school} · Cincinnati, Ohio</li>
           </ul>
         </div>
       </div>

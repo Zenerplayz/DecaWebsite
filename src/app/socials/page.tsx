@@ -1,10 +1,11 @@
 import Script from "next/script";
 import { site } from "@/data/site";
 import { InstagramIcon, TikTokIcon, XIcon } from "@/components/social-icons";
+import { pageMetadata } from "@/data/seo";
 
 const platformIcon = { Instagram: InstagramIcon, TikTok: TikTokIcon, X: XIcon };
 
-export const metadata = { title: "Socials" };
+export const metadata = pageMetadata("/socials");
 
 export default function Socials() {
   return (

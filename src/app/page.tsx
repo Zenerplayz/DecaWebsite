@@ -20,7 +20,8 @@ export default function Home() {
                 are <em className="italic text-pine-700">made</em>.
               </h1>
               <p className="mt-7 max-w-xl text-lg leading-relaxed text-pine-600">
-                {site.shortName} prepares emerging leaders and entrepreneurs
+                {site.chapterName} — the DECA chapter at {site.school} in
+                Cincinnati, Ohio — prepares emerging leaders and entrepreneurs
                 through real competition, real connections, and a whole lot of
                 fun along the way.
               </p>

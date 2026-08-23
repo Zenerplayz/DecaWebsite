@@ -4,8 +4,9 @@ import { ArrowUpRight } from "lucide-react";
 import { officers } from "@/data/content";
 import { site } from "@/data/site";
 import { aboutPhoto, advisorPhoto } from "@/data/photos";
+import { pageMetadata } from "@/data/seo";
 
-export const metadata = { title: "About" };
+export const metadata = pageMetadata("/about");
 
 const president = officers.find((o) => o.role === "President");
 const vicePresidents = officers.filter((o) => o.role.startsWith("VP"));

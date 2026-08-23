@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { ArrowRight, Timer } from "lucide-react";
+import { pageMetadata } from "@/data/seo";
 
-export const metadata = { title: "Role-Play Training" };
+export const metadata = pageMetadata("/compete/roleplay");
 
 const formatStats = [
   {

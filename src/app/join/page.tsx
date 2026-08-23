@@ -2,8 +2,22 @@ import Link from "next/link";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { faqs } from "@/data/content";
 import { site } from "@/data/site";
+import { pageMetadata } from "@/data/seo";
 
-export const metadata = { title: "Join" };
+export const metadata = pageMetadata("/join");
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: f.answer,
+    },
+  })),
+};
 
 const steps = [
   {
@@ -21,6 +35,12 @@ const steps = [
 export default function Join() {
   return (
     <section className="pt-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <div className="container-page py-16">
         {/* Masthead */}
         <header className="max-w-2xl">

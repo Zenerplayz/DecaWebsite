@@ -4,8 +4,9 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { clusters } from "@/data/content";
 import { heroPhoto } from "@/data/photos";
 import type { ClusterInfo } from "@/data/types";
+import { pageMetadata } from "@/data/seo";
 
-export const metadata = { title: "Compete" };
+export const metadata = pageMetadata("/compete");
 
 export default function Compete() {
   return (
