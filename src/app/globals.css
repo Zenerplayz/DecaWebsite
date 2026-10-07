@@ -16,9 +16,9 @@
   --color-gold-50: #fffbf0;
   --color-gold-100: #fef3d4;
   --color-gold-200: #fbe49b;
-  --color-gold-300: #f9d15c;
-  --color-gold-400: #f7bc26;
-  --color-gold-500: #f0a800;
+  --color-gold-300: #e5d39d;
+  --color-gold-400: #d8bd78;
+  --color-gold-500: #b89a53;
   --color-gold-600: #cc8500;
   --color-gold-700: #a16402;
   --color-gold-800: #7d4d08;
@@ -87,11 +87,11 @@ html {
   .btn-navy,
   .btn-outline,
   .btn-outline-light {
-    @apply inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-200 active:scale-[0.98];
+    @apply inline-flex items-center justify-center gap-2 rounded-md font-semibold transition-colors duration-200;
   }
 
   .btn-gold {
-    @apply bg-gold-400 px-6 py-3 text-pine-950 shadow-[0_8px_20px_rgb(240_168_0/0.35)] hover:-translate-y-0.5 hover:bg-gold-300 hover:shadow-[0_12px_28px_rgb(240_168_0/0.45)];
+    @apply bg-pine-900 px-6 py-3 text-white hover:bg-pine-800;
   }
 
   .btn-navy {
@@ -125,11 +125,17 @@ html {
 
   /* Typographic inline link with arrow affordance */
   .text-link {
-    @apply inline-flex items-center gap-1.5 font-semibold text-pine-800 underline decoration-gold-400 decoration-2 underline-offset-4 transition-colors hover:text-gold-700;
+    @apply inline-flex items-center gap-1.5 font-semibold text-pine-800 underline decoration-pine-300 decoration-1 underline-offset-4 transition-colors hover:text-pine-950;
   }
 
   /* Oversized ghost numeral for editorial step/index lists */
   .ghost-numeral {
     @apply font-display text-[3.5rem] leading-none font-semibold text-pine-200/80 sm:text-5xl;
   }
+}
+
+behold-widget { display: block; width: 100%; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
 }

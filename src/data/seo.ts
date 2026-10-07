@@ -14,7 +14,7 @@ type SeoRoute = {
  */
 export const seoRoutes = {
   "/": {
-    title: "Great Sycamore DECA — Lead. Compete. Serve.",
+    title: "Great Sycamore DECA",
     description:
       "Great Sycamore DECA is the DECA chapter at Sycamore High School in Cincinnati, Ohio. Chapter info, event calendar, competition prep, and practice tests for members and future members.",
   },

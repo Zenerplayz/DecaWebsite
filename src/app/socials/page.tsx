@@ -1,4 +1,4 @@
-import Script from "next/script";
+import InstagramFeed from "@/components/instagram-feed";
 import { site } from "@/data/site";
 import { InstagramIcon, TikTokIcon, XIcon } from "@/components/social-icons";
 import { pageMetadata } from "@/data/seo";
@@ -13,13 +13,12 @@ export default function Socials() {
       <div className="container-page py-16">
         {/* Masthead */}
         <header className="max-w-2xl">
-          <span className="eyebrow">Socials</span>
+
           <h1 className="font-display text-4xl font-bold tracking-tight text-pine-950 sm:text-5xl">
             Follow the chapter
           </h1>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-pine-600">
-            Competition recaps, meeting reminders, and the occasional victory
-            lap — the feed is the fastest way to see what we’re up to.
+            See chapter photos, competition results, and announcements from @sycamore.deca.
           </p>
           <div className="mt-7 flex flex-wrap items-center gap-x-8 gap-y-3">
             {site.socials.map((s) => {
@@ -41,19 +40,14 @@ export default function Socials() {
         </header>
 
         {/* Live feed — open on cream, no card shell */}
-        <div className="mt-16">
+        <div className="mt-16 rounded-2xl border border-pine-100 bg-white p-5 shadow-soft sm:p-8">
           <span className="eyebrow">Latest from @sycamore.deca</span>
-          <behold-widget feed-id={site.beholdFeedId} />
+          <InstagramFeed feedId={site.beholdFeedId} />
+          <p className="mt-6 text-sm text-pine-600">Prefer Instagram? <a href={site.socials[0].url} target="_blank" rel="noopener noreferrer" className="text-link">View the chapter feed directly</a></p>
         </div>
       </div>
 
-      {site.beholdFeedId ? (
-        <Script
-          src="https://w.behold.so/widget.js"
-          type="module"
-          strategy="lazyOnload"
-        />
-      ) : null}
+
     </section>
   );
 }

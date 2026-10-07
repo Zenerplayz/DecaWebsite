@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Clock, Mail, MapPin } from "lucide-react";
+
 import Logo from "@/components/logo";
 import { InstagramIcon, TikTokIcon, XIcon } from "@/components/social-icons";
 import { site } from "@/data/site";
@@ -12,11 +12,11 @@ const socialIcon = {
 
 export default function Footer() {
   return (
-    <footer className="bg-pine-950 text-pine-200">
+    <footer className="bg-pine-950 text-white/75">
       <div className="container-page grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-4">
         <div>
           <Logo variant="light" />
-          <p className="mt-4 max-w-xs text-sm leading-relaxed text-pine-300">
+          <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/65">
             {site.mission}
           </p>
           <div className="mt-5 flex gap-3">
@@ -29,7 +29,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={s.platform}
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white transition hover:border-gold-400 hover:text-gold-400"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white transition hover:border-white/60 hover:text-white/80"
                 >
                   {Icon && <Icon className="h-4 w-4" />}
                 </a>
@@ -39,7 +39,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h2 className="font-display text-sm font-bold uppercase tracking-wider text-gold-400">Chapter</h2>
+          <h2 className="font-display text-sm font-bold uppercase tracking-wider text-white/80">Chapter</h2>
           <ul className="mt-4 space-y-2.5 text-sm">
             {site.nav.map((item) => (
               <li key={item.href}>
@@ -57,7 +57,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h2 className="font-display text-sm font-bold uppercase tracking-wider text-gold-400">Resources</h2>
+          <h2 className="font-display text-sm font-bold uppercase tracking-wider text-white/80">Resources</h2>
           <ul className="mt-4 space-y-2.5 text-sm">
             <li><Link href="/compete" className="transition hover:text-white">Competition Hub</Link></li>
             <li><Link href="/compete/practice" className="transition hover:text-white">Practice Tests</Link></li>
@@ -65,20 +65,20 @@ export default function Footer() {
         </div>
 
         <div>
-          <h2 className="font-display text-sm font-bold uppercase tracking-wider text-gold-400">Contact</h2>
+          <h2 className="font-display text-sm font-bold uppercase tracking-wider text-white/80">Contact</h2>
           <ul className="mt-4 space-y-3 text-sm">
-            <li className="flex items-center gap-2.5"><Clock className="h-4 w-4 shrink-0 text-gold-400" /><Link href="/calendar" className="transition hover:text-white">Meetings — see the Calendar</Link></li>
+            <li className="flex items-center gap-2.5"><Link href="/calendar" className="transition hover:text-white">Meetings — see the Calendar</Link></li>
             <li className="flex items-center gap-2.5">
-              <Mail className="h-4 w-4 shrink-0 text-gold-400" />
+
               <a href={`mailto:${site.advisorEmail}`} className="transition hover:text-white">{site.advisorEmail}</a>
             </li>
-            <li className="flex items-center gap-2.5"><MapPin className="h-4 w-4 shrink-0 text-gold-400" />{site.school} · Cincinnati, Ohio</li>
+            <li className="flex items-center gap-2.5">{site.school} · Cincinnati, Ohio</li>
           </ul>
         </div>
       </div>
 
       <div className="border-t border-white/10">
-        <div className="container-page flex flex-col items-center justify-between gap-2 py-6 text-xs text-pine-400 sm:flex-row">
+        <div className="container-page flex flex-col items-center justify-between gap-2 py-6 text-xs text-white/60 sm:flex-row">
           <p>© {new Date().getFullYear()} {site.chapterName} · {site.school}</p>
           <p>A student-run chapter site. Not affiliated with DECA Inc.</p>
         </div>

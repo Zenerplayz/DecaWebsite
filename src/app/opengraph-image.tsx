@@ -77,7 +77,7 @@ export default function Image() {
               color: "#399463",
             }}
           >
-            Lead. Compete. Serve.
+            Where leaders are made.
           </div>
         </div>
 

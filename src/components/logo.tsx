@@ -17,15 +17,7 @@ export default function Logo({
       >
         Sycamore DECA
       </span>
-      <span
-        aria-hidden="true"
-        className={cn(
-          "hidden text-[10px] font-semibold uppercase tracking-[0.18em] sm:inline",
-          variant === "light" ? "text-gold-400" : "text-gold-600"
-        )}
-      >
-        Lead · Compete · Serve
-      </span>
+
     </span>
   );
 }

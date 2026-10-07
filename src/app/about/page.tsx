@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { officers } from "@/data/content";
@@ -32,7 +33,7 @@ export default function About() {
     <section className="pt-16">
       {/* ── Masthead ─────────────────────────────────────────────── */}
       <div className="container-page pt-16 pb-12 sm:pt-24 sm:pb-16">
-        <span className="eyebrow">{site.school}</span>
+
         <h1 className="max-w-4xl font-display text-5xl font-semibold leading-[1.05] tracking-tight text-pine-950 sm:text-6xl lg:text-7xl">
           Great Oaks Sycamore DECA
         </h1>
@@ -42,7 +43,7 @@ export default function About() {
 
         {/* Wide editorial photograph */}
         <figure className="mt-14 sm:mt-20">
-          <div className="relative aspect-[4/3] w-full overflow-hidden sm:aspect-[16/9]">
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm sm:aspect-[16/9]">
             <Image
               src={aboutPhoto.src}
               alt={aboutPhoto.alt}
@@ -56,33 +57,6 @@ export default function About() {
             {aboutPhoto.alt}.
           </figcaption>
         </figure>
-      </div>
-
-      {/* ── Values: single-column flow with ghost index ──────────── */}
-      <div className="container-page py-16 sm:py-24">
-        <h2 className="font-display text-3xl font-semibold tracking-tight text-pine-950 sm:text-4xl">
-          What we stand for
-        </h2>
-        <ol className="mt-10 sm:mt-14">
-          {site.values.map((v, i) => (
-            <li
-              key={v.title}
-              className="rule grid gap-3 py-8 sm:grid-cols-[6rem_1fr] sm:gap-10 sm:py-10"
-            >
-              <span className="ghost-numeral" aria-hidden="true">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <div>
-                <h3 className="font-display text-2xl font-semibold text-pine-950">
-                  {v.title}
-                </h3>
-                <p className="mt-3 max-w-prose leading-relaxed text-pine-600">
-                  {v.description}
-                </p>
-              </div>
-            </li>
-          ))}
-        </ol>
       </div>
 
       {/* ── Officer roster: typographic list on a white band ─────── */}
@@ -143,7 +117,7 @@ export default function About() {
       <div className="container-page py-16 sm:py-24">
         <div className="grid items-center gap-10 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] md:gap-16">
           <figure className="order-2 mx-auto w-full max-w-sm md:order-1 md:mx-0">
-            <div className="relative aspect-[4/5] w-full overflow-hidden">
+            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-sm">
               <Image
                 src={advisorPhoto.src}
                 alt={advisorPhoto.alt}

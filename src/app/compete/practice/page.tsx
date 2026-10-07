@@ -10,13 +10,12 @@ export default function PracticePage() {
     <section className="pt-16">
       <div className="container-page py-16">
         <div className="max-w-2xl">
-          <span className="eyebrow">Competition Prep</span>
+
           <h1 className="font-display text-4xl font-bold tracking-tight text-pine-950 sm:text-5xl">
-            Practice <span className="italic text-pine-700">tests</span>
+            Practice tests
           </h1>
           <p className="mt-4 text-lg leading-relaxed text-pine-600">
-            Sharpen your cluster knowledge with realistic DECA-style questions and
-            instant scoring. Pick a cluster, choose a length, and see how you stack up.
+            Choose your cluster and test length. After the test, review your score and explanations for the questions you missed.
           </p>
         </div>
         <div className="mt-14 border-t border-pine-900/10 pt-12">

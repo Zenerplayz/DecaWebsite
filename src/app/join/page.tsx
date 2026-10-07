@@ -44,15 +44,15 @@ export default function Join() {
       <div className="container-page py-16">
         {/* Masthead */}
         <header className="max-w-2xl">
-          <span className="eyebrow">Join Us</span>
+
           <h1 className="font-display text-4xl font-bold tracking-tight text-pine-950 sm:text-5xl">
             Become a member
           </h1>
           <p className="mt-5 text-lg leading-relaxed text-pine-600">
             In a marketing class?{" "}
-            <em className="font-display italic text-pine-800">
+            <span>
               Then you’re already in.
-            </em>
+            </span>
           </p>
         </header>
 
@@ -83,7 +83,7 @@ export default function Join() {
         {/* FAQ — borderless accordion */}
         <section aria-labelledby="faq-heading" className="mx-auto mt-20 max-w-2xl sm:mt-24">
           <h2 id="faq-heading" className="font-display text-2xl font-bold text-pine-950 sm:text-3xl">
-            Questions, answered
+            Common questions
           </h2>
           <div className="mt-6">
             {faqs.map((f) => (

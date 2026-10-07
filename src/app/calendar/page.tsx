@@ -10,7 +10,7 @@ export default function CalendarPage() {
       <div className="container-page py-16">
         {/* Masthead */}
         <header className="max-w-2xl">
-          <span className="eyebrow">Calendar</span>
+
           <h1 className="font-display text-4xl font-bold tracking-tight text-pine-950 sm:text-5xl">
             What’s coming up
           </h1>

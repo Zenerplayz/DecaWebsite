@@ -25,7 +25,7 @@ export const clusters: ClusterInfo[] = [
     id: "business-management",
     name: "Business Management + Administration",
     shortName: "Management",
-    tagline: "Run the business.",
+    tagline: "Management and operations",
     description:
       "Management, operations, HR, and strategy events for students who want to lead organizations.",
     icon: "briefcase",
@@ -52,9 +52,9 @@ export const clusters: ClusterInfo[] = [
     id: "entrepreneurship",
     name: "Entrepreneurship",
     shortName: "Entrepreneurship",
-    tagline: "Build it from nothing.",
+    tagline: "Starting and growing a business",
     description:
-      "For future founders — start-up planning, innovation, and growth strategy events.",
+      "Business planning, entrepreneurship, and growth strategy.",
     icon: "lightbulb",
     examTopics: [
       "Opportunity recognition",
@@ -79,7 +79,7 @@ export const clusters: ClusterInfo[] = [
     id: "finance",
     name: "Finance",
     shortName: "Finance",
-    tagline: "Master the money.",
+    tagline: "Accounting and finance",
     description:
       "Accounting, banking, personal finance, and investment events for number-minded competitors.",
     icon: "piggy-bank",
@@ -106,7 +106,7 @@ export const clusters: ClusterInfo[] = [
     id: "hospitality-tourism",
     name: "Hospitality + Tourism",
     shortName: "Hospitality",
-    tagline: "Create the experience.",
+    tagline: "Hospitality and tourism",
     description:
       "Hotel, restaurant, travel, and event management events for service-minded leaders.",
     icon: "plane",
@@ -133,9 +133,9 @@ export const clusters: ClusterInfo[] = [
     id: "marketing",
     name: "Marketing",
     shortName: "Marketing",
-    tagline: "Sell the story.",
+    tagline: "Marketing and sales",
     description:
-      "Retail, sports, entertainment, and communications events for creative competitors who close.",
+      "Retail, sports, entertainment, and marketing communications.",
     icon: "megaphone",
     examTopics: [
       "Marketing mix (4 Ps)",

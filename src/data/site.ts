@@ -13,7 +13,7 @@ export const site = {
   advisorName: "Mr. Steedly",
   advisorEmail: "steedlym@sycamoreschools.org",
   stats: [
-    { value: "150+", label: "Active Members" },
+    { value: "300+", label: "Active Members" },
     { value: "125", label: "State Qualifiers ’25" },
     { value: "40+", label: "ICDC Qualifiers" },
   ],
@@ -21,17 +21,17 @@ export const site = {
     {
       title: "Lead",
       description:
-        "Officers, committee chairs, and classroom leaders — we build the confidence to take the front of the room.",
+        "Help plan meetings and chapter activities, work with other members, and practice leading a team.",
     },
     {
       title: "Compete",
       description:
-        "From role-plays to written events, we train like athletes and show up ready on competition day.",
+        "Prepare for DECA exams, role-plays, and written events with practice and feedback.",
     },
     {
-      title: "Serve",
+      title: "Grow",
       description:
-        "We give back through community partnerships and fundraisers that make our chapter proud.",
+        "Explore business careers and practice communication, problem-solving, and presentation skills.",
     },
   ] as ValuePillar[],
   socials: [

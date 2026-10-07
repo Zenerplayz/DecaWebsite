@@ -13,7 +13,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-pine-100 bg-white/85 shadow-soft backdrop-blur-md">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-pine-100 bg-cream/95 backdrop-blur-sm">
       <div className="container-page flex h-16 items-center justify-between">
         <Link href="/" aria-label="Home" onClick={() => setOpen(false)}>
           <Logo variant="dark" />
@@ -27,10 +27,10 @@ export default function Navbar() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "rounded-full px-4 py-2 text-sm font-semibold transition-colors",
+                  "px-4 py-2 text-sm font-medium transition-colors",
                   active
-                    ? "bg-pine-100 text-pine-950"
-                    : "text-pine-600 hover:bg-pine-50 hover:text-pine-950"
+                    ? "text-pine-950 underline decoration-pine-700 underline-offset-8"
+                    : "text-pine-600 hover:text-pine-950"
                 )}
               >
                 {item.label}

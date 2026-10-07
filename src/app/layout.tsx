@@ -50,7 +50,7 @@ const sans = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Great Sycamore DECA — Lead. Compete. Serve.",
+    default: "Great Sycamore DECA",
     template: "%s · Great Sycamore DECA",
   },
   description:
@@ -63,13 +63,13 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "/",
     siteName: "Great Sycamore DECA",
-    title: "Great Sycamore DECA — Lead. Compete. Serve.",
+    title: "Great Sycamore DECA",
     description:
       "The DECA chapter at Sycamore High School in Cincinnati, Ohio — chapter info, event calendar, competition prep, and practice tests.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Great Sycamore DECA — Lead. Compete. Serve.",
+    title: "Great Sycamore DECA",
     description:
       "The DECA chapter at Sycamore High School in Cincinnati, Ohio — chapter info, event calendar, competition prep, and practice tests.",
   },

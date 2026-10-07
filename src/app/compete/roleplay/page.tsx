@@ -131,14 +131,14 @@ export default function Roleplay() {
       <div className="container-page py-16 sm:py-20">
         {/* ── Chapter opening ─────────────────────────────────────────── */}
         <header>
-          <span className="eyebrow">Role-Play Training</span>
+
           <h1 className="max-w-3xl font-display text-5xl font-semibold leading-[1.05] tracking-tight text-pine-950 sm:text-6xl">
-            Win your <em className="italic">role-play</em>.
+            Role-play preparation
           </h1>
           <p className="mt-6 max-w-[62ch] text-lg leading-relaxed text-pine-700">
             Ten minutes of prep decides most role-plays. This guide walks
             through the format, the rubric judges carry into the room, and a
-            repeatable prep plan — so you walk in ready, not hopeful.
+            repeatable prep plan — to help you prepare for competition.
           </p>
         </header>
 
