@@ -14,14 +14,14 @@ type SeoRoute = {
  */
 export const seoRoutes = {
   "/": {
-    title: "Great Sycamore DECA",
+    title: "Great Oaks Sycamore DECA",
     description:
-      "Great Sycamore DECA is the DECA chapter at Sycamore High School in Cincinnati, Ohio. Chapter info, event calendar, competition prep, and practice tests for members and future members.",
+      "Great Oaks Sycamore DECA is the DECA chapter at Sycamore High School in Cincinnati, Ohio. Chapter info, event calendar, competition prep, and practice tests for members and future members.",
   },
   "/about": {
     title: "About",
     description:
-      "Meet Great Sycamore DECA — the DECA chapter at Sycamore High School in Cincinnati, Ohio. Our mission, values, officer team, and chapter advisor Mr. Steedly.",
+      "Meet Great Oaks Sycamore DECA — the DECA chapter at Sycamore High School in Cincinnati, Ohio. Our mission, values, officer team, and chapter advisor Mr. Steedly.",
   },
   "/calendar": {
     title: "Calendar",
@@ -68,7 +68,7 @@ export function pageMetadata(route: keyof typeof seoRoutes): Metadata {
       title,
       description,
       url: route,
-      siteName: "Great Sycamore DECA",
+      siteName: "Great Oaks Sycamore DECA",
       type: "website",
       locale: "en_US",
     },

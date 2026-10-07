@@ -18,7 +18,7 @@ const organizationJsonLd = {
   url: siteUrl,
   image: `${siteUrl}/images/icdc-winners.jpg`,
   description:
-    "Great Sycamore DECA is the DECA chapter at Sycamore High School in Cincinnati, Ohio, preparing emerging leaders and entrepreneurs in marketing, finance, hospitality, and management.",
+    "Great Oaks Sycamore DECA is the DECA chapter at Sycamore High School in Cincinnati, Ohio, preparing emerging leaders and entrepreneurs in marketing, finance, hospitality, and management.",
   foundingLocation: {
     "@type": "Place",
     name: "Sycamore High School, Cincinnati, Ohio",
@@ -50,11 +50,11 @@ const sans = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Great Sycamore DECA",
-    template: "%s · Great Sycamore DECA",
+    default: "Great Oaks Sycamore DECA",
+    template: "%s · Great Oaks Sycamore DECA",
   },
   description:
-    "Great Sycamore DECA is the DECA chapter at Sycamore High School in Cincinnati, Ohio. Chapter info, event calendar, competition prep, and practice tests for members and future members.",
+    "Great Oaks Sycamore DECA is the DECA chapter at Sycamore High School in Cincinnati, Ohio. Chapter info, event calendar, competition prep, and practice tests for members and future members.",
   alternates: {
     canonical: "/",
   },
@@ -62,14 +62,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "/",
-    siteName: "Great Sycamore DECA",
-    title: "Great Sycamore DECA",
+    siteName: "Great Oaks Sycamore DECA",
+    title: "Great Oaks Sycamore DECA",
     description:
       "The DECA chapter at Sycamore High School in Cincinnati, Ohio — chapter info, event calendar, competition prep, and practice tests.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Great Sycamore DECA",
+    title: "Great Oaks Sycamore DECA",
     description:
       "The DECA chapter at Sycamore High School in Cincinnati, Ohio — chapter info, event calendar, competition prep, and practice tests.",
   },
