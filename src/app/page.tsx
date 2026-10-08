@@ -160,6 +160,40 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <section id="interest" aria-labelledby="interest-heading" className="bg-cream">
+        <div className="container-page py-16 sm:py-24">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-12">
+            <div>
+              <p className="eyebrow">Support Sycamore DECA</p>
+              <h2 id="interest-heading" className="font-display text-3xl font-semibold tracking-tight text-pine-950 sm:text-4xl">
+                Interested in helping?
+              </h2>
+              <p className="mt-5 leading-relaxed text-pine-600">
+                Help our students grow as leaders. Fill out the form below to connect with us about sponsorship opportunities and supporting Sycamore DECA.
+              </p>
+              <a
+                href="https://docs.google.com/forms/d/11PadbmuAMaLJX_ocdckvgBq91qoEWoWJkLbkTEHepfQ/viewform"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-link mt-6"
+              >
+                Open form in a new tab
+                <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+              </a>
+            </div>
+            <div className="min-w-0 overflow-hidden rounded-2xl border border-pine-900/10 bg-white p-1 shadow-soft sm:p-3">
+              <iframe
+                src="https://docs.google.com/forms/d/11PadbmuAMaLJX_ocdckvgBq91qoEWoWJkLbkTEHepfQ/viewform?embedded=true"
+                title="Sycamore DECA sponsorship interest form"
+                loading="lazy"
+                className="block h-[1100px] w-full border-0 sm:h-[1000px]"
+              >
+                Loading sponsorship interest form…
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
