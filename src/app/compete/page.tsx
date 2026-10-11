@@ -1,150 +1,109 @@
 import Link from "next/link";
-import Image from "next/image";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  BookOpen,
+  BriefcaseBusiness,
+  Lightbulb,
+  Wallet,
+  Hotel,
+  Megaphone,
+} from "lucide-react";
 import { clusters } from "@/data/content";
-import { heroPhoto } from "@/data/photos";
-import type { ClusterInfo } from "@/data/types";
 import { pageMetadata } from "@/data/seo";
 
 export const metadata = pageMetadata("/compete");
+const clusterIcons = [BriefcaseBusiness, Lightbulb, Wallet, Hotel, Megaphone];
 
 export default function Compete() {
   return (
     <section className="pt-16">
-      <div className="container-page py-16 sm:py-20">
-        {/* Hero — text left, photo staggered right */}
-        <header className="grid gap-10 lg:grid-cols-12 lg:gap-12">
-          <div className="max-w-2xl self-center lg:col-span-7 motion-safe:animate-fade-up">
-
-            <h1 className="font-display text-4xl font-semibold leading-[1.08] tracking-tight text-pine-950 sm:text-5xl lg:text-6xl">
-              Competition practice
+      <div className="container-page py-10 sm:py-12">
+        <header className="grid items-end gap-6 border-b border-pine-200 pb-8 lg:grid-cols-[1fr_auto]">
+          <div className="max-w-2xl">
+            <p className="eyebrow">Competition prep</p>
+            <h1 className="text-4xl font-semibold leading-tight tracking-tight text-pine-950 sm:text-5xl">
+              Your next round starts here.
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-pine-600">
-              Choose a DECA cluster, take a practice test, or review the role-play guide before your next competition.
+            <p className="mt-4 max-w-xl text-lg leading-relaxed text-pine-700">
+              Choose your cluster, practice your exam, and build confidence
+              before your next competition.
             </p>
           </div>
-
-          <figure className="lg:col-span-5 lg:mt-14">
-            <a
-              href={heroPhoto.permalink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block overflow-hidden rounded-sm focus-visible:outline-offset-4"
-            >
-              <Image
-                src={heroPhoto.src}
-                alt={heroPhoto.alt}
-                width={800}
-                height={1000}
-                sizes="(min-width: 1024px) 38vw, 100vw"
-                className="aspect-[4/5] h-auto w-full object-cover"
-              />
-            </a>
-            <figcaption className="mt-3 flex items-baseline justify-between gap-4 text-xs text-pine-600">
-              <span className="uppercase tracking-[0.18em]">
-                Sycamore DECA · ICDC, Atlanta
-              </span>
-              <a
-                href={heroPhoto.permalink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="shrink-0 font-semibold text-gold-700 underline decoration-gold-300 underline-offset-4 hover:text-gold-600"
-              >
-                View Instagram post
-              </a>
-            </figcaption>
-          </figure>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/compete/practice" className="btn-gold">
+              Start a practice test{" "}
+              <ArrowRight aria-hidden="true" className="h-4 w-4" />
+            </Link>
+            <Link href="/compete/roleplay" className="btn-outline">
+              Role-play guide{" "}
+              <BookOpen aria-hidden="true" className="h-4 w-4" />
+            </Link>
+          </div>
         </header>
-
-        {/* Cluster index — editorial list, hairline rows */}
-        <div className="mt-20 sm:mt-20">
-          <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
-            <h2 className="font-display text-3xl font-semibold tracking-tight text-pine-950 sm:text-4xl">
-              Choose your cluster
-            </h2>
-
-          </div>
-
-          <div className="rule mt-8">
-            <ul>
-              {clusters.map((cluster, i) => (
-                <ClusterRow key={cluster.id} cluster={cluster} index={i} />
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        {/* Deep-dive callouts — typographic blocks, not cards */}
-        <div className="mt-20 sm:mt-20">
-          <div className="rule" />
-          <div className="grid gap-12 pt-12 sm:pt-14 lg:grid-cols-2 lg:gap-16">
-            <div className="">
-
-              <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight text-pine-950">
-                Practice Tests
-              </h2>
-              <p className="mt-3 max-w-md leading-relaxed text-pine-600">
-                Take a timed test for your cluster, then review your score and the explanation for each answer.
+        <section aria-labelledby="clusters-heading" className="mt-8">
+          <h2
+            id="clusters-heading"
+            className="text-2xl font-semibold tracking-tight text-pine-950 sm:text-3xl"
+          >
+            Choose your cluster
+          </h2>
+          <p className="mt-2 text-pine-700">
+            Pick a cluster to go straight to its practice tests.
+          </p>
+          <ul className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {clusters.map((cluster, index) => {
+              const Icon = clusterIcons[index];
+              return (
+                <li key={cluster.id}>
+                  <Link
+                    href={`/compete/practice?cluster=${cluster.id}`}
+                    className="group flex h-full flex-col rounded-xl border border-pine-200 bg-white p-5 transition-colors hover:border-pine-600 hover:bg-pine-50 sm:p-6"
+                  >
+                    <div className="mb-4 flex items-center justify-between">
+                      <Icon
+                        aria-hidden="true"
+                        className="h-6 w-6 text-pine-700"
+                      />
+                      <ArrowUpRight
+                        aria-hidden="true"
+                        className="h-5 w-5 text-pine-700"
+                      />
+                    </div>
+                    <h3 className="text-xl font-semibold leading-snug text-pine-950">
+                      {cluster.name}
+                    </h3>
+                    <p className="mt-2 leading-relaxed text-pine-700">
+                      {cluster.description}
+                    </p>
+                    <span className="mt-auto pt-5 font-semibold text-pine-900">
+                      Practice {cluster.shortName.toLowerCase()}{" "}
+                      <span aria-hidden="true">→</span>
+                    </span>
+                  </Link>
+                </li>
+              );
+            })}
+            <li className="flex flex-col rounded-xl border border-pine-200 bg-pine-50 p-5 sm:p-6">
+              <BookOpen
+                aria-hidden="true"
+                className="mb-4 h-6 w-6 text-pine-700"
+              />
+              <h3 className="text-xl font-semibold text-pine-950">
+                Prepare for your role-play
+              </h3>
+              <p className="mt-2 leading-relaxed text-pine-700">
+                Review scoring criteria, organize your response, and practice
+                presenting to a judge.
               </p>
-              <Link href="/compete/practice" className="text-link mt-5">
-                Start practicing
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              <Link href="/compete/roleplay" className="text-link mt-auto pt-5">
+                Open the training guide{" "}
+                <ArrowRight aria-hidden="true" className="h-4 w-4" />
               </Link>
-            </div>
-
-            <div className="lg:pl-8">
-
-              <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight text-pine-950">
-                Role-Play Training Guide
-              </h2>
-              <p className="mt-3 max-w-md leading-relaxed text-pine-600">
-                Review the scoring criteria, plan your response, and practice explaining your recommendations to a judge.
-              </p>
-              <Link href="/compete/roleplay" className="text-link mt-5">
-                Open the training guide
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-            </div>
-          </div>
-        </div>
+            </li>
+          </ul>
+        </section>
       </div>
     </section>
-  );
-}
-
-function ClusterRow({
-  cluster,
-  index,
-}: {
-  cluster: ClusterInfo;
-  index: number;
-}) {
-  return (
-    <li className="border-b border-pine-900/10">
-      <Link
-        href={`/compete/practice?cluster=${cluster.id}`}
-        className="group grid gap-x-6 gap-y-2 px-2 py-7 transition-colors duration-200 hover:bg-pine-50 sm:grid-cols-[5rem_1fr_auto] sm:items-center sm:px-4"
-      >
-        <span aria-hidden="true" className="ghost-numeral hidden sm:block">
-          {String(index + 1).padStart(2, "0")}
-        </span>
-        <div>
-
-          <h3 className="mt-1.5 font-display text-2xl font-semibold tracking-tight text-pine-950 sm:text-3xl">
-            {cluster.name}
-          </h3>
-          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-pine-600">
-            {cluster.description}
-          </p>
-          <p className="mt-2.5 text-sm leading-relaxed text-pine-600">
-            {cluster.events.map((e) => e.name).join("  ·  ")}
-          </p>
-        </div>
-        <ArrowUpRight
-          aria-hidden="true"
-          className="h-5 w-5 shrink-0 self-end text-pine-300 transition-colors duration-200 group-hover:text-gold-600 sm:self-center"
-        />
-      </Link>
-    </li>
   );
 }

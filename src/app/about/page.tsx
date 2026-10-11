@@ -21,7 +21,7 @@ function RosterRow({ name, role }: { name: string; role: string }) {
       <span className="font-display text-xl text-pine-950 transition-colors duration-200 group-hover:text-gold-700">
         {name}
       </span>
-      <span className="text-xs font-semibold uppercase tracking-[0.15em] text-pine-600 sm:text-right">
+      <span className="text-sm font-semibold uppercase tracking-[0.15em] text-pine-600 sm:text-right">
         {role}
       </span>
     </li>
@@ -32,7 +32,7 @@ export default function About() {
   return (
     <section className="pt-16">
       {/* ── Masthead ─────────────────────────────────────────────── */}
-      <div className="container-page pt-16 pb-12 sm:pt-24 sm:pb-16">
+      <div className="container-page pt-10 pb-10 sm:pt-12 sm:pb-12">
 
         <h1 className="max-w-4xl font-display text-5xl font-semibold leading-[1.05] tracking-tight text-pine-950 sm:text-6xl lg:text-7xl">
           Great Oaks Sycamore DECA
@@ -42,7 +42,7 @@ export default function About() {
         </p>
 
         {/* Wide editorial photograph */}
-        <figure className="mt-14 sm:mt-20">
+        <figure className="mt-8 sm:mt-10">
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm sm:aspect-[16/9]">
             <Image
               src={aboutPhoto.src}
@@ -53,7 +53,7 @@ export default function About() {
               className="object-cover"
             />
           </div>
-          <figcaption className="mt-4 text-sm text-pine-600">
+          <figcaption className="mt-4 text-base text-pine-600">
             {aboutPhoto.alt}.
           </figcaption>
         </figure>
@@ -61,7 +61,7 @@ export default function About() {
 
       {/* ── Officer roster: typographic list on a white band ─────── */}
       <div className="border-y border-pine-100 bg-white">
-        <div className="container-page py-16 sm:py-24">
+        <div className="container-page py-10 sm:py-14">
           <div className="max-w-2xl">
             <h2 className="font-display text-3xl font-semibold tracking-tight text-pine-950 sm:text-4xl">
               The officer team
@@ -75,8 +75,8 @@ export default function About() {
 
           {/* President, given room to breathe */}
           {president && (
-            <article className="mt-12 pb-8 sm:mt-16">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-gold-700">
+            <article className="mt-8 pb-4 sm:mt-10">
+              <p className="text-sm font-bold uppercase tracking-[0.2em] text-gold-700">
                 {president.role}
               </p>
               <h3 className="mt-2 font-display text-3xl font-semibold tracking-tight text-pine-950 sm:text-4xl">
@@ -87,7 +87,7 @@ export default function About() {
 
           {vicePresidents.length > 0 && (
             <section aria-label="Vice presidents">
-              <h3 className="pt-8 text-xs font-bold uppercase tracking-[0.2em] text-pine-600">
+              <h3 className="pt-8 text-sm font-bold uppercase tracking-[0.2em] text-pine-600">
                 Vice Presidents
               </h3>
               <ul className="mt-2">
@@ -100,7 +100,7 @@ export default function About() {
 
           {associates.length > 0 && (
             <section aria-label="Associates">
-              <h3 className="pt-12 text-xs font-bold uppercase tracking-[0.2em] text-pine-600">
+              <h3 className="pt-12 text-sm font-bold uppercase tracking-[0.2em] text-pine-600">
                 Associates
               </h3>
               <ul className="mt-2">
@@ -114,7 +114,7 @@ export default function About() {
       </div>
 
       {/* ── Advisor: drop-cap profile paired with portrait ───────── */}
-      <div className="container-page py-16 sm:py-24">
+      <div className="container-page py-10 sm:py-14">
         <div className="grid items-center gap-10 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] md:gap-16">
           <figure className="order-2 mx-auto w-full max-w-sm md:order-1 md:mx-0">
             <div className="relative aspect-[4/5] w-full overflow-hidden rounded-sm">
@@ -129,7 +129,7 @@ export default function About() {
           </figure>
 
           <div className="order-1 md:order-2">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-gold-700">
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-gold-700">
               Chapter Advisor
             </p>
             <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight text-pine-950 sm:text-4xl">

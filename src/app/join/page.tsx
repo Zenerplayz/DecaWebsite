@@ -41,7 +41,7 @@ export default function Join() {
           __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c"),
         }}
       />
-      <div className="container-page py-16">
+      <div className="container-page py-10 sm:py-12">
         {/* Masthead */}
         <header className="max-w-2xl">
 
@@ -57,9 +57,9 @@ export default function Join() {
         </header>
 
         {/* Steps — open typographic sequence */}
-        <ol className="mx-auto mt-14 max-w-2xl border-t border-pine-900/10 sm:mt-16">
+        <ol className="mx-auto mt-8 max-w-2xl border-t border-pine-900/10 sm:mt-10">
           {steps.map((s) => (
-            <li key={s.numeral} className="rule flex items-start gap-6 py-10 sm:gap-10 sm:py-12">
+            <li key={s.numeral} className="rule flex items-start gap-6 py-6 sm:gap-8 sm:py-8">
               <span className="ghost-numeral shrink-0" aria-hidden="true">
                 {s.numeral}
               </span>
@@ -81,7 +81,7 @@ export default function Join() {
         </div>
 
         {/* FAQ — borderless accordion */}
-        <section aria-labelledby="faq-heading" className="mx-auto mt-20 max-w-2xl sm:mt-24">
+        <section aria-labelledby="faq-heading" className="mx-auto mt-12 max-w-2xl sm:mt-14">
           <h2 id="faq-heading" className="font-display text-2xl font-bold text-pine-950 sm:text-3xl">
             Common questions
           </h2>

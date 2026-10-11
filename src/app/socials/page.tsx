@@ -10,7 +10,7 @@ export const metadata = pageMetadata("/socials");
 export default function Socials() {
   return (
     <section className="pt-16">
-      <div className="container-page py-16">
+      <div className="container-page py-10 sm:py-12">
         {/* Masthead */}
         <header className="max-w-2xl">
 
@@ -43,7 +43,7 @@ export default function Socials() {
         <div className="mt-16 rounded-2xl border border-pine-100 bg-white p-5 shadow-soft sm:p-8">
           <span className="eyebrow">Latest from @sycamore.deca</span>
           <InstagramFeed feedId={site.beholdFeedId} />
-          <p className="mt-6 text-sm text-pine-600">Prefer Instagram? <a href={site.socials[0].url} target="_blank" rel="noopener noreferrer" className="text-link">View the chapter feed directly</a></p>
+          <p className="mt-6 text-base text-pine-600">Prefer Instagram? <a href={site.socials[0].url} target="_blank" rel="noopener noreferrer" className="text-link">View the chapter feed directly</a></p>
         </div>
       </div>
 

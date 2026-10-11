@@ -7,7 +7,7 @@
   --color-pine-300: #8fcba6;
   --color-pine-400: #5cb07f;
   --color-pine-500: #399463;
-  --color-pine-600: #28774f;
+  --color-pine-600: #216042;
   --color-pine-700: #216042;
   --color-pine-800: #1c4d37;
   --color-pine-900: #173f2e;
@@ -115,7 +115,7 @@ html {
   }
 
   .eyebrow {
-    @apply mb-4 block text-xs font-bold uppercase tracking-[0.2em] text-gold-700;
+    @apply mb-3 block text-sm font-bold uppercase tracking-[0.14em] text-gold-800;
   }
 
   /* Editorial hairline divider — the replacement for card borders */
@@ -130,7 +130,7 @@ html {
 
   /* Oversized ghost numeral for editorial step/index lists */
   .ghost-numeral {
-    @apply font-display text-[3.5rem] leading-none font-semibold text-pine-200/80 sm:text-5xl;
+    @apply font-display text-[3rem] leading-none font-semibold text-pine-700 sm:text-5xl;
   }
 }
 

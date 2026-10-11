@@ -6,7 +6,7 @@ export default function Pillars() {
       {site.values.map(value => (
         <li key={value.title}>
           <h3 className="font-display text-2xl font-medium italic text-pine-950">{value.title}</h3>
-          <p className="mt-2 max-w-sm text-sm leading-relaxed text-pine-600">{value.description}</p>
+          <p className="mt-2 max-w-sm text-base leading-relaxed text-pine-600">{value.description}</p>
         </li>
       ))}
     </ol>
