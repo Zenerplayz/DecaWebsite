@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
@@ -36,15 +36,17 @@ const organizationJsonLd = {
   sameAs: site.socials.map((s) => s.url),
 };
 
-const display = Fraunces({
-  subsets: ["latin"],
-  style: ["normal", "italic"],
-  variable: "--font-fraunces",
-});
-
-const sans = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
+const sans = localFont({
+  src: [
+    { path: "./fonts/source-sans-pro-400-normal.ttf", weight: "400", style: "normal" },
+    { path: "./fonts/source-sans-pro-600-normal.ttf", weight: "600", style: "normal" },
+    { path: "./fonts/source-sans-pro-700-normal.ttf", weight: "700", style: "normal" },
+    { path: "./fonts/source-sans-pro-400-italic.ttf", weight: "400", style: "italic" },
+    { path: "./fonts/source-sans-pro-600-italic.ttf", weight: "600", style: "italic" },
+    { path: "./fonts/source-sans-pro-700-italic.ttf", weight: "700", style: "italic" },
+  ],
+  display: "swap",
+  variable: "--font-source-sans-pro",
 });
 
 export const metadata: Metadata = {
@@ -81,7 +83,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`scroll-smooth ${display.variable} ${sans.variable}`}>
+    <html lang="en" className={`scroll-smooth ${sans.variable}`}>
       <body>
         <script
           type="application/ld+json"

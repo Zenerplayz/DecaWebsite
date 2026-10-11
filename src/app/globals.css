@@ -56,8 +56,8 @@
 }
 
 @theme inline {
-  --font-display: var(--font-fraunces);
-  --font-sans: var(--font-inter);
+  --font-display: var(--font-source-sans-pro), Arial, sans-serif;
+  --font-sans: var(--font-source-sans-pro), Arial, sans-serif;
 }
 
 body {
