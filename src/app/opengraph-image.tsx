@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Great Sycamore DECA — Sycamore High School DECA chapter, Cincinnati, Ohio";
+export const alt = "Great Oaks Sycamore DECA — Sycamore High School DECA chapter, Cincinnati, Ohio";
 export const size = {
   width: 1200,
   height: 630,
@@ -61,13 +61,13 @@ export default function Image() {
           <div
             style={{
               display: "flex",
-              fontSize: 104,
+              fontSize: 84,
               fontWeight: 700,
               color: "#f1f8f3",
               lineHeight: 1.05,
             }}
           >
-            Great Sycamore DECA
+            Great Oaks Sycamore DECA
           </div>
           <div
             style={{

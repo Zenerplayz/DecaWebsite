@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Timer } from "lucide-react";
 import { pageMetadata } from "@/data/seo";
+import PageSeo from "@/components/page-seo";
 
 export const metadata = pageMetadata("/compete/roleplay");
 
@@ -8,21 +9,21 @@ const formatStats = [
   {
     value: "10",
     unit: "min",
-    label: "Prep time",
+    label: "Practice prep time",
     detail:
       "Read the case, study the performance indicators, and outline your answer before the judge calls you in.",
   },
   {
     value: "10",
     unit: "min",
-    label: "Presentation",
+    label: "Practice presentation",
     detail:
       "Present your solution directly to the judge as if they were the decision-maker in the scenario.",
   },
   {
     value: "5",
     unit: "criteria",
-    label: "How you're scored",
+    label: "Practice focus areas",
     detail:
       "Judges rate how well you address each listed indicator, plus your overall structure and professionalism.",
   },
@@ -32,27 +33,27 @@ const rubric = [
   {
     title: "Opening & Professionalism",
     description:
-      "Top marks go to competitors who greet the judge confidently, introduce themselves, and state the problem and their recommendation within the first thirty seconds.",
+      "Practice greeting the judge, introducing yourself, and stating the problem and your recommendation clearly.",
   },
   {
     title: "Application of Performance Indicators",
     description:
-      "Top marks require you to explicitly work every listed indicator into your answer with business terminology, not just mention it once and move on.",
+      "Apply each listed performance indicator to your solution using relevant business terminology and examples.",
   },
   {
     title: "Use of Case Facts",
     description:
-      "Top marks come from citing specific numbers, names, and constraints from the scenario to justify each decision you make.",
+      "Use specific numbers, names, and constraints from the scenario to justify your recommendations.",
   },
   {
     title: "Solution Structure",
     description:
-      "Top marks reward a clear problem-solution-benefit flow where the judge always knows which point you are on and why it matters.",
+      "Organize your presentation around the problem, your proposed solution, and its expected benefits.",
   },
   {
     title: "Communication & Closing",
     description:
-      "Top marks belong to presenters who keep steady eye contact, manage their time, and end with a confident summary and call to action.",
+      "Practice eye contact, time management, and a concise closing that summarizes your recommendation.",
   },
 ];
 
@@ -129,16 +130,24 @@ export default function Roleplay() {
   return (
     <section className="pt-16">
       <div className="container-page py-16 sm:py-20">
+        <PageSeo route="/compete/roleplay" />
         {/* ── Chapter opening ─────────────────────────────────────────── */}
         <header>
 
           <h1 className="max-w-3xl font-display text-5xl font-semibold leading-[1.05] tracking-tight text-pine-950 sm:text-6xl">
-            Role-play preparation
+            DECA role-play preparation
           </h1>
           <p className="mt-6 max-w-[62ch] text-lg leading-relaxed text-pine-700">
-            Ten minutes of prep decides most role-plays. This guide walks
-            through the format, the rubric judges carry into the room, and a
-            repeatable prep plan — to help you prepare for competition.
+            A DECA role-play asks you to solve a business scenario and present
+            your recommendations to a judge. Use the scenario’s facts and
+            performance indicators to explain what you would do and why.
+            This chapter guide gives you a repeatable practice plan.
+          </p>
+          <p className="mt-4 max-w-[62ch] leading-relaxed text-pine-600">
+            The timing and five focus areas below are a practice routine, not
+            a universal event format or official scoring rubric. Check your
+            event’s current <a href="https://www.deca.org/compete" className="underline underline-offset-4">DECA guidelines</a>
+            {" "}for preparation time, presentation time, and evaluation criteria.
           </p>
         </header>
 
@@ -168,8 +177,8 @@ export default function Roleplay() {
           <SectionHeader
             num="01"
             kicker="Judging"
-            title="How judges score you"
-            lead="Every judge scores against the same printed scorecard. Learn its five criteria and you already know exactly what to rehearse."
+            title="Five areas to practice"
+            lead="Use these chapter coaching tips to review your presentation. Your event’s official evaluation form determines how judges score your work."
           />
 
           <dl className="mt-12 divide-y divide-pine-900/10 border-t border-pine-900/10">
@@ -197,9 +206,8 @@ export default function Roleplay() {
           </dl>
 
           <p className="mt-8 max-w-[62ch] text-sm leading-relaxed text-pine-500">
-            Scores across the five criteria combine into one total — a weak
-            opening drags down every point that follows, which is why this
-            guide spends so much time on the first thirty seconds.
+            Ask a practice partner for feedback on these areas, then compare
+            your presentation with the evaluation form for your specific event.
           </p>
         </article>
 
@@ -236,7 +244,7 @@ export default function Roleplay() {
             <Timer aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-gold-600" />
             <span>
               <strong className="font-semibold text-pine-950">
-                Roughly two minutes per step.
+                Spend most of your time reading and outlining.
               </strong>{" "}
               If you fall behind, prioritize the outline over rehearsing.
             </span>
@@ -249,7 +257,7 @@ export default function Roleplay() {
             num="03"
             kicker="In practice"
             title="A scenario, up close"
-            lead="This is what a prep sheet looks like when it lands in front of you. Practice outlining against it with a ten-minute timer running."
+            lead="This chapter-created sample scenario is for practice. Try outlining a solution with a ten-minute timer running."
           />
 
           <div className="mt-12 grid gap-12 lg:grid-cols-3">

@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { clusters } from "@/data/content";
 import { pageMetadata } from "@/data/seo";
+import PageSeo from "@/components/page-seo";
 
 export const metadata = pageMetadata("/compete");
 const clusterIcons = [BriefcaseBusiness, Lightbulb, Wallet, Hotel, Megaphone];
@@ -19,11 +20,12 @@ export default function Compete() {
   return (
     <section className="pt-16">
       <div className="container-page py-10 sm:py-12">
+        <PageSeo route="/compete" />
         <header className="grid items-end gap-6 border-b border-pine-200 pb-8 lg:grid-cols-[1fr_auto]">
           <div className="max-w-2xl">
             <p className="eyebrow">Competition prep</p>
             <h1 className="text-4xl font-semibold leading-tight tracking-tight text-pine-950 sm:text-5xl">
-              Your next round starts here.
+              DECA competition preparation
             </h1>
             <p className="mt-4 max-w-xl text-lg leading-relaxed text-pine-700">
               Choose your cluster, practice your exam, and build confidence

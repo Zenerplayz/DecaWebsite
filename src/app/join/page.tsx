@@ -3,6 +3,7 @@ import { ArrowRight, ChevronDown } from "lucide-react";
 import { faqs } from "@/data/content";
 import { site } from "@/data/site";
 import { pageMetadata } from "@/data/seo";
+import PageSeo from "@/components/page-seo";
 
 export const metadata = pageMetadata("/join");
 
@@ -23,12 +24,12 @@ const steps = [
   {
     numeral: "01",
     title: "Visit Mr. Steedly",
-    desc: "Stop by his room in the marketing wing — he’ll get you signed up.",
+    desc: "Stop by his room in the marketing wing to confirm course eligibility, registration, and current chapter requirements.",
   },
   {
     numeral: "02",
     title: "Come to meetings",
-    desc: "Dates and locations are posted on the calendar. That’s it — you’re in.",
+    desc: "Check the chapter calendar for meeting dates and locations, then ask how to get involved in competition preparation.",
   },
 ];
 
@@ -42,17 +43,21 @@ export default function Join() {
         }}
       />
       <div className="container-page py-10 sm:py-12">
+        <PageSeo route="/join" />
         {/* Masthead */}
         <header className="max-w-2xl">
 
           <h1 className="font-display text-4xl font-bold tracking-tight text-pine-950 sm:text-5xl">
-            Become a member
+            How to join Sycamore DECA
           </h1>
           <p className="mt-5 text-lg leading-relaxed text-pine-600">
-            In a marketing class?{" "}
-            <span>
-              Then you’re already in.
-            </span>
+            Interested in business, leadership, or DECA competitions at {site.school}?
+            Start by speaking with {site.advisorName} about eligible marketing,
+            business, and management courses and chapter registration.
+          </p>
+          <p className="mt-3 leading-relaxed text-pine-600">
+            The <a href="https://shs.sycamoreschools.org/student-life/activities01" className="underline underline-offset-4">school’s DECA listing</a>
+            {" "}describes membership as part of an approved career-technical education program.
           </p>
         </header>
 

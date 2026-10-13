@@ -6,24 +6,29 @@ import { heroPhoto } from "@/data/photos";
 import Pillars from "@/components/pillars";
 import UpcomingEvents from "@/components/upcoming-events";
 import { cn } from "@/lib/utils";
+import { pageMetadata } from "@/data/seo";
+import PageSeo from "@/components/page-seo";
 
+export const metadata = pageMetadata("/");
 export const revalidate = 300;
 
 export default function Home() {
   return (
     <>
+      <PageSeo route="/" />
       {/* ── Magazine opening ───────────────────────────────────────── */}
       <section className="pt-16">
         <div className="container-page pb-12 pt-10 sm:pb-16 sm:pt-12">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
             <header className="max-w-2xl self-center motion-safe:animate-fade-up lg:col-span-7">
+              <p className="eyebrow mb-4">Sycamore DECA · Cincinnati, Ohio</p>
               <h1 className="font-display text-5xl font-semibold leading-[1.05] tracking-tight text-pine-950 sm:text-6xl lg:text-7xl">
                 Where leaders
                 <br />
                 are made.
               </h1>
               <p className="mt-7 max-w-xl text-lg leading-relaxed text-pine-600">
-                {site.chapterName} brings students together at {site.school} to
+                {site.chapterName}, the DECA chapter at {site.school} in Cincinnati, Ohio, brings students together to
                 learn about business, prepare for competitions, and get involved
                 in the chapter.
               </p>
@@ -112,6 +117,11 @@ export default function Home() {
           </div>
 
           <Pillars />
+          <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3">
+            <Link href="/about" className="text-link">Meet our chapter and advisor</Link>
+            <Link href="/compete/practice" className="text-link">Free DECA practice tests</Link>
+            <Link href="/compete/roleplay" className="text-link">DECA role-play preparation</Link>
+          </div>
 
           <div className="mt-2 pt-8 md:hidden">
             <Link href="/compete" className="text-link">

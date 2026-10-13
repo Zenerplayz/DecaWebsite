@@ -6,6 +6,7 @@ import { officers } from "@/data/content";
 import { site } from "@/data/site";
 import { aboutPhoto, advisorPhoto } from "@/data/photos";
 import { pageMetadata } from "@/data/seo";
+import PageSeo from "@/components/page-seo";
 
 export const metadata = pageMetadata("/about");
 
@@ -33,6 +34,7 @@ export default function About() {
     <section className="pt-16">
       {/* ── Masthead ─────────────────────────────────────────────── */}
       <div className="container-page pt-10 pb-10 sm:pt-12 sm:pb-12">
+        <PageSeo route="/about" />
 
         <h1 className="max-w-4xl font-display text-5xl font-semibold leading-[1.05] tracking-tight text-pine-950 sm:text-6xl lg:text-7xl">
           Great Oaks Sycamore DECA
@@ -40,6 +42,23 @@ export default function About() {
         <p className="mt-8 max-w-2xl font-display text-xl italic leading-relaxed text-pine-700 sm:text-2xl">
           {site.mission}
         </p>
+        <section aria-labelledby="chapter-heading" className="mt-8 max-w-2xl">
+          <h2 id="chapter-heading" className="text-2xl font-semibold text-pine-950">What is Sycamore DECA?</h2>
+          <p className="mt-3 leading-relaxed text-pine-700">
+            {site.chapterName} is the DECA chapter at {site.school} in Cincinnati, Ohio.
+            Students develop business and leadership skills through chapter activities,
+            exam practice, role-plays, and competitive events. Our chapter advisor is {site.advisorName}.
+          </p>
+          <p className="mt-3 leading-relaxed text-pine-700">
+            DECA connects classroom learning with careers in marketing, finance,
+            hospitality, and management. Sycamore is listed in Ohio DECA’s District 13,
+            which serves Hamilton County.
+          </p>
+          <p className="mt-4 text-sm text-pine-600">
+            Learn more: <a href="https://shs.sycamoreschools.org/student-life/activities01" className="underline underline-offset-4">Sycamore High School’s DECA listing</a>
+            {" · "}<a href="https://www.ohiodeca.org/district13" className="underline underline-offset-4">Ohio DECA District 13</a>.
+          </p>
+        </section>
 
         {/* Wide editorial photograph */}
         <figure className="mt-8 sm:mt-10">

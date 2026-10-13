@@ -2,6 +2,7 @@ import { ArrowUpRight, Bell } from "lucide-react";
 import { site } from "@/data/site";
 import { pageMetadata } from "@/data/seo";
 import UpcomingEvents from "@/components/upcoming-events";
+import PageSeo from "@/components/page-seo";
 
 export const metadata = pageMetadata("/calendar");
 export const revalidate = 300;
@@ -10,10 +11,11 @@ export default function CalendarPage() {
   return (
     <section className="pt-16">
       <div className="container-page py-10 sm:py-12">
+        <PageSeo route="/calendar" />
         {/* Masthead */}
         <header className="max-w-2xl">
           <h1 className="font-display text-4xl font-bold tracking-tight text-pine-950 sm:text-5xl">
-            What’s coming up
+            Sycamore DECA event calendar
           </h1>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-pine-600">
             Meetings, competitions, deadlines, and socials — everything coming

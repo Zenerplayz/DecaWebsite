@@ -2,6 +2,7 @@ import InstagramFeed from "@/components/instagram-feed";
 import { site } from "@/data/site";
 import { InstagramIcon, TikTokIcon, XIcon } from "@/components/social-icons";
 import { pageMetadata } from "@/data/seo";
+import PageSeo from "@/components/page-seo";
 
 const platformIcon = { Instagram: InstagramIcon, TikTok: TikTokIcon, X: XIcon };
 
@@ -11,11 +12,12 @@ export default function Socials() {
   return (
     <section className="pt-16">
       <div className="container-page py-10 sm:py-12">
+        <PageSeo route="/socials" />
         {/* Masthead */}
         <header className="max-w-2xl">
 
           <h1 className="font-display text-4xl font-bold tracking-tight text-pine-950 sm:text-5xl">
-            Follow the chapter
+            Sycamore DECA on Instagram
           </h1>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-pine-600">
             See chapter photos, competition results, and announcements from @sycamore.deca.

@@ -9,6 +9,7 @@ import { siteUrl } from "@/data/seo";
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": `${siteUrl}/#organization`,
   name: site.chapterName,
   alternateName: [
     site.shortName,
@@ -19,7 +20,7 @@ const organizationJsonLd = {
   image: `${siteUrl}/images/icdc-winners.jpg`,
   description:
     "Great Oaks Sycamore DECA is the DECA chapter at Sycamore High School in Cincinnati, Ohio, preparing emerging leaders and entrepreneurs in marketing, finance, hospitality, and management.",
-  foundingLocation: {
+  location: {
     "@type": "Place",
     name: "Sycamore High School, Cincinnati, Ohio",
   },
@@ -29,11 +30,29 @@ const organizationJsonLd = {
     addressRegion: "OH",
     addressCountry: "US",
   },
-  parentOrganization: {
+  memberOf: {
     "@type": "Organization",
     name: "Ohio DECA",
+    url: "https://www.ohiodeca.org/",
   },
   sameAs: site.socials.map((s) => s.url),
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "Chapter membership",
+    email: site.advisorEmail,
+    url: `${siteUrl}/join`,
+  },
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${siteUrl}/#website`,
+  url: siteUrl,
+  name: site.chapterName,
+  alternateName: site.shortName,
+  inLanguage: "en-US",
+  publisher: { "@id": `${siteUrl}/#organization` },
 };
 
 const sans = localFont({
@@ -53,7 +72,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default: "Great Oaks Sycamore DECA",
-    template: "%s · Great Oaks Sycamore DECA",
+    template: "%s | Sycamore DECA",
   },
   description:
     "Great Oaks Sycamore DECA is the DECA chapter at Sycamore High School in Cincinnati, Ohio. Chapter info, event calendar, competition prep, and practice tests for members and future members.",
@@ -88,7 +107,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationJsonLd).replace(/</g, "\\u003c"),
+            __html: JSON.stringify([organizationJsonLd, websiteJsonLd]).replace(/</g, "\\u003c"),
           }}
         />
         <Navbar />

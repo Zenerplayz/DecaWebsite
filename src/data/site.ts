@@ -1,7 +1,7 @@
 import type { SocialLink, ValuePillar } from "@/data/types";
 
 export const site = {
-  chapterName: "Great Sycamore DECA",
+  chapterName: "Great Oaks Sycamore DECA",
   shortName: "Sycamore DECA",
   school: "Sycamore High School",
   tagline: "Where leaders are made.",

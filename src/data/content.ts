@@ -163,7 +163,7 @@ export const faqs: FaqItem[] = [
   {
     question: "Who can join Sycamore DECA?",
     answer:
-      "Any Sycamore High School student, grades 9–12, who is taking (or has taken) a marketing class.",
+      "Sycamore High School’s DECA listing describes membership for students enrolled in an approved career-technical marketing education program, including business and management pathways. Ask Mr. Steedly to confirm your course eligibility and registration requirements.",
   },
   {
     question: "When and where do we meet?",
@@ -177,7 +177,7 @@ export const faqs: FaqItem[] = [
   {
     question: "What is a role-play event?",
     answer:
-      "You get a real-world business scenario and ~10 minutes to prepare, then present your solution to a judge using listed performance indicators.",
+      "You receive a business scenario and present a solution to a judge using listed performance indicators. Preparation time, presentation time, and scoring criteria vary by event; check your event’s current DECA guidelines.",
   },
   {
     question: "How do I sign up?",
