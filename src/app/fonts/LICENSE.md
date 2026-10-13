@@ -2,6 +2,10 @@ Copyright 2010-2024 Adobe (http://www.adobe.com/), with Reserved Font Name 'Sour
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
 
+The accompanying WOFF2 files are compressed conversions of the original TTF
+files in this directory. They preserve the glyphs, metrics, weights, and styles.
+Converted with fontTools 4.65.0 and Brotli 1.2.0. Original TTF sources are retained.
+
 This license is copied below, and is also available with a FAQ at: http://scripts.sil.org/OFL
 
 

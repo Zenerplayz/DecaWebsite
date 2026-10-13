@@ -41,6 +41,11 @@ async function main() {
     assert(meta.some((tag) => tag.property === "og:image" && tag.content.startsWith(origin)), `${route}: social image`);
     assert(meta.some((tag) => tag.name === "twitter:image" && tag.content.startsWith(origin)), `${route}: Twitter image`);
     assert.equal((html.match(/<h1\b/g) || []).length, 1, `${route}: one primary heading`);
+    const fontPreloads = tags(html, "link").filter((tag) => tag.rel === "preload" && tag.as === "font");
+    assert(fontPreloads.length > 0 && fontPreloads.every((font) => font.type === "font/woff2"), `${route}: compressed font preloads`);
+    if (route === "/") {
+      assert(/<h1\b[^>]*>Sycamore DECA<\/h1>/.test(html), "home: descriptive chapter heading");
+    }
     const schemas = [...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)]
       .flatMap(([, json]) => JSON.parse(json));
     const organization = schemas.find((schema) => schema["@type"] === "Organization");
@@ -73,6 +78,12 @@ async function main() {
   assert(robots.includes("User-Agent: *") && robots.includes("Allow: /"), "robots: public crawling allowed");
   assert(robots.includes(`${origin}/sitemap.xml`), "robots: sitemap discovery");
   console.log("PASS sitemap and robots.txt");
+  if (target) {
+    const filtered = await read("/compete/practice?cluster=finance");
+    const canonical = tags(filtered, "link").find((tag) => tag.rel === "canonical");
+    assert.equal(canonical?.href, `${origin}/compete/practice`, "filtered quiz: canonical consolidates query variant");
+    console.log("PASS filtered quiz canonical");
+  }
 }
 
 main().catch((error) => { console.error(error); process.exitCode = 1; });

@@ -57,12 +57,12 @@ const websiteJsonLd = {
 
 const sans = localFont({
   src: [
-    { path: "./fonts/source-sans-pro-400-normal.ttf", weight: "400", style: "normal" },
-    { path: "./fonts/source-sans-pro-600-normal.ttf", weight: "600", style: "normal" },
-    { path: "./fonts/source-sans-pro-700-normal.ttf", weight: "700", style: "normal" },
-    { path: "./fonts/source-sans-pro-400-italic.ttf", weight: "400", style: "italic" },
-    { path: "./fonts/source-sans-pro-600-italic.ttf", weight: "600", style: "italic" },
-    { path: "./fonts/source-sans-pro-700-italic.ttf", weight: "700", style: "italic" },
+    { path: "./fonts/source-sans-pro-400-normal.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/source-sans-pro-600-normal.woff2", weight: "600", style: "normal" },
+    { path: "./fonts/source-sans-pro-700-normal.woff2", weight: "700", style: "normal" },
+    { path: "./fonts/source-sans-pro-400-italic.woff2", weight: "400", style: "italic" },
+    { path: "./fonts/source-sans-pro-600-italic.woff2", weight: "600", style: "italic" },
+    { path: "./fonts/source-sans-pro-700-italic.woff2", weight: "700", style: "italic" },
   ],
   display: "swap",
   variable: "--font-source-sans-pro",

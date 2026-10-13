@@ -21,12 +21,11 @@ export default function Home() {
         <div className="container-page pb-12 pt-10 sm:pb-16 sm:pt-12">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
             <header className="max-w-2xl self-center motion-safe:animate-fade-up lg:col-span-7">
-              <p className="eyebrow mb-4">Sycamore DECA · Cincinnati, Ohio</p>
+              <p className="eyebrow mb-4">Sycamore High School · Cincinnati, Ohio</p>
               <h1 className="font-display text-5xl font-semibold leading-[1.05] tracking-tight text-pine-950 sm:text-6xl lg:text-7xl">
-                Where leaders
-                <br />
-                are made.
+                Sycamore DECA
               </h1>
+              <p className="mt-4 font-display text-3xl font-semibold leading-tight text-pine-950 sm:text-4xl">Where leaders are made.</p>
               <p className="mt-7 max-w-xl text-lg leading-relaxed text-pine-600">
                 {site.chapterName}, the DECA chapter at {site.school} in Cincinnati, Ohio, brings students together to
                 learn about business, prepare for competitions, and get involved
