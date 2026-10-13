@@ -33,7 +33,7 @@
 > - [x] Awards section removed; hardcoded events removed (Google Calendar is sole source)
 > - [x] Dues references cut (amount unknown); "Est. 2014" removed
 > - [x] `beholdWidgetUrl` set (feed 9z5NZ99pscFkKMuzDq6Q); sample highlight cards removed — /socials shows the live Instagram feed
-> - [ ] Final QA pass after content complete (user plans a full review + subagent sweep)
+> - [x] Final QA pass — Oct 12, 2026: production build and TypeScript passed; all eight pages checked at phone, tablet, and desktop sizes; menu, FAQ, quiz scoring/retakes, calendar parser, and photo gallery verified. Browser checks used Chromium; live Instagram remains an optional third-party embed.
 
 ---
 

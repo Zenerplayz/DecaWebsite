@@ -73,11 +73,15 @@ html {
 }
 
 *:focus-visible {
-  outline: 2px solid var(--color-gold-500);
+  outline: 2px solid var(--color-gold-800);
   outline-offset: 2px;
 }
 
 @layer components {
+  .section-title {
+    @apply text-2xl font-semibold leading-tight tracking-tight sm:text-3xl;
+  }
+
   .container-page {
     @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
   }

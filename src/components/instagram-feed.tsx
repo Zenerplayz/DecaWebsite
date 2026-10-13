@@ -1,39 +1,88 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
-import BeholdWidget from "@behold/react";
+import Script from "next/script";
 import { chapterPhotos } from "@/data/photos";
+import { site } from "@/data/site";
 
 export default function InstagramFeed({ feedId }: { feedId: string }) {
-  const [loaded, setLoaded] = useState(false);
-  const [timedOut, setTimedOut] = useState(false);
-
-  useEffect(() => {
-    const timer = window.setTimeout(() => setTimedOut(true), 12000);
-    return () => window.clearTimeout(timer);
-  }, []);
-
+  const [showLive, setShowLive] = useState(false);
+  const [liveUnavailable, setLiveUnavailable] = useState(false);
   return (
     <>
-      <div className={timedOut && !loaded ? "hidden" : "min-h-[360px]"}>
-        <BeholdWidget feedId={feedId} onLoad={() => setLoaded(true)} />
+      <div className="grid gap-x-6 gap-y-8 sm:grid-cols-3">
+        {chapterPhotos.slice(0, 3).map((photo) => (
+          <figure key={photo.src}>
+            <a
+              href={photo.permalink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block focus-visible:outline-offset-4"
+            >
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                width={1000}
+                height={1000}
+                sizes="(min-width: 1152px) 350px, (min-width: 640px) 33vw, calc(100vw - 2rem)"
+                className="aspect-square h-auto w-full object-cover"
+              />
+            </a>
+            <figcaption className="mt-3 text-sm leading-relaxed text-pine-700">
+              {photo.alt}
+            </figcaption>
+          </figure>
+        ))}
       </div>
-      {timedOut && !loaded ? (
-        <div>
-          <p role="status" className="mb-5 text-sm text-pine-600">The live feed is taking a little longer. Here are a few moments from the chapter while it reconnects.</p>
-          <div className="grid gap-4 sm:grid-cols-3">
-            {chapterPhotos.slice(0, 3).map(photo => (
-              <a key={photo.src} href={photo.permalink} target="_blank" rel="noopener noreferrer" className="group block">
-                <div className="relative aspect-square overflow-hidden rounded-xl">
-                  <Image src={photo.src} alt={photo.alt} fill sizes="(min-width: 640px) 33vw, 100vw" className="object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-105" />
-                </div>
-                <p className="mt-3 text-sm leading-relaxed text-pine-600">{photo.alt}</p>
-              </a>
-            ))}
-          </div>
+      <div className="mt-10 border-t border-pine-200 pt-6">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <button
+            type="button"
+            aria-expanded={showLive}
+            aria-controls="live-instagram-feed"
+            onClick={() => setShowLive((previous) => !previous)}
+            className="text-link"
+          >
+            {showLive
+              ? "Hide live Instagram posts"
+              : "Show live Instagram posts"}
+          </button>
+          <a
+            href={site.socials[0].url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-link text-sm"
+          >
+            Open @sycamore.deca
+          </a>
         </div>
-      ) : null}
+        <div id="live-instagram-feed" hidden={!showLive}>
+          {showLive ? (
+            <div className="mt-6">
+              <p
+                role={liveUnavailable ? "status" : undefined}
+                className="mb-4 text-sm text-pine-700"
+              >
+                {liveUnavailable
+                  ? "Instagram posts are unavailable here. View the chapter directly on Instagram."
+                  : "If posts don’t appear, view the chapter directly on Instagram."}
+              </p>
+              {!liveUnavailable ? (
+                <>
+                  <Script
+                    src="https://w.behold.so/widget.js"
+                    type="module"
+                    strategy="afterInteractive"
+                    onError={() => setLiveUnavailable(true)}
+                  />
+                  <behold-widget feed-id={feedId} />
+                </>
+              ) : null}
+            </div>
+          ) : null}
+        </div>
+      </div>
     </>
   );
 }

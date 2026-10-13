@@ -1,87 +1,62 @@
 import Link from "next/link";
-
 import Logo from "@/components/logo";
-import { InstagramIcon, TikTokIcon, XIcon } from "@/components/social-icons";
 import { site } from "@/data/site";
-
-const socialIcon = {
-  Instagram: InstagramIcon,
-  TikTok: TikTokIcon,
-  X: XIcon,
-};
 
 export default function Footer() {
   return (
-    <footer className="bg-pine-950 text-white/75">
-      <div className="container-page grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-4">
+    <footer className="border-t border-pine-200 bg-white">
+      <div className="container-page grid gap-7 py-8 sm:grid-cols-[1fr_auto] sm:py-10">
         <div>
-          <Logo variant="light" />
-          <p className="mt-4 max-w-xs text-base leading-relaxed text-white/65">
-            {site.mission}
+          <Logo variant="dark" />
+          <p className="mt-2 text-sm text-pine-700">
+            Great Oaks · {site.school} · Cincinnati, Ohio
           </p>
-          <div className="mt-5 flex gap-3">
-            {site.socials.map((s) => {
-              const Icon = socialIcon[s.platform];
-              return (
-                <a
-                  key={s.platform}
-                  href={s.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={s.platform}
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white transition hover:border-white/60 hover:text-white/80"
-                >
-                  {Icon && <Icon className="h-4 w-4" />}
-                </a>
-              );
-            })}
-          </div>
-        </div>
-
-        <div>
-          <h2 className="font-display text-base font-bold uppercase tracking-wider text-white/80">Chapter</h2>
-          <ul className="mt-4 space-y-2.5 text-base">
+          <nav
+            aria-label="Footer"
+            className="mt-5 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-pine-800"
+          >
             {site.nav.map((item) => (
-              <li key={item.href}>
-                <Link href={item.href} className="transition hover:text-white">
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-            <li>
-              <Link href="/join" className="transition hover:text-white">
-                Join
+              <Link
+                key={item.href}
+                href={item.href}
+                className="hover:underline hover:underline-offset-4"
+              >
+                {item.label}
               </Link>
-            </li>
-          </ul>
+            ))}
+            <Link
+              href="/join"
+              className="hover:underline hover:underline-offset-4"
+            >
+              Join
+            </Link>
+          </nav>
         </div>
-
-        <div>
-          <h2 className="font-display text-base font-bold uppercase tracking-wider text-white/80">Resources</h2>
-          <ul className="mt-4 space-y-2.5 text-base">
-            <li><Link href="/compete" className="transition hover:text-white">Competition Hub</Link></li>
-            <li><Link href="/compete/practice" className="transition hover:text-white">Practice Tests</Link></li>
-          </ul>
-        </div>
-
-        <div>
-          <h2 className="font-display text-base font-bold uppercase tracking-wider text-white/80">Contact</h2>
-          <ul className="mt-4 space-y-3 text-base">
-            <li className="flex items-center gap-2.5"><Link href="/calendar" className="transition hover:text-white">Meetings — see the Calendar</Link></li>
-            <li className="flex items-center gap-2.5">
-
-              <a href={`mailto:${site.advisorEmail}`} className="transition hover:text-white">{site.advisorEmail}</a>
-            </li>
-            <li className="flex items-center gap-2.5">{site.school} · Cincinnati, Ohio</li>
-          </ul>
+        <div className="flex flex-col items-start gap-2 text-sm text-pine-700 sm:items-end">
+          <a
+            href={`mailto:${site.advisorEmail}`}
+            className="text-link break-all"
+          >
+            {site.advisorEmail}
+          </a>
+          <a
+            href={site.socials[0].url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-link"
+          >
+            @sycamore.deca
+          </a>
+          <Link href="/compete/practice" className="text-link">
+            Practice tests
+          </Link>
         </div>
       </div>
-
-      <div className="border-t border-white/10">
-        <div className="container-page flex flex-col items-center justify-between gap-2 py-6 text-sm text-white/60 sm:flex-row">
-          <p>© {new Date().getFullYear()} {site.chapterName} · {site.school}</p>
-          <p>A student-run chapter site. Not affiliated with DECA Inc.</p>
-        </div>
+      <div className="container-page flex flex-col gap-2 border-t border-pine-100 py-5 text-xs text-pine-700 sm:flex-row sm:justify-between">
+        <p>
+          © {new Date().getFullYear()} {site.chapterName}
+        </p>
+        <p>A student-run chapter site. Not affiliated with DECA Inc.</p>
       </div>
     </footer>
   );

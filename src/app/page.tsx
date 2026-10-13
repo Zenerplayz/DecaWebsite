@@ -5,160 +5,146 @@ import { site } from "@/data/site";
 import { heroPhoto } from "@/data/photos";
 import Pillars from "@/components/pillars";
 import UpcomingEvents from "@/components/upcoming-events";
-import { cn } from "@/lib/utils";
 
 export const revalidate = 300;
 
 export default function Home() {
   return (
     <>
-      {/* ── Magazine opening ───────────────────────────────────────── */}
       <section className="pt-16">
-        <div className="container-page pb-12 pt-10 sm:pb-16 sm:pt-12">
-          <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
-            <header className="max-w-2xl self-center motion-safe:animate-fade-up lg:col-span-7">
-              <h1 className="font-display text-5xl font-semibold leading-[1.05] tracking-tight text-pine-950 sm:text-6xl lg:text-7xl">
-                Where leaders
+        <div className="container-page pb-10 pt-10 sm:pb-12 sm:pt-14">
+          <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,4fr)_minmax(0,6fr)] lg:gap-12">
+            <header>
+              <p className="eyebrow">Great Oaks · Sycamore High School</p>
+              <h1 className="font-display text-5xl font-semibold leading-[0.98] tracking-tight text-pine-950 sm:text-6xl lg:text-7xl">
+                Sycamore
                 <br />
-                are made.
+                DECA.
               </h1>
-              <p className="mt-7 max-w-xl text-lg leading-relaxed text-pine-600">
-                {site.chapterName} brings students together at {site.school} to
-                learn about business, prepare for competitions, and get involved
-                in the chapter.
+              <p className="mt-6 max-w-md text-lg leading-relaxed text-pine-700">
+                Learn business, prepare for competition, and take part in
+                chapter life at Sycamore High School.
               </p>
-              <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
+              <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4">
                 <Link href="/join" className="btn-gold">
-                  Join the Chapter
+                  Join the chapter{" "}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
-                <Link href="/calendar" className="text-link">
-                  See what’s coming up
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                <Link href="/compete" className="text-link">
+                  Competition prep
                 </Link>
               </div>
             </header>
-
-            <figure className="lg:col-span-5 lg:mt-0">
+            <figure>
               <a
                 href={heroPhoto.permalink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block overflow-hidden rounded-sm focus-visible:outline-offset-4"
+                className="block focus-visible:outline-offset-4"
               >
                 <Image
                   src={heroPhoto.src}
                   alt={heroPhoto.alt}
-                  width={800}
+                  width={1000}
                   height={1000}
-                  priority
-                  sizes="(min-width: 1024px) 38vw, 100vw"
-                  className="aspect-[4/5] h-auto w-full object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:hover:scale-[1.03]"
+                  preload
+                  sizes="(min-width: 1152px) 620px, (min-width: 1024px) 55vw, calc(100vw - 2rem)"
+                  className="aspect-[4/3] h-auto w-full object-cover object-[center_58%]"
                 />
               </a>
-              <figcaption className="mt-3 flex items-baseline justify-between gap-4 text-sm text-pine-600">
-                <span className="uppercase tracking-[0.18em]">
-                  Sycamore DECA · ICDC, Atlanta
-                </span>
+              <figcaption className="mt-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 text-sm text-pine-700">
+                <span>Our chapter at ICDC · Atlanta</span>
                 <a
                   href={heroPhoto.permalink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="shrink-0 font-semibold text-gold-700 underline decoration-gold-300 underline-offset-4 hover:text-gold-600"
+                  className="text-link"
                 >
-                  View Instagram post
+                  View photo{" "}
+                  <ArrowUpRight aria-hidden="true" className="h-3.5 w-3.5" />
                 </a>
               </figcaption>
             </figure>
           </div>
-        </div>
-      </section>
-
-      {/* ── Stats: hairline row of oversized numerals ─────────────── */}
-      <section aria-label="Chapter at a glance">
-        <div className="container-page">
-          <dl className="grid grid-cols-1 border-t border-pine-900/10 sm:grid-cols-3">
-            {site.stats.map((s, i) => (
-              <div
-                key={s.label}
-                className={cn(
-                  "flex flex-col py-6 sm:py-8",
-                  i > 0 &&
-                    "border-t border-pine-900/10 sm:border-l sm:border-t-0",
-                  i === 0 && "sm:pr-10",
-                  i === site.stats.length - 1 && "sm:pl-10",
-                  i > 0 && i < site.stats.length - 1 && "sm:px-10",
-                )}
-              >
-                <dt className="order-2 mt-2 text-sm font-bold uppercase tracking-[0.18em] text-pine-600">
-                  {s.label}
+          <dl
+            aria-label="Chapter at a glance"
+            className="mt-10 grid grid-cols-3 gap-x-5 border-y border-pine-200 py-5 sm:mt-12 sm:py-6"
+          >
+            {site.stats.map((stat) => (
+              <div key={stat.label}>
+                <dt className="text-xs font-semibold leading-snug text-pine-700 sm:text-sm">
+                  {stat.label}
                 </dt>
-                <dd className="order-1 font-display text-5xl font-semibold tracking-tight text-pine-950 sm:text-6xl">
-                  {s.value}
+                <dd className="mt-1 font-display text-3xl font-semibold tracking-tight text-pine-950 sm:text-4xl">
+                  {stat.value}
                 </dd>
               </div>
             ))}
           </dl>
         </div>
       </section>
-
-      {/* ── Pillars: three columns split by vertical hairlines ────── */}
-      <section className="bg-white">
-        <div className="container-page py-12 sm:py-16">
-          <div className="max-w-2xl">
-            <h2 className="font-display text-3xl font-semibold tracking-tight text-pine-950 sm:text-4xl">
-              What we do
+      <section
+        className="container-page py-8 sm:py-10"
+        aria-labelledby="chapter-life-heading"
+      >
+        <div className="flex flex-wrap items-baseline justify-between gap-4">
+          <h2 id="chapter-life-heading" className="section-title">
+            Life in the chapter
+          </h2>
+          <Link href="/about" className="text-link text-sm">
+            Meet the chapter{" "}
+            <ArrowRight aria-hidden="true" className="h-4 w-4" />
+          </Link>
+        </div>
+        <Pillars />
+      </section>
+      <section
+        className="container-page py-10 sm:py-12"
+        aria-labelledby="home-events-heading"
+      >
+        <div className="mb-5 flex flex-wrap items-baseline justify-between gap-4 border-t border-pine-200 pt-8">
+          <div>
+            <h2 id="home-events-heading" className="section-title">
+              Chapter calendar
             </h2>
-          </div>
-
-          <Pillars />
-
-          <div className="mt-2 pt-8 md:hidden">
-            <Link href="/compete" className="text-link">
-              See how we compete
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-12 sm:py-16" aria-labelledby="home-events-heading">
-        <div className="container-page">
-          <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="eyebrow">Around the chapter</p>
-              <h2
-                id="home-events-heading"
-                className="text-3xl font-semibold tracking-tight text-pine-950 sm:text-4xl"
-              >
-                Coming up next
-              </h2>
-              <p className="mt-2 text-pine-700">
-                Meetings, competitions, and deadlines. Keep your next date in
-                sight.
-              </p>
-            </div>
-            <Link href="/calendar" className="text-link">
-              Full calendar{" "}
-              <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
-            </Link>
-          </div>
-          <UpcomingEvents limit={3} />
-        </div>
-      </section>
-      {/* ── Mission: clean full-width pine band ───────────────────── */}
-      <section className="bg-pine-950">
-        <div className="container-page py-12 sm:py-16">
-          <div className="max-w-4xl">
-            <p className="text-sm font-bold uppercase tracking-[0.2em] text-gold-400">
-              Our Mission
+            <p className="mt-2 text-pine-700">
+              Meetings, competitions, and deadlines.
             </p>
-            <p className="mt-6 font-display text-3xl font-medium leading-snug text-white sm:text-4xl lg:text-4xl">
-              “{site.mission}”
+          </div>
+          <Link href="/calendar" className="text-link text-sm">
+            Full calendar <ArrowRight aria-hidden="true" className="h-4 w-4" />
+          </Link>
+        </div>
+        <UpcomingEvents limit={3} />
+      </section>
+      <section
+        className="bg-pine-950 text-white"
+        aria-labelledby="practice-heading"
+      >
+        <div className="container-page grid gap-6 py-9 sm:py-12 md:grid-cols-[1fr_auto] md:items-center md:gap-10">
+          <div className="max-w-xl">
+            <h2 id="practice-heading" className="section-title text-white">
+              Prepare for your next event.
+            </h2>
+            <p className="mt-3 leading-relaxed text-pine-100">
+              Practice your cluster exam or work through the role-play guide
+              before competition.
             </p>
-            <Link href="/compete" className="btn-outline-light mt-6">
-              Explore Competition Prep
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </div>
+          <div className="flex flex-col items-start gap-4">
+            <Link
+              href="/compete/practice"
+              className="inline-flex items-center gap-2 font-semibold text-white underline decoration-white/40 underline-offset-4"
+            >
+              Practice tests{" "}
+              <ArrowRight aria-hidden="true" className="h-4 w-4" />
+            </Link>
+            <Link
+              href="/compete/roleplay"
+              className="inline-flex items-center gap-2 font-semibold text-white underline decoration-white/40 underline-offset-4"
+            >
+              Role-play guide{" "}
+              <ArrowRight aria-hidden="true" className="h-4 w-4" />
             </Link>
           </div>
         </div>
@@ -166,38 +152,31 @@ export default function Home() {
       <section
         id="interest"
         aria-labelledby="interest-heading"
-        className="bg-cream"
+        className="container-page py-10 sm:py-12"
       >
-        <div className="container-page py-12 sm:py-16">
-          <div className="grid items-center gap-6 rounded-2xl border border-pine-200 bg-white p-6 sm:p-10 lg:grid-cols-[1fr_auto] lg:gap-10">
-            <div className="max-w-2xl">
-              <p className="eyebrow">Support Sycamore DECA</p>
-              <h2
-                id="interest-heading"
-                className="text-3xl font-semibold tracking-tight text-pine-950 sm:text-4xl"
-              >
-                Help our next generation of leaders.
-              </h2>
-              <p className="mt-4 text-lg leading-relaxed text-pine-700">
-                Connect with our chapter about sponsorship opportunities and
-                help students grow through competition, connection, and
-                community.
-              </p>
-            </div>
-            <div className="flex flex-col items-start gap-4">
-              <a
-                href="https://docs.google.com/forms/d/11PadbmuAMaLJX_ocdckvgBq91qoEWoWJkLbkTEHepfQ/viewform"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-gold"
-              >
-                Become a sponsor{" "}
-                <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
-              </a>
-              <a href={`mailto:${site.advisorEmail}`} className="text-link">
-                Talk to {site.advisorName}
-              </a>
-            </div>
+        <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center md:gap-10">
+          <div className="max-w-xl">
+            <h2 id="interest-heading" className="section-title">
+              Support the chapter
+            </h2>
+            <p className="mt-3 leading-relaxed text-pine-700">
+              Interested in sponsoring Sycamore DECA? Contact our chapter about
+              opportunities to support students and competition.
+            </p>
+          </div>
+          <div className="flex flex-col items-start gap-4">
+            <a
+              href="https://docs.google.com/forms/d/11PadbmuAMaLJX_ocdckvgBq91qoEWoWJkLbkTEHepfQ/viewform"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-link"
+            >
+              Sponsorship inquiry{" "}
+              <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+            </a>
+            <a href={`mailto:${site.advisorEmail}`} className="text-link">
+              Email {site.advisorName}
+            </a>
           </div>
         </div>
       </section>

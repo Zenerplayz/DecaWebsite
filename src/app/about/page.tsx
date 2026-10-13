@@ -18,7 +18,7 @@ const associates = officers.filter(
 function RosterRow({ name, role }: { name: string; role: string }) {
   return (
     <li className="group rule flex flex-col gap-0.5 py-4 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8">
-      <span className="font-display text-xl text-pine-950 transition-colors duration-200 group-hover:text-gold-700">
+      <span className="text-xl font-semibold text-pine-950">
         {name}
       </span>
       <span className="text-sm font-semibold uppercase tracking-[0.15em] text-pine-600 sm:text-right">
@@ -34,27 +34,28 @@ export default function About() {
       {/* ── Masthead ─────────────────────────────────────────────── */}
       <div className="container-page pt-10 pb-10 sm:pt-12 sm:pb-12">
 
-        <h1 className="max-w-4xl font-display text-5xl font-semibold leading-[1.05] tracking-tight text-pine-950 sm:text-6xl lg:text-7xl">
-          Great Oaks Sycamore DECA
+        <p className="eyebrow">Great Oaks Sycamore DECA</p>
+        <h1 className="max-w-4xl text-4xl font-semibold leading-tight tracking-tight text-pine-950 sm:text-5xl">
+          Our chapter
         </h1>
-        <p className="mt-8 max-w-2xl font-display text-xl italic leading-relaxed text-pine-700 sm:text-2xl">
+        <p className="mt-5 max-w-2xl text-lg leading-relaxed text-pine-700">
           {site.mission}
         </p>
 
         {/* Wide editorial photograph */}
         <figure className="mt-8 sm:mt-10">
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm sm:aspect-[16/9]">
+          <div className="relative aspect-[16/7] w-full overflow-hidden">
             <Image
               src={aboutPhoto.src}
               alt={aboutPhoto.alt}
               fill
-              priority
+              preload
               sizes="(min-width: 1152px) 1088px, 100vw"
-              className="object-cover"
+              className="object-cover object-bottom"
             />
           </div>
-          <figcaption className="mt-4 text-base text-pine-600">
-            {aboutPhoto.alt}.
+          <figcaption className="mt-3 text-sm text-pine-700">
+            Chapter members at our awards ceremony.
           </figcaption>
         </figure>
       </div>
@@ -135,13 +136,11 @@ export default function About() {
             <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight text-pine-950 sm:text-4xl">
               {site.advisorName}
             </h2>
-            <p className="mt-6 leading-relaxed text-pine-600 first-letter:float-left first-letter:mr-3 first-letter:font-display first-letter:text-6xl first-letter:leading-[0.85] first-letter:font-semibold first-letter:text-pine-950">
+            <p className="mt-5 leading-relaxed text-pine-700">
               Every meeting, fundraiser, and competition entry passes through one
               classroom in the marketing wing. {site.advisorName} teaches the
-              business courses that feed the chapter, coaches competitors from
-              their first role-play all the way to ICDC, and keeps{" "}
-              {site.shortName} focused on what DECA is really for — becoming the
-              kind of leader people want to follow.
+              chapter’s business courses and helps members prepare for exams,
+              role-plays, and competition.
             </p>
             <p className="mt-6">
               <a href={`mailto:${site.advisorEmail}`} className="text-link">
@@ -154,8 +153,8 @@ export default function About() {
 
         {/* ── Quiet closing invitation ───────────────────────────── */}
         <div className="rule mt-20 flex flex-col gap-6 pt-10 sm:flex-row sm:items-end sm:justify-between">
-          <p className="max-w-lg font-display text-2xl italic leading-snug text-pine-950 sm:text-3xl">
-            Think you&rsquo;d fit in? Come see for yourself.
+          <p className="max-w-lg text-2xl font-semibold leading-snug text-pine-950">
+            Interested in joining?
           </p>
           <Link href="/join" className="text-link shrink-0">
             Join the chapter

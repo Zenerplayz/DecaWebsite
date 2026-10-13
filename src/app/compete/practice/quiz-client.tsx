@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import {
   Check,
@@ -33,9 +33,11 @@ const lengthOptions = [
 ];
 
 function scoreCopy(percent: number): string {
-  if (percent >= 90) return "District champion energy.";
-  if (percent >= 70) return "Strong — sharpen the details.";
-  return "Every pro started here — run it again.";
+  if (percent >= 90)
+    return "Strong result. Keep practicing across your cluster.";
+  if (percent >= 70)
+    return "Review the questions you missed, then try another set.";
+  return "Use the explanations below to guide your next practice session.";
 }
 
 function shuffleChoices(q: PracticeQuestion): PracticeQuestion {
@@ -80,6 +82,21 @@ function QuizInner({
   const [deck, setDeck] = useState<PracticeQuestion[]>([]);
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [current, setCurrent] = useState<number>(0);
+  const stageRef = useRef<HTMLDivElement>(null);
+  const hasMounted = useRef(false);
+
+  useEffect(() => {
+    if (!hasMounted.current) {
+      hasMounted.current = true;
+      return;
+    }
+    const container = stageRef.current;
+    if (!container) return;
+    container.scrollIntoView({ block: "start", behavior: "instant" });
+    container
+      .querySelector<HTMLHeadingElement>("h2")
+      ?.focus({ preventScroll: true });
+  }, [stage, current]);
 
   const pool = useMemo(() => {
     return questions.filter(
@@ -130,43 +147,49 @@ function QuizInner({
 
   if (stage === "setup") {
     return (
-      <Setup
-        clusters={clusters}
-        clusterId={clusterId}
-        onCluster={selectClusterChip}
-        difficulty={difficulty}
-        onDifficulty={selectDifficulty}
-        length={length}
-        onLength={setLength}
-        availableCount={availableCount}
-        plannedCount={plannedCount}
-        onStart={startQuiz}
-      />
+      <div ref={stageRef} className="scroll-mt-24">
+        <Setup
+          clusters={clusters}
+          clusterId={clusterId}
+          onCluster={selectClusterChip}
+          difficulty={difficulty}
+          onDifficulty={selectDifficulty}
+          length={length}
+          onLength={setLength}
+          availableCount={availableCount}
+          plannedCount={plannedCount}
+          onStart={startQuiz}
+        />
+      </div>
     );
   }
 
   if (stage === "quiz") {
     return (
-      <Quiz
-        deck={deck}
-        answers={answers}
-        current={current}
-        onAnswer={(questionId, choiceIndex) =>
-          setAnswers((prev) => ({ ...prev, [questionId]: choiceIndex }))
-        }
-        onNavigate={setCurrent}
-        onFinish={finishQuiz}
-      />
+      <div ref={stageRef} className="scroll-mt-24">
+        <Quiz
+          deck={deck}
+          answers={answers}
+          current={current}
+          onAnswer={(questionId, choiceIndex) =>
+            setAnswers((prev) => ({ ...prev, [questionId]: choiceIndex }))
+          }
+          onNavigate={setCurrent}
+          onFinish={finishQuiz}
+        />
+      </div>
     );
   }
 
   return (
-    <Results
-      deck={deck}
-      answers={answers}
-      onRetake={retakeSameSet}
-      onNewSetup={newSetup}
-    />
+    <div ref={stageRef} className="scroll-mt-24">
+      <Results
+        deck={deck}
+        answers={answers}
+        onRetake={retakeSameSet}
+        onNewSetup={newSetup}
+      />
+    </div>
   );
 }
 
@@ -204,7 +227,10 @@ function Setup({
 
   return (
     <div className="mx-auto max-w-3xl">
-      <h2 className="font-display text-3xl font-bold tracking-tight text-pine-950 sm:text-4xl">
+      <h2
+        tabIndex={-1}
+        className="font-display text-3xl font-semibold tracking-tight text-pine-950 focus:outline-none sm:text-4xl"
+      >
         Build your <span className="italic text-pine-700">test</span>
       </h2>
 
@@ -321,7 +347,11 @@ function Setup({
             <Clock aria-hidden="true" className="h-4 w-4 text-gold-600" />
             {plannedCount} question{plannedCount === 1 ? "" : "s"} ready
           </p>
-          <button type="button" onClick={onStart} className="btn-gold w-full sm:w-auto">
+          <button
+            type="button"
+            onClick={onStart}
+            className="btn-gold w-full sm:w-auto"
+          >
             Start test
           </button>
         </div>
@@ -400,7 +430,10 @@ function Quiz({
           </span>
         </p>
 
-        <h2 className="mt-4 font-display text-3xl font-semibold leading-tight tracking-tight text-pine-950 sm:text-4xl">
+        <h2
+          tabIndex={-1}
+          className="mt-4 font-display text-2xl font-semibold leading-tight tracking-tight text-pine-950 focus:outline-none sm:text-3xl"
+        >
           {question.prompt}
         </h2>
 
@@ -443,11 +476,19 @@ function Quiz({
           >
             <ChevronLeft aria-hidden="true" className="h-4 w-4" /> Prev
           </button>
-          <button type="button" onClick={onFinish} className="text-link text-sm">
+          <button
+            type="button"
+            onClick={onFinish}
+            className="text-link text-sm"
+          >
             Finish early
           </button>
           {isLast ? (
-            <button type="button" onClick={onFinish} className="btn-navy px-5 py-2 text-sm">
+            <button
+              type="button"
+              onClick={onFinish}
+              className="btn-navy px-5 py-2 text-sm"
+            >
               Submit test
             </button>
           ) : (
@@ -494,7 +535,9 @@ function Results({ deck, answers, onRetake, onNewSetup }: ResultsProps) {
   return (
     <div className="mx-auto max-w-3xl">
       <div className="border-b border-pine-900/10 pb-10 text-center sm:pb-12">
-        <p className={groupLabel}>Your score</p>
+        <h2 tabIndex={-1} className={`${groupLabel} focus:outline-none`}>
+          Your score
+        </h2>
         <p className="mt-4 font-display text-6xl font-bold tracking-tight text-pine-950 sm:text-7xl">
           {correctCount}
           <span className="text-pine-600">/{total}</span>
@@ -511,8 +554,13 @@ function Results({ deck, answers, onRetake, onNewSetup }: ResultsProps) {
         </h3>
         <ul className="mt-2 divide-y divide-pine-900/10">
           {breakdown.map(([category, stat]) => (
-            <li key={category} className="flex items-baseline justify-between gap-4 py-3">
-              <span className="text-sm font-medium text-pine-900">{category}</span>
+            <li
+              key={category}
+              className="flex items-baseline justify-between gap-4 py-3"
+            >
+              <span className="text-sm font-medium text-pine-900">
+                {category}
+              </span>
               <span className="font-display text-lg font-semibold text-pine-700">
                 {stat.correct}
                 <span className="text-pine-600">/{stat.total}</span>
@@ -523,10 +571,18 @@ function Results({ deck, answers, onRetake, onNewSetup }: ResultsProps) {
       </section>
 
       <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-        <button type="button" onClick={onRetake} className="btn-gold w-full sm:w-auto">
+        <button
+          type="button"
+          onClick={onRetake}
+          className="btn-gold w-full sm:w-auto"
+        >
           <RotateCcw aria-hidden="true" className="h-4 w-4" /> Retake same set
         </button>
-        <button type="button" onClick={onNewSetup} className="btn-outline w-full sm:w-auto">
+        <button
+          type="button"
+          onClick={onNewSetup}
+          className="btn-outline w-full sm:w-auto"
+        >
           New setup
         </button>
       </div>
@@ -546,7 +602,9 @@ function Results({ deck, answers, onRetake, onNewSetup }: ResultsProps) {
                     <span aria-hidden="true" className="text-pine-300">
                       ·
                     </span>
-                    <span className={difficultyStyles[q.difficulty]}>{q.difficulty}</span>
+                    <span className={difficultyStyles[q.difficulty]}>
+                      {q.difficulty}
+                    </span>
                   </p>
                   <p className="mt-2 font-display text-lg font-semibold leading-snug text-pine-950">
                     {q.prompt}
@@ -554,7 +612,10 @@ function Results({ deck, answers, onRetake, onNewSetup }: ResultsProps) {
                   <div className="mt-4 flex flex-col gap-2 text-sm">
                     {userChoice !== undefined ? (
                       <p className="flex items-start gap-2.5 text-pine-600">
-                        <X aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-gold-700" />
+                        <X
+                          aria-hidden="true"
+                          className="mt-0.5 h-4 w-4 shrink-0 text-gold-700"
+                        />
                         <span>
                           You chose:{" "}
                           <span className="line-through decoration-gold-700/60">
@@ -566,7 +627,10 @@ function Results({ deck, answers, onRetake, onNewSetup }: ResultsProps) {
                       <p className="italic text-pine-500">Not answered</p>
                     )}
                     <p className="flex items-start gap-2.5 font-medium text-pine-800">
-                      <Check aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-pine-600" />
+                      <Check
+                        aria-hidden="true"
+                        className="mt-0.5 h-4 w-4 shrink-0 text-pine-600"
+                      />
                       <span>Correct: {q.choices[q.correctIndex]}</span>
                     </p>
                   </div>

@@ -14,6 +14,7 @@ export default function Navbar() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-pine-100 bg-cream/95 backdrop-blur-sm">
+      <a href="#main-content" className="sr-only z-50 bg-white px-4 py-3 font-semibold text-pine-950 focus:not-sr-only focus:absolute focus:left-4 focus:top-2">Skip to content</a>
       <div className="container-page flex h-16 items-center justify-between">
         <Link href="/" aria-label="Home" onClick={() => setOpen(false)}>
           <Logo variant="dark" />
