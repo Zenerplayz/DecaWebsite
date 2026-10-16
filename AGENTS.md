@@ -1,14 +1,10 @@
-<!-- BEGIN:project-reminders -->
+# Project guidance
 
-# ⚠️ PROJECT REMINDERS — READ FIRST
-
-At the top of `PLAN.md` there is a **"BEFORE LAUNCH — DO THESE THINGS"** checklist
-(placeholder advisor name/email, joinUrl, Behold widget URL, sample content, git push).
-
-**Every session: read that checklist and remind the user about unfinished items.
-Do not let the site ship with placeholder/sample data still in place.**
-
-<!-- END:project-reminders -->
+Read README.md and docs/maintenance.md before changing the site. Preserve the
+chapter's current design, keyboard navigation and quiz-session recovery.
+Keep chapter facts verifiable and distinguish coaching from official DECA rules.
+Run lint, calendar/quiz tests, the production build and built-page metadata checks
+for relevant changes. Never commit secrets, generated build files or local logs.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

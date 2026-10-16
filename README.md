@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sycamore DECA
 
-## Getting Started
+The student-run website for Great Oaks Sycamore DECA at Sycamore High School in Cincinnati, Ohio. It brings chapter information, competition preparation and study tools into one place.
 
-First, run the development server:
+**[Visit the website](https://sycamoredeca.com)** · **[Practice tests](https://sycamoredeca.com/compete/practice)** · **[Role-play guide](https://sycamoredeca.com/compete/roleplay)**
 
-```bash
+Built and maintained as a student project by Sebastian Schuermeyer, with chapter content supplied by the chapter. Independent chapter website; not affiliated with DECA Inc.
+
+## Features
+
+- Chapter leadership, membership guidance, photos and contact information.
+- Google Calendar summaries with recurrence, cancellation and Eastern-time handling.
+- Cluster practice tests with randomized answers, explanations and recoverable progress in the same browser tab.
+- Event-aware role-play coaching and links to official competition guidelines.
+- Search metadata, canonical URLs, structured data and social sharing previews.
+
+## Development
+
+Use Node.js 22 or newer and npm.
+
+```sh
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [localhost:3000](http://localhost:3000). No application secrets or database are required. Calendar and optional Instagram content depend on external services; chapter pages remain usable when those services are unavailable.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```sh
+npm run lint
+npm test
+npm run build
+npm run test:seo
+npm audit --omit=dev
+npm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+`build` uses Next.js's Webpack production compiler for a reproducible build across supported development environments. `test:seo` checks the built pages; run it after `build`. GitHub Actions runs lint, functional checks, build and metadata checks before release.
 
-## Learn More
+## Project structure
 
-To learn more about Next.js, take a look at the following resources:
+| Path | Purpose |
+| --- | --- |
+| `src/app/` | Public pages, metadata routes and shared layout |
+| `src/components/` | Navigation, calendar summaries and chapter UI |
+| `src/data/` | Chapter content, question bank and search metadata |
+| `src/lib/` | Calendar parsing and quiz-session persistence |
+| `public/images/` | Chapter photography |
+| `scripts/` | Calendar, quiz-session and built-page checks |
+| `docs/maintenance.md` | Content ownership, deployment and maintenance notes |
+| `AGENTS.md`, `CLAUDE.md` | Guidance for coding assistants |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Content and limitations
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Practice questions are independent study material, not official DECA exams. Answer explanations should be reviewed by an advisor when uncertain. Official event rules and the actual judge's form take precedence over this site's coaching guidance.
 
-## Deploy on Vercel
+Quiz progress uses session storage in the current tab; closing the tab can remove it. Chapter statistics, officer titles and event dates must be confirmed with the chapter. This repository does not establish search rankings, AI citations or measured student outcomes.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Photography and chapter branding retain their owners' rights. Source Sans Pro's SIL Open Font License is included in `src/app/fonts/LICENSE.md`.

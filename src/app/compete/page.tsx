@@ -1,3 +1,4 @@
+import PageSeo from "@/components/page-seo";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { clusters } from "@/data/content";
@@ -9,6 +10,7 @@ export default function Compete() {
   return (
     <section className="pt-16">
       <div className="container-page py-10 sm:py-12">
+          <PageSeo route="/compete" />
         <header className="max-w-2xl">
           <p className="eyebrow">Member resources</p>
           <h1 className="page-title">

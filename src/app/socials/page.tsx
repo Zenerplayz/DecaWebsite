@@ -1,3 +1,4 @@
+import PageSeo from "@/components/page-seo";
 import InstagramFeed from "@/components/instagram-feed";
 import { site } from "@/data/site";
 import { InstagramIcon, TikTokIcon, XIcon } from "@/components/social-icons";
@@ -11,6 +12,7 @@ export default function Socials() {
   return (
     <section className="pt-16">
       <div className="container-page py-10 sm:py-12">
+          <PageSeo route="/socials" />
         {/* Masthead */}
         <header className="max-w-2xl">
 

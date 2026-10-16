@@ -1,3 +1,4 @@
+import PageSeo from "@/components/page-seo";
 import Link from "next/link";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { faqs } from "@/data/content";
@@ -42,6 +43,7 @@ export default function Join() {
         }}
       />
       <div className="container-page py-10 sm:py-12">
+          <PageSeo route="/join" />
         {/* Masthead */}
         <header className="mx-auto max-w-2xl">
 
