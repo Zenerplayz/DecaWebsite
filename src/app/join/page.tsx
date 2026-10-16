@@ -43,16 +43,14 @@ export default function Join() {
       />
       <div className="container-page py-10 sm:py-12">
         {/* Masthead */}
-        <header className="max-w-2xl">
+        <header className="mx-auto max-w-2xl">
 
-          <h1 className="font-display text-4xl font-bold tracking-tight text-pine-950 sm:text-5xl">
+          <h1 className="page-title">
             Become a member
           </h1>
           <p className="mt-5 text-lg leading-relaxed text-pine-600">
-            In a marketing class?{" "}
-            <span>
-              Then you’re already in.
-            </span>
+            Taking a marketing class, or taken one before? Visit Mr. Steedly
+            to confirm your registration, then join us at a meeting.
           </p>
         </header>
 
@@ -73,11 +71,14 @@ export default function Join() {
           ))}
         </ol>
 
-        <div className="mx-auto max-w-2xl">
+        <div className="mx-auto flex max-w-2xl flex-wrap gap-x-6 gap-y-2">
           <Link href="/calendar" className="text-link">
             See meeting dates
             <ArrowRight aria-hidden="true" className="h-4 w-4" />
           </Link>
+          <a href={`mailto:${site.advisorEmail}`} className="text-link">
+            Ask {site.advisorName} about joining
+          </a>
         </div>
 
         {/* FAQ — borderless accordion */}

@@ -12,7 +12,7 @@ export default function CalendarPage() {
       <div className="container-page py-10 sm:py-12">
         {/* Masthead */}
         <header className="max-w-2xl">
-          <h1 className="font-display text-4xl font-bold tracking-tight text-pine-950 sm:text-5xl">
+          <h1 className="page-title">
             What’s coming up
           </h1>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-pine-600">

@@ -13,26 +13,26 @@ export default function Footer() {
           </p>
           <nav
             aria-label="Footer"
-            className="mt-5 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-pine-800"
+            className="mt-3 flex flex-wrap gap-x-6 gap-y-1 text-sm font-semibold text-pine-800"
           >
             {site.nav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="hover:underline hover:underline-offset-4"
+                className="inline-flex min-h-11 min-w-11 items-center hover:underline hover:underline-offset-4"
               >
                 {item.label}
               </Link>
             ))}
             <Link
               href="/join"
-              className="hover:underline hover:underline-offset-4"
+              className="inline-flex min-h-11 min-w-11 items-center hover:underline hover:underline-offset-4"
             >
               Join
             </Link>
           </nav>
         </div>
-        <div className="flex flex-col items-start gap-2 text-sm text-pine-700 sm:items-end">
+        <div className="flex flex-col items-start text-sm text-pine-700 sm:items-end">
           <a
             href={`mailto:${site.advisorEmail}`}
             className="text-link break-all"

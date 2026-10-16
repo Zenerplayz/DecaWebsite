@@ -134,14 +134,14 @@ export default function Home() {
           <div className="flex flex-col items-start gap-4">
             <Link
               href="/compete/practice"
-              className="inline-flex items-center gap-2 font-semibold text-white underline decoration-white/40 underline-offset-4"
+              className="inline-flex min-h-11 items-center gap-2 font-semibold text-white underline decoration-white/40 underline-offset-4"
             >
               Practice tests{" "}
               <ArrowRight aria-hidden="true" className="h-4 w-4" />
             </Link>
             <Link
               href="/compete/roleplay"
-              className="inline-flex items-center gap-2 font-semibold text-white underline decoration-white/40 underline-offset-4"
+              className="inline-flex min-h-11 items-center gap-2 font-semibold text-white underline decoration-white/40 underline-offset-4"
             >
               Role-play guide{" "}
               <ArrowRight aria-hidden="true" className="h-4 w-4" />

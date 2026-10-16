@@ -25,15 +25,20 @@ export default async function UpcomingEvents({
             ? "We couldn’t load the event list. Check the chapter calendar directly for the latest dates."
             : "New meetings, competitions, and deadlines will appear here when they’re added to the chapter calendar."}
         </p>
-        <a
-          href={site.googleCalendarEmbedUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-link mt-4"
-        >
-          Open Google Calendar{" "}
-          <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
-        </a>
+        <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2">
+          <a
+            href={site.googleCalendarEmbedUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-link"
+          >
+            Open Google Calendar{" "}
+            <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+          </a>
+          <a href={`mailto:${site.advisorEmail}`} className="text-link">
+            Ask {site.advisorName} about the next meeting
+          </a>
+        </div>
       </div>
     );
   }

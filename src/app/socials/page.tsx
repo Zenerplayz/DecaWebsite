@@ -14,7 +14,7 @@ export default function Socials() {
         {/* Masthead */}
         <header className="max-w-2xl">
 
-          <h1 className="font-display text-4xl font-bold tracking-tight text-pine-950 sm:text-5xl">
+          <h1 className="page-title">
             Chapter photos & updates
           </h1>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-pine-600">
