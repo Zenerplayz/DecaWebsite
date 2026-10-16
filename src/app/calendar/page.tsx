@@ -1,3 +1,4 @@
+import PageSeo from "@/components/page-seo";
 import { ArrowUpRight, Bell } from "lucide-react";
 import { site } from "@/data/site";
 import { pageMetadata } from "@/data/seo";
@@ -10,6 +11,7 @@ export default function CalendarPage() {
   return (
     <section className="pt-16">
       <div className="container-page py-10 sm:py-12">
+          <PageSeo route="/calendar" />
         {/* Masthead */}
         <header className="max-w-2xl">
           <h1 className="page-title">

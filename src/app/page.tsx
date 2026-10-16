@@ -1,3 +1,4 @@
+import PageSeo from "@/components/page-seo";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
@@ -13,6 +14,7 @@ export default function Home() {
     <>
       <section className="pt-16">
         <div className="container-page pb-10 pt-10 sm:pb-12 sm:pt-14">
+          <PageSeo route="/" />
           <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,4fr)_minmax(0,6fr)] lg:gap-12">
             <header>
               <p className="eyebrow">Great Oaks · Sycamore High School</p>

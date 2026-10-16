@@ -1,3 +1,4 @@
+import PageSeo from "@/components/page-seo";
 import Link from "next/link";
 import { ArrowRight, Timer } from "lucide-react";
 import { pageMetadata } from "@/data/seo";
@@ -8,23 +9,23 @@ const formatStats = [
   {
     value: "10",
     unit: "min",
-    label: "Prep time",
+    label: "Individual-event example",
     detail:
-      "Read the case, study the performance indicators, and outline your answer before the judge calls you in.",
+      "Many individual role-play events allow ten minutes of preparation. Check your event's current guidelines.",
   },
   {
-    value: "10",
+    value: "30 + 15",
     unit: "min",
-    label: "Presentation",
+    label: "Team decision making",
     detail:
-      "Present your solution directly to the judge as if they were the decision-maker in the scenario.",
+      "FTDM allows thirty minutes to prepare and fifteen minutes for the interview, including judge questions.",
   },
   {
     value: "5",
-    unit: "criteria",
-    label: "How you're scored",
+    unit: "habits",
+    label: "Practice focus",
     detail:
-      "Judges rate how well you address each listed indicator, plus your overall structure and professionalism.",
+      "The five coaching areas below help you rehearse. They are not an official five-criterion DECA scorecard.",
   },
 ];
 
@@ -32,27 +33,27 @@ const rubric = [
   {
     title: "Opening & Professionalism",
     description:
-      "Top marks go to competitors who greet the judge confidently, introduce themselves, and state the problem and their recommendation within the first thirty seconds.",
+      "Greet the judge, introduce yourself, and state the problem and your recommendation clearly. Rehearse an opening that leaves time for your analysis.",
   },
   {
     title: "Application of Performance Indicators",
     description:
-      "Top marks require you to explicitly work every listed indicator into your answer with business terminology, not just mention it once and move on.",
+      "Apply each listed performance indicator to the case with relevant business terminology and reasoning. Explain the connection rather than naming the indicator alone.",
   },
   {
     title: "Use of Case Facts",
     description:
-      "Top marks come from citing specific numbers, names, and constraints from the scenario to justify each decision you make.",
+      "Use the scenario's numbers, names and constraints to justify decisions. Clearly label any additional assumptions and explain how you would confirm them.",
   },
   {
     title: "Solution Structure",
     description:
-      "Top marks reward a clear problem-solution-benefit flow where the judge always knows which point you are on and why it matters.",
+      "Organize your response around the problem, proposed action and expected benefit. Compare alternatives and explain practical implementation steps.",
   },
   {
     title: "Communication & Closing",
     description:
-      "Top marks belong to presenters who keep steady eye contact, manage their time, and end with a confident summary and call to action.",
+      "Speak clearly, manage the allotted time, answer the judge's questions and close with a concise recommendation. In team events, rehearse balanced participation and transitions.",
   },
 ];
 
@@ -129,6 +130,7 @@ export default function Roleplay() {
   return (
     <section className="pt-16">
       <div className="container-page py-10 sm:py-12">
+          <PageSeo route="/compete/roleplay" />
         {/* ── Chapter opening ─────────────────────────────────────────── */}
         <header>
 
@@ -136,9 +138,15 @@ export default function Roleplay() {
             Role-play preparation
           </h1>
           <p className="mt-6 max-w-[62ch] text-lg leading-relaxed text-pine-700">
-            Ten minutes of prep decides most role-plays. This guide walks
-            through the format, the rubric judges carry into the room, and a
-            repeatable prep plan — to help you prepare for competition.
+            Build a clear response, apply the case facts and rehearse your
+            presentation. Preparation time, interview length and scoring vary
+            by event. Your current official guidelines and judge&apos;s form are
+            authoritative.
+          </p>
+          <p className="mt-4 max-w-[62ch] leading-relaxed text-pine-600">
+            Check the <a className="text-link" href="https://www.deca.org/compete" target="_blank" rel="noopener noreferrer">official event directory</a>{" "}
+            for your event. The <a className="text-link" href="https://www.deca.org/compete/financial-services-team-decision-making" target="_blank" rel="noopener noreferrer">FTDM guidelines</a>{" "}
+            specify 30-minute preparation and a 15-minute interview.
           </p>
         </header>
 
@@ -168,8 +176,8 @@ export default function Roleplay() {
           <SectionHeader
             num="01"
             kicker="Judging"
-            title="How judges score you"
-            lead="Every judge scores against the same printed scorecard. Learn its five criteria and you already know exactly what to rehearse."
+            title="Five habits to rehearse"
+            lead="Use these coaching areas to improve your practice. They do not replace the indicators, point values or criteria on your event's official judge form."
           />
 
           <dl className="mt-12 divide-y divide-pine-900/10 border-t border-pine-900/10">
@@ -197,9 +205,9 @@ export default function Roleplay() {
           </dl>
 
           <p className="mt-8 max-w-[62ch] text-sm leading-relaxed text-pine-600">
-            Scores across the five criteria combine into one total — a weak
-            opening drags down every point that follows, which is why this
-            guide spends so much time on the first thirty seconds.
+            Ask a practice partner to note specific examples in each area.
+            Score an attempt only against the actual event form; these five
+            coaching categories do not carry official point values.
           </p>
         </article>
 
@@ -208,8 +216,8 @@ export default function Roleplay() {
           <SectionHeader
             num="02"
             kicker="Preparation"
-            title="Your ten-minute prep plan"
-            lead="Six steps, ten minutes. Run this exact sequence every time you practice until it becomes reflex."
+            title="A flexible preparation plan"
+            lead="Work through these six steps within your event's allotted preparation time. Team events also need time to divide responsibilities and rehearse the handoff."
           />
 
           <ol className="relative mt-12 max-w-2xl space-y-10">
@@ -236,7 +244,7 @@ export default function Roleplay() {
             <Timer aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-gold-800" />
             <span>
               <strong className="font-semibold text-pine-950">
-                Roughly two minutes per step.
+                Spend most of your time on analysis and your outline.
               </strong>{" "}
               If you fall behind, prioritize the outline over rehearsing.
             </span>
@@ -249,13 +257,13 @@ export default function Roleplay() {
             num="03"
             kicker="In practice"
             title="A scenario, up close"
-            lead="This is what a prep sheet looks like when it lands in front of you. Practice outlining against it with a ten-minute timer running."
+            lead="An original retail practice scenario, not an official DECA case. Use your event's allotted preparation time and check its actual performance indicators."
           />
 
           <div className="mt-12 grid gap-12 lg:grid-cols-3">
             <blockquote className="lg:col-span-2">
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-gold-700">
-                Retail Merchandising Series
+                Retail role-play practice
               </p>
               <p className="mt-1 text-xs font-bold uppercase tracking-[0.18em] text-pine-600">
                 Customer Complaint
@@ -279,7 +287,7 @@ export default function Roleplay() {
 
             <aside className="lg:border-l lg:border-pine-900/10 lg:pl-10">
               <h3 className="text-xs font-bold uppercase tracking-[0.18em] text-pine-950">
-                Performance indicators
+                Practice learning targets
               </h3>
               <ul className="mt-5 space-y-4">
                 {sampleIndicators.map((ind) => (

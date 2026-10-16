@@ -1,3 +1,4 @@
+import PageSeo from "@/components/page-seo";
 import Image from "next/image";
 
 import Link from "next/link";
@@ -33,6 +34,7 @@ export default function About() {
     <section className="pt-16">
       {/* ── Masthead ─────────────────────────────────────────────── */}
       <div className="container-page pt-10 pb-10 sm:pt-12 sm:pb-12">
+          <PageSeo route="/about" />
 
         <p className="eyebrow">Great Oaks Sycamore DECA</p>
         <h1 className="page-title max-w-4xl">
