@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "node scripts/check-calendar.cjs && node scripts/check-quiz-session.cjs"
   },
   "dependencies": {
     "@behold/react": "^0.1.11",

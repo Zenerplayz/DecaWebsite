@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useEffect, useMemo, useRef, useState } from "react";
+import { Suspense, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { useSearchParams } from "next/navigation";
 import {
   Check,
@@ -13,8 +13,10 @@ import {
 import { shuffle } from "@/data/questions";
 import type { ClusterInfo, PracticeQuestion } from "@/data/types";
 import { cn } from "@/lib/utils";
+import { parseQuizAttempt, serializeQuizAttempt } from "@/lib/quiz-session";
+import { getSavedQuiz, getServerQuiz, saveQuiz, subscribeToSavedQuiz } from "@/lib/quiz-session-store";
 
-type Stage = "setup" | "quiz" | "results";
+type Stage = "setup" | "quiz" | "review" | "results";
 type DifficultyFilter = "all" | "easy" | "medium" | "hard";
 
 const difficultyStyles: Record<PracticeQuestion["difficulty"], string> = {
@@ -84,6 +86,20 @@ function QuizInner({
   const [current, setCurrent] = useState<number>(0);
   const stageRef = useRef<HTMLDivElement>(null);
   const hasMounted = useRef(false);
+  const savedQuiz = useSyncExternalStore(subscribeToSavedQuiz, getSavedQuiz, getServerQuiz);
+  const savedAttempt = useMemo(
+    () => stage === "setup" ? parseQuizAttempt(savedQuiz, questions) : null,
+    [stage, savedQuiz, questions],
+  );
+  const attemptToSave = useMemo(
+    () => stage === "quiz" || stage === "review"
+      ? serializeQuizAttempt({ deck, answers, current }) : null,
+    [stage, deck, answers, current],
+  );
+
+  useEffect(() => {
+    if (stage !== "setup") saveQuiz(attemptToSave);
+  }, [stage, attemptToSave]);
 
   useEffect(() => {
     if (!hasMounted.current) {
@@ -119,7 +135,15 @@ function QuizInner({
   };
 
   const finishQuiz = () => {
-    setStage("results");
+    setStage(deck.some((question) => answers[question.id] === undefined) ? "review" : "results");
+  };
+
+  const resumeQuiz = () => {
+    if (!savedAttempt) return;
+    setDeck(savedAttempt.deck);
+    setAnswers(savedAttempt.answers);
+    setCurrent(savedAttempt.current);
+    setStage("quiz");
   };
 
   const retakeSameSet = () => {
@@ -130,6 +154,7 @@ function QuizInner({
   };
 
   const newSetup = () => {
+    saveQuiz(null);
     setStage("setup");
     setDeck([]);
     setAnswers({});
@@ -148,7 +173,22 @@ function QuizInner({
   if (stage === "setup") {
     return (
       <div ref={stageRef} className="scroll-mt-24">
-        <Setup
+        {savedAttempt ? (
+          <section aria-labelledby="saved-test-heading" className="mx-auto mb-10 max-w-3xl rounded-xl border border-pine-200 bg-white p-5 sm:p-6">
+            <h2 id="saved-test-heading" className="text-xl font-semibold text-pine-950">
+              Continue your practice
+            </h2>
+            <p className="mt-2 text-pine-700">
+              {Object.keys(savedAttempt.answers).length} of {savedAttempt.deck.length} questions answered.
+              Your place is saved in this tab.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-3">
+              <button type="button" onClick={resumeQuiz} className="btn-gold">Resume test</button>
+              <button type="button" onClick={() => saveQuiz(null)} className="btn-outline">Discard saved test</button>
+            </div>
+          </section>
+        ) : null}
+        {!savedAttempt ? <Setup
           clusters={clusters}
           clusterId={clusterId}
           onCluster={selectClusterChip}
@@ -159,6 +199,19 @@ function QuizInner({
           availableCount={availableCount}
           plannedCount={plannedCount}
           onStart={startQuiz}
+        /> : null}
+      </div>
+    );
+  }
+
+  if (stage === "review") {
+    return (
+      <div ref={stageRef} className="scroll-mt-24">
+        <ReviewSubmission
+          deck={deck}
+          answers={answers}
+          onNavigate={(index) => { setCurrent(index); setStage("quiz"); }}
+          onSubmit={() => setStage("results")}
         />
       </div>
     );
@@ -176,6 +229,7 @@ function QuizInner({
           }
           onNavigate={setCurrent}
           onFinish={finishQuiz}
+          saved={savedQuiz === attemptToSave}
         />
       </div>
     );
@@ -252,7 +306,7 @@ function Setup({
             <span
               className={cn(
                 "text-sm",
-                clusterId === "all" ? "text-pine-100" : "text-pine-500",
+                clusterId === "all" ? "text-pine-100" : "text-pine-600",
               )}
             >
               Mixed practice
@@ -275,7 +329,7 @@ function Setup({
               <span
                 className={cn(
                   "text-sm",
-                  clusterId === c.id ? "text-pine-100" : "text-pine-500",
+                  clusterId === c.id ? "text-pine-100" : "text-pine-600",
                 )}
               >
                 {c.shortName}
@@ -295,7 +349,7 @@ function Setup({
               aria-pressed={difficulty === d.value}
               onClick={() => onDifficulty(d.value)}
               className={cn(
-                "rounded-full border px-4 py-1.5 text-sm font-semibold transition-colors duration-200",
+                "min-h-11 rounded-full border px-4 py-2 text-sm font-semibold transition-colors duration-200",
                 difficulty === d.value
                   ? "border-pine-900 bg-pine-900 text-white"
                   : "border-pine-900/15 bg-transparent text-pine-700 hover:border-pine-400",
@@ -318,7 +372,7 @@ function Setup({
               onClick={() => onLength(opt.value)}
               disabled={opt.value !== 0 && opt.value > availableCount}
               className={cn(
-                "rounded-full border px-4 py-1.5 text-sm font-semibold transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-40",
+                "min-h-11 rounded-full border px-4 py-2 text-sm font-semibold transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-40",
                 length === opt.value
                   ? "border-pine-900 bg-pine-900 text-white"
                   : "border-pine-900/15 bg-transparent text-pine-700 hover:border-pine-400",
@@ -344,7 +398,7 @@ function Setup({
       ) : (
         <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-pine-900/10 pt-8 sm:flex-row sm:items-center">
           <p className="flex items-center gap-2 text-sm text-pine-600">
-            <Clock aria-hidden="true" className="h-4 w-4 text-gold-600" />
+            <Clock aria-hidden="true" className="h-4 w-4 text-gold-800" />
             {plannedCount} question{plannedCount === 1 ? "" : "s"} ready
           </p>
           <button
@@ -367,6 +421,7 @@ type QuizProps = {
   onAnswer: (questionId: number, choiceIndex: number) => void;
   onNavigate: (index: number) => void;
   onFinish: () => void;
+  saved: boolean;
 };
 
 function Quiz({
@@ -376,6 +431,7 @@ function Quiz({
   onAnswer,
   onNavigate,
   onFinish,
+  saved,
 }: QuizProps) {
   if (deck.length === 0) {
     return (
@@ -405,7 +461,7 @@ function Quiz({
           </span>{" "}
           of {deck.length}
         </p>
-        <p className="text-sm text-pine-500">{answeredCount} answered</p>
+        <p className="text-sm text-pine-600">{answeredCount} answered</p>
       </div>
       <div className="mt-3 h-1 w-full overflow-hidden rounded-full bg-pine-100">
         <div
@@ -418,10 +474,13 @@ function Quiz({
           aria-valuemax={100}
         />
       </div>
+      <p className="mt-3 text-sm text-pine-600" role="status">
+        {saved ? "Progress saved in this tab." : "Keep this page open while you practice."}
+      </p>
 
       <article className="mt-10">
         <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-bold uppercase tracking-[0.15em]">
-          <span className="text-pine-500">{question.category}</span>
+          <span className="text-pine-600">{question.category}</span>
           <span aria-hidden="true" className="text-pine-300">
             ·
           </span>
@@ -456,7 +515,7 @@ function Quiz({
                 <span
                   className={cn(
                     "mr-4 font-display text-lg font-semibold",
-                    selected ? "text-gold-300" : "text-gold-600",
+                    selected ? "text-gold-300" : "text-gold-800",
                   )}
                 >
                   {String.fromCharCode(65 + index)}.
@@ -506,6 +565,45 @@ function Quiz({
   );
 }
 
+function ReviewSubmission({
+  deck,
+  answers,
+  onNavigate,
+  onSubmit,
+}: {
+  deck: PracticeQuestion[];
+  answers: Record<number, number>;
+  onNavigate: (index: number) => void;
+  onSubmit: () => void;
+}) {
+  const unanswered = deck.flatMap((question, index) => answers[question.id] === undefined ? [index] : []);
+  return (
+    <section className="mx-auto max-w-3xl" aria-labelledby="review-test-heading">
+      <h2 id="review-test-heading" tabIndex={-1} className="text-3xl font-semibold tracking-tight text-pine-950 focus:outline-none">
+        Review before submitting
+      </h2>
+      <p className="mt-4 text-lg text-pine-700">
+        {unanswered.length} unanswered question{unanswered.length === 1 ? "" : "s"} will count as incorrect.
+        You can keep working or submit your test now.
+      </p>
+      <h3 className="mt-8 font-semibold text-pine-950">Jump to an unanswered question</h3>
+      <ul className="mt-3 flex max-h-64 flex-wrap gap-2 overflow-y-auto p-1">
+        {unanswered.map((index) => (
+          <li key={deck[index].id}>
+            <button type="button" onClick={() => onNavigate(index)} aria-label={`Go to unanswered question ${index + 1}`} className="btn-outline min-w-11 px-3 py-2">
+              {index + 1}
+            </button>
+          </li>
+        ))}
+      </ul>
+      <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+        <button type="button" onClick={() => onNavigate(unanswered[0])} className="btn-gold">Keep working</button>
+        <button type="button" onClick={onSubmit} className="btn-outline">Submit anyway</button>
+      </div>
+    </section>
+  );
+}
+
 type ResultsProps = {
   deck: PracticeQuestion[];
   answers: Record<number, number>;
@@ -545,11 +643,11 @@ function Results({ deck, answers, onRetake, onNewSetup }: ResultsProps) {
         <p className="mt-4 font-display text-xl italic text-pine-700">
           {scoreCopy(percent)}
         </p>
-        <p className="mt-1.5 text-sm text-pine-500">{percent}% correct</p>
+        <p className="mt-1.5 text-sm text-pine-600">{percent}% correct</p>
       </div>
 
       <section className="mt-10">
-        <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-pine-500">
+        <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-pine-600">
           Breakdown by category
         </h3>
         <ul className="mt-2 divide-y divide-pine-900/10">
@@ -589,7 +687,7 @@ function Results({ deck, answers, onRetake, onNewSetup }: ResultsProps) {
 
       {missed.length > 0 && (
         <section className="mt-12">
-          <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-pine-500">
+          <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-pine-600">
             Review missed questions ({missed.length})
           </h3>
           <ol className="mt-2 divide-y divide-pine-900/10">
@@ -598,7 +696,7 @@ function Results({ deck, answers, onRetake, onNewSetup }: ResultsProps) {
               return (
                 <li key={q.id} className="py-6">
                   <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-bold uppercase tracking-[0.15em]">
-                    <span className="text-pine-500">{q.category}</span>
+                    <span className="text-pine-600">{q.category}</span>
                     <span aria-hidden="true" className="text-pine-300">
                       ·
                     </span>
@@ -624,7 +722,7 @@ function Results({ deck, answers, onRetake, onNewSetup }: ResultsProps) {
                         </span>
                       </p>
                     ) : (
-                      <p className="italic text-pine-500">Not answered</p>
+                      <p className="italic text-pine-600">Not answered</p>
                     )}
                     <p className="flex items-start gap-2.5 font-medium text-pine-800">
                       <Check

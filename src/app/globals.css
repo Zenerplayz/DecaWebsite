@@ -78,6 +78,10 @@ html {
 }
 
 @layer components {
+  .page-title {
+    @apply font-display text-4xl font-semibold leading-tight tracking-tight text-pine-950 sm:text-5xl;
+  }
+
   .section-title {
     @apply text-2xl font-semibold leading-tight tracking-tight sm:text-3xl;
   }
@@ -91,19 +95,19 @@ html {
   .btn-navy,
   .btn-outline,
   .btn-outline-light {
-    @apply inline-flex items-center justify-center gap-2 rounded-md font-semibold transition-colors duration-200;
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-md font-semibold transition-colors duration-200;
   }
 
   .btn-gold {
-    @apply bg-pine-900 px-6 py-3 text-white hover:bg-pine-800;
+    @apply bg-pine-900 px-6 py-3 text-white hover:bg-pine-800 active:bg-pine-950;
   }
 
   .btn-navy {
-    @apply bg-pine-900 px-6 py-3 text-white shadow-soft hover:-translate-y-0.5 hover:bg-pine-800;
+    @apply bg-pine-900 px-6 py-3 text-white shadow-soft hover:-translate-y-0.5 hover:bg-pine-800 active:bg-pine-950;
   }
 
   .btn-outline {
-    @apply border border-pine-200 bg-white/70 px-6 py-3 text-pine-900 backdrop-blur hover:-translate-y-0.5 hover:border-pine-400 hover:bg-white;
+    @apply border border-pine-200 bg-white/70 px-6 py-3 text-pine-900 backdrop-blur hover:-translate-y-0.5 hover:border-pine-400 hover:bg-white active:bg-pine-100;
   }
 
   .btn-outline-light {
@@ -129,7 +133,7 @@ html {
 
   /* Typographic inline link with arrow affordance */
   .text-link {
-    @apply inline-flex items-center gap-1.5 font-semibold text-pine-800 underline decoration-pine-300 decoration-1 underline-offset-4 transition-colors hover:text-pine-950;
+    @apply inline-flex min-h-11 items-center gap-1.5 font-semibold text-pine-800 underline decoration-pine-300 decoration-1 underline-offset-4 transition-colors hover:text-pine-950 active:text-pine-600;
   }
 
   /* Oversized ghost numeral for editorial step/index lists */

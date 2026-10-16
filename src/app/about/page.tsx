@@ -35,7 +35,7 @@ export default function About() {
       <div className="container-page pt-10 pb-10 sm:pt-12 sm:pb-12">
 
         <p className="eyebrow">Great Oaks Sycamore DECA</p>
-        <h1 className="max-w-4xl text-4xl font-semibold leading-tight tracking-tight text-pine-950 sm:text-5xl">
+        <h1 className="page-title max-w-4xl">
           Our chapter
         </h1>
         <p className="mt-5 max-w-2xl text-lg leading-relaxed text-pine-700">

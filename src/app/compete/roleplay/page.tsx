@@ -128,11 +128,11 @@ function SectionHeader({
 export default function Roleplay() {
   return (
     <section className="pt-16">
-      <div className="container-page py-16 sm:py-20">
+      <div className="container-page py-10 sm:py-12">
         {/* ── Chapter opening ─────────────────────────────────────────── */}
         <header>
 
-          <h1 className="max-w-3xl font-display text-5xl font-semibold leading-[1.05] tracking-tight text-pine-950 sm:text-6xl">
+          <h1 className="page-title max-w-3xl">
             Role-play preparation
           </h1>
           <p className="mt-6 max-w-[62ch] text-lg leading-relaxed text-pine-700">
@@ -143,7 +143,7 @@ export default function Roleplay() {
         </header>
 
         {/* ── Format stat bar ─────────────────────────────────────────── */}
-        <ul className="mt-14 grid grid-cols-1 divide-y divide-pine-900/10 border-y border-pine-900/10 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+        <ul className="mt-8 grid grid-cols-1 divide-y divide-pine-900/10 border-y border-pine-900/10 sm:mt-10 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
           {formatStats.map((s) => (
             <li key={s.label} className="py-7 sm:px-8 sm:py-9 sm:first:pl-0">
               <p className="font-display text-5xl font-semibold tracking-tight text-pine-950">
@@ -196,7 +196,7 @@ export default function Roleplay() {
             ))}
           </dl>
 
-          <p className="mt-8 max-w-[62ch] text-sm leading-relaxed text-pine-500">
+          <p className="mt-8 max-w-[62ch] text-sm leading-relaxed text-pine-600">
             Scores across the five criteria combine into one total — a weak
             opening drags down every point that follows, which is why this
             guide spends so much time on the first thirty seconds.
@@ -233,7 +233,7 @@ export default function Roleplay() {
           </ol>
 
           <p className="mt-12 flex max-w-xl items-start gap-3 border-l-2 border-gold-400 pl-4 text-sm leading-relaxed text-pine-600">
-            <Timer aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-gold-600" />
+            <Timer aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-gold-800" />
             <span>
               <strong className="font-semibold text-pine-950">
                 Roughly two minutes per step.
@@ -257,7 +257,7 @@ export default function Roleplay() {
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-gold-700">
                 Retail Merchandising Series
               </p>
-              <p className="mt-1 text-xs font-bold uppercase tracking-[0.18em] text-pine-400">
+              <p className="mt-1 text-xs font-bold uppercase tracking-[0.18em] text-pine-600">
                 Customer Complaint
               </p>
               <p className="mt-6 border-l-2 border-gold-400 pl-6 font-display text-xl italic leading-relaxed text-pine-900 sm:pl-8 sm:text-2xl">
@@ -271,7 +271,7 @@ export default function Roleplay() {
                 but no cash refunds past 30 days. Two other customers are
                 waiting in line behind her.
               </p>
-              <footer className="mt-4 pl-6 text-sm text-pine-500 sm:pl-8">
+              <footer className="mt-4 pl-6 text-sm text-pine-600 sm:pl-8">
                 — the kind of competing-priorities case where structure beats
                 brilliance.
               </footer>
