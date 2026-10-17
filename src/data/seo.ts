@@ -41,7 +41,7 @@ export const seoRoutes = {
   "/compete/roleplay": {
     title: "DECA Role-Play Preparation Guide",
     description:
-      "Prepare for DECA role-plays with a step-by-step practice plan, performance indicator tips, and presentation strategies from Sycamore DECA in Cincinnati, Ohio.",
+      "Prepare for DECA role-plays with the Sycamore DECA chapter workflow: sample role-plays, a six-box outline, visuals, an example judge rubric, and member videos.",
   },
   "/join": {
     title: "How to Join Our Chapter",
