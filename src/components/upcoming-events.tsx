@@ -1,4 +1,4 @@
-import { CalendarDays, Clock, MapPin, ArrowUpRight } from "lucide-react";
+import { Clock, MapPin, ArrowUpRight } from "lucide-react";
 import { getUpcomingEvents } from "@/lib/calendar";
 import { site } from "@/data/site";
 
@@ -10,35 +10,21 @@ export default async function UpcomingEvents({
   const { events, unavailable } = await getUpcomingEvents(limit);
   if (!events.length) {
     return (
-      <div className="rounded-xl border border-pine-200 bg-white p-6 sm:p-8">
-        <CalendarDays
-          aria-hidden="true"
-          className="mb-3 h-7 w-7 text-pine-700"
-        />
-        <h3 className="text-xl font-semibold text-pine-950">
+      <div className="border-t border-pine-900/10 pt-5">
+        <p className="max-w-xl leading-relaxed text-pine-700">
           {unavailable
-            ? "The calendar is taking a moment"
-            : "No upcoming events posted yet"}
-        </h3>
-        <p className="mt-2 max-w-xl leading-relaxed text-pine-700">
-          {unavailable
-            ? "We couldn’t load the event list. Check the chapter calendar directly for the latest dates."
-            : "New meetings, competitions, and deadlines will appear here when they’re added to the chapter calendar."}
+            ? "We couldn’t load the event list, so check the chapter calendar directly for the latest dates."
+            : "No upcoming events are posted yet — new meetings, competitions, and deadlines will appear here when they’re added to the chapter calendar."}
         </p>
-        <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2">
-          <a
-            href={site.googleCalendarEmbedUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-link"
-          >
-            Open Google Calendar{" "}
-            <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
-          </a>
-          <a href={`mailto:${site.advisorEmail}`} className="text-link">
-            Ask {site.advisorName} about the next meeting
-          </a>
-        </div>
+        <a
+          href={site.googleCalendarEmbedUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-link mt-3"
+        >
+          Open Google Calendar{" "}
+          <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+        </a>
       </div>
     );
   }

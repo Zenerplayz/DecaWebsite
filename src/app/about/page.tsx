@@ -46,14 +46,14 @@ export default function About() {
 
         {/* Wide editorial photograph */}
         <figure className="mt-8 sm:mt-10">
-          <div className="relative aspect-[16/7] w-full overflow-hidden">
+          <div className="relative aspect-[4/3] w-full overflow-hidden md:aspect-video">
             <Image
               src={aboutPhoto.src}
               alt={aboutPhoto.alt}
               fill
               preload
               sizes="(min-width: 1152px) 1088px, 100vw"
-              className="object-cover object-bottom"
+              className="object-cover object-[center_40%]"
             />
           </div>
           <figcaption className="mt-3 text-sm text-pine-700">
