@@ -41,9 +41,7 @@ export default function Socials() {
           </div>
         </header>
 
-        {/* Live feed — open on cream, no card shell */}
-        <section className="mt-10 border-t border-pine-200 pt-7" aria-labelledby="chapter-photos-heading">
-          <h2 id="chapter-photos-heading" className="section-title mb-6">From the chapter</h2>
+        <section className="mt-10 border-t border-pine-200 pt-7" aria-label="Instagram">
           <InstagramFeed feedId={site.beholdFeedId} />
         </section>
       </div>
