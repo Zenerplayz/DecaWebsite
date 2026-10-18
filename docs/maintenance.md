@@ -12,7 +12,7 @@ Confirm names, titles, counts and dates with the chapter before changing them. D
 
 ## Architecture
 
-Next.js App Router, React and TypeScript provide server-rendered pages and a client-side practice quiz. Tailwind CSS and locally hosted Source Sans Pro define the presentation. Calendar summaries fetch the public Google Calendar feed and revalidate every five minutes. Instagram embeds are optional; locally hosted photos and profile links provide a fallback.
+Next.js App Router, React and TypeScript provide server-rendered pages and a client-side practice quiz. Tailwind CSS and locally hosted Source Sans Pro define the presentation. Calendar summaries fetch the public Google Calendar feed and revalidate every five minutes. The socials page shows the Behold Instagram widget. Locally hosted photos remain on the homepage and about page, and the Instagram profile link stays available if the widget cannot load.
 
 There is no application database, account system or paid API. Quiz attempts remain in the current tab's session storage. Calendar tests cover recurrence, exclusions, moved events, cancellations and daylight saving. Quiz tests cover restored progress, shuffled answer grading and invalid saved data.
 

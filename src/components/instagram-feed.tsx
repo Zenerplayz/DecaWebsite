@@ -1,8 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import Image from "next/image";
-import { chapterPhotos } from "@/data/photos";
 import { site } from "@/data/site";
 
 const BEHOLD_WIDGET_SCRIPT = "https://w.behold.so/widget.js";
@@ -48,55 +46,29 @@ export default function InstagramFeed({ feedId }: { feedId: string }) {
 
   useBeholdWidgetScript(showWidget, markUnavailable);
 
-  return (
-    <>
-      <div className="grid gap-x-6 gap-y-8 sm:grid-cols-3">
-        {chapterPhotos.slice(0, 3).map((photo) => (
-          <figure key={photo.src}>
-            <a
-              href={photo.permalink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block focus-visible:outline-offset-4"
-            >
-              <Image
-                src={photo.src}
-                alt={photo.alt}
-                width={1000}
-                height={1000}
-                sizes="(min-width: 1152px) 350px, (min-width: 640px) 33vw, calc(100vw - 2rem)"
-                className="aspect-square h-auto w-full object-cover"
-              />
-            </a>
-            <figcaption className="mt-3 text-sm leading-relaxed text-pine-700">
-              {photo.alt}
-            </figcaption>
-          </figure>
-        ))}
-      </div>
-      <div className="mt-10 border-t border-pine-200 pt-6">
+  if (!showWidget) {
+    return (
+      <p role="status" className="text-sm text-pine-700">
+        Instagram posts are unavailable here.{" "}
         {instagram ? (
-          <div className="flex flex-wrap items-center justify-end gap-4">
-            <a
-              href={instagram.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-link text-sm"
-            >
-              Open {instagram.handle}
-            </a>
-          </div>
-        ) : null}
-        {showWidget ? (
-          <div id="live-instagram-feed" className="mt-6 min-h-48">
-            <behold-widget feed-id={feedId} />
-          </div>
+          <a
+            href={instagram.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-link text-sm"
+          >
+            View {instagram.handle}
+          </a>
         ) : (
-          <p role="status" className="mt-4 text-sm text-pine-700">
-            Instagram posts are unavailable here. View the chapter directly on Instagram.
-          </p>
+          "View the chapter directly on Instagram."
         )}
-      </div>
-    </>
+      </p>
+    );
+  }
+
+  return (
+    <div id="live-instagram-feed" className="min-h-48">
+      <behold-widget feed-id={feedId} />
+    </div>
   );
 }
