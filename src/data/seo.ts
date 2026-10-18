@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { site } from "@/data/site";
 
 export const siteUrl = "https://sycamoredeca.com";
 
@@ -58,6 +59,8 @@ export const seoRoutes = {
 /** Build Next.js metadata for a route listed in `seoRoutes`. */
 export function pageMetadata(route: keyof typeof seoRoutes): Metadata {
   const { title, description } = seoRoutes[route];
+  // The homepage share card uses the short name. Other routes keep their page title.
+  const previewTitle = route === "/" ? site.shortName : title;
   return {
     title: route === "/" ? { absolute: title } : title,
     description,
@@ -65,17 +68,17 @@ export function pageMetadata(route: keyof typeof seoRoutes): Metadata {
       canonical: route === "/" ? "/" : route,
     },
     openGraph: {
-      title,
+      title: previewTitle,
       description,
       url: route,
-      siteName: "Great Oaks Sycamore DECA",
+      siteName: site.shortName,
       type: "website",
       locale: "en_US",
-      images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Great Oaks Sycamore DECA — Cincinnati, Ohio" }],
+      images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: `${site.shortName} — Cincinnati, Ohio` }],
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: previewTitle,
       description,
       images: ["/opengraph-image"],
     },

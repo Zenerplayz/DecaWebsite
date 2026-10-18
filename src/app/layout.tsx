@@ -10,9 +10,9 @@ const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "@id": `${siteUrl}/#organization`,
-  name: site.chapterName,
+  name: site.shortName,
   alternateName: [
-    site.shortName,
+    site.chapterName,
     `${site.school} DECA`,
     "Sycamore DECA Ohio",
   ],
@@ -32,7 +32,7 @@ const organizationJsonLd = {
   },
   memberOf: {
     "@type": "Organization",
-  "@id": `${siteUrl}/#organization`,
+    "@id": "https://www.ohiodeca.org/#organization",
     name: "Ohio DECA",
     url: "https://www.ohiodeca.org/",
   },
@@ -44,8 +44,8 @@ const websiteJsonLd = {
   "@type": "WebSite",
   "@id": `${siteUrl}/#website`,
   url: siteUrl,
-  name: site.chapterName,
-  alternateName: site.shortName,
+  name: site.shortName,
+  alternateName: site.chapterName,
   inLanguage: "en-US",
   publisher: { "@id": `${siteUrl}/#organization` },
 };
@@ -78,14 +78,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "/",
-    siteName: "Great Oaks Sycamore DECA",
-    title: "Great Oaks Sycamore DECA",
+    siteName: site.shortName,
+    title: site.shortName,
     description:
       "The DECA chapter at Sycamore High School in Cincinnati, Ohio — chapter info, event calendar, competition prep, and practice tests.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Great Oaks Sycamore DECA",
+    title: site.shortName,
     description:
       "The DECA chapter at Sycamore High School in Cincinnati, Ohio — chapter info, event calendar, competition prep, and practice tests.",
   },

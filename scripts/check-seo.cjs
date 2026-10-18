@@ -40,6 +40,16 @@ async function main() {
     assert(!meta.some((tag) => /robots/i.test(tag.name || "") && /noindex/i.test(tag.content)), `${route}: no noindex`);
     assert(meta.some((tag) => tag.property === "og:image" && tag.content.startsWith(origin)), `${route}: social image`);
     assert(meta.some((tag) => tag.name === "twitter:image" && tag.content.startsWith(origin)), `${route}: Twitter image`);
+    const ogTitles = meta.filter((tag) => tag.property === "og:title").map((tag) => tag.content);
+    const ogSites = meta.filter((tag) => tag.property === "og:site_name").map((tag) => tag.content);
+    const twitterTitles = meta.filter((tag) => tag.name === "twitter:title").map((tag) => tag.content);
+    assert(ogTitles.length > 0 && ogTitles.every((value) => value && !/Great Oaks/.test(value)), `${route}: og:title without Great Oaks`);
+    assert(ogSites.length > 0 && ogSites.every((value) => value === "Sycamore DECA"), `${route}: og:site_name`);
+    assert(twitterTitles.length > 0 && twitterTitles.every((value) => value && !/Great Oaks/.test(value)), `${route}: twitter:title without Great Oaks`);
+    if (route === "/") {
+      assert(ogTitles.every((value) => value === "Sycamore DECA"), "home: og:title");
+      assert(twitterTitles.every((value) => value === "Sycamore DECA"), "home: twitter:title");
+    }
     assert.equal((html.match(/<h1\b/g) || []).length, 1, `${route}: one primary heading`);
     const fontPreloads = tags(html, "link").filter((tag) => tag.rel === "preload" && tag.as === "font");
     // Next.js may emit preloads in response headers rather than static HTML.
@@ -55,8 +65,13 @@ async function main() {
     const schemas = [...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)]
       .flatMap(([, json]) => JSON.parse(json));
     const organization = schemas.find((schema) => schema["@type"] === "Organization");
-    assert.equal(organization?.name, "Great Oaks Sycamore DECA", `${route}: consistent chapter name`);
-    assert(schemas.some((schema) => schema["@type"] === "WebSite"), `${route}: site entity`);
+    const alternateNames = [organization?.alternateName].flat().filter(Boolean);
+    assert.equal(organization?.name, "Sycamore DECA", `${route}: organization name`);
+    assert(alternateNames.includes("Great Oaks Sycamore DECA"), `${route}: former name kept as alternateName`);
+    assert.notEqual(organization?.memberOf?.["@id"], organization?.["@id"], `${route}: memberOf id is distinct`);
+    assert.equal(organization?.memberOf?.["@id"], "https://www.ohiodeca.org/#organization", `${route}: Ohio DECA id`);
+    const website = schemas.find((schema) => schema["@type"] === "WebSite");
+    assert.equal(website?.name, "Sycamore DECA", `${route}: site entity`);
     const page = schemas.find((schema) => schema["@type"] === "WebPage");
     assert.equal(page?.url.replace(/\/$/, ""), canonical.replace(/\/$/, ""), `${route}: page schema URL`);
     if (route !== "/") {

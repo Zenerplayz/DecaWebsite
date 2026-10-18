@@ -1,4 +1,5 @@
 import PageSeo from "@/components/page-seo";
+import { pageMetadata } from "@/data/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
@@ -6,6 +7,8 @@ import { site } from "@/data/site";
 import { heroPhoto } from "@/data/photos";
 import Pillars from "@/components/pillars";
 import UpcomingEvents from "@/components/upcoming-events";
+
+export const metadata = pageMetadata("/");
 
 export const revalidate = 300;
 
