@@ -54,7 +54,7 @@ export default function Navbar() {
           <Link
             href="/join"
             aria-current={currentLocation("/join")}
-            className="btn-gold ml-2 px-5 py-2 text-sm"
+            className="btn-join ml-2 px-5 py-2 text-sm"
           >
             Join DECA
           </Link>
@@ -94,7 +94,7 @@ export default function Navbar() {
             href="/join"
             aria-current={currentLocation("/join")}
             onClick={() => setOpen(false)}
-            className="btn-gold mt-2 w-full text-sm"
+            className="btn-join mt-2 w-full text-sm"
           >
             Join DECA
           </Link>

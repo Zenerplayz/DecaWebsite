@@ -3,11 +3,14 @@ import { ArrowUpRight, Bell } from "lucide-react";
 import { site } from "@/data/site";
 import { pageMetadata } from "@/data/seo";
 import UpcomingEvents from "@/components/upcoming-events";
+import { agendaEmbedUrl, getUpcomingEvents } from "@/lib/calendar";
 
 export const metadata = pageMetadata("/calendar");
 export const revalidate = 300;
 
-export default function CalendarPage() {
+export default async function CalendarPage() {
+  const { events } = await getUpcomingEvents(1);
+  const showEmbed = events.length > 0 && Boolean(site.googleCalendarEmbedUrl);
   return (
     <section className="pt-16">
       <div className="container-page py-10 sm:py-12">
@@ -32,15 +35,14 @@ export default function CalendarPage() {
           </h2>
           <UpcomingEvents />
         </section>
-        {site.googleCalendarEmbedUrl ? (
+        {showEmbed ? (
           <>
             <h2 className="mt-10 text-2xl font-semibold text-pine-950">
               Full chapter calendar
             </h2>
-            {/* Open framed region — hairline border, no shadow card */}
             <div className="mt-4 overflow-hidden rounded-xl border border-pine-200 bg-white">
               <iframe
-                src={site.googleCalendarEmbedUrl}
+                src={agendaEmbedUrl(site.googleCalendarEmbedUrl)}
                 title="Sycamore DECA Google Calendar"
                 className="h-[600px] w-full border-0"
                 loading="lazy"

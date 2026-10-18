@@ -17,7 +17,7 @@ new Function("require", "exports", output)(
   (id) => (id === "@/data/site" ? { site: {} } : require(id)),
   moduleExports,
 );
-const { parseUpcomingEvents } = moduleExports;
+const { parseUpcomingEvents, agendaEmbedUrl } = moduleExports;
 const now = new Date("2026-10-11T18:00:00Z");
 const wrap = (events) =>
   ["BEGIN:VCALENDAR", "VERSION:2.0", ...events, "END:VCALENDAR"].join("\r\n");
@@ -161,6 +161,18 @@ assert.equal(
   ).length,
   3,
 );
+const agenda = new URL(
+  agendaEmbedUrl(
+    "https://calendar.google.com/calendar/embed?src=abc%40group.calendar.google.com&ctz=America%2FNew_York",
+  ),
+);
+assert.equal(agenda.searchParams.get("mode"), "AGENDA");
+assert.equal(agenda.searchParams.get("showTitle"), "0");
+assert.equal(agenda.searchParams.get("showTabs"), "0");
+assert.equal(agenda.searchParams.get("showPrint"), "0");
+assert.equal(agenda.searchParams.get("showCalendars"), "0");
+assert.equal(agenda.searchParams.get("src"), "abc@group.calendar.google.com");
+assert.equal(agenda.searchParams.get("ctz"), "America/New_York");
 console.log(
-  "Calendar checks passed: empty/invalid feed, past and cancelled events, all-day dates, recurrence exclusions and moved events, Eastern DST, and card limit.",
+  "Calendar checks passed: empty/invalid feed, past and cancelled events, all-day dates, recurrence exclusions and moved events, Eastern DST, card limit, and agenda embed controls.",
 );

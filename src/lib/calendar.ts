@@ -78,6 +78,17 @@ export function parseUpcomingEvents(
     .slice(0, limit);
 }
 
+/** Agenda embed with the title, tabs, print, and calendar-list controls hidden. */
+export function agendaEmbedUrl(embedUrl: string): string {
+  const url = new URL(embedUrl);
+  url.searchParams.set("mode", "AGENDA");
+  url.searchParams.set("showTitle", "0");
+  url.searchParams.set("showTabs", "0");
+  url.searchParams.set("showPrint", "0");
+  url.searchParams.set("showCalendars", "0");
+  return url.toString();
+}
+
 export async function getUpcomingEvents(
   limit = 6,
 ): Promise<{ events: ChapterEvent[]; unavailable: boolean }> {

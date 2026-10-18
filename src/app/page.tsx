@@ -28,7 +28,7 @@ export default function Home() {
                 chapter life at Sycamore High School.
               </p>
               <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4">
-                <Link href="/join" className="btn-gold">
+                <Link href="/join" className="btn-join">
                   Join the chapter{" "}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
@@ -51,7 +51,7 @@ export default function Home() {
                   height={1000}
                   preload
                   sizes="(min-width: 1152px) 620px, (min-width: 1024px) 55vw, calc(100vw - 2rem)"
-                  className="aspect-[4/3] h-auto w-full object-cover object-[center_58%]"
+                  className="aspect-[4/3] h-auto w-full object-cover object-[center_22%] md:object-[center_58%]"
                 />
               </a>
               <figcaption className="mt-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 text-sm text-pine-700">

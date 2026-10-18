@@ -8,7 +8,8 @@ export default function Logo({
   className?: string;
 }) {
   return (
-    <span className={cn("inline-flex items-baseline gap-2", className)}>
+    <span className={cn("inline-flex items-center gap-2", className)}>
+      <span aria-hidden="true" className="h-[9px] w-[9px] shrink-0 bg-[#b89a53]" />
       <span
         className={cn(
           "font-display text-xl font-semibold tracking-tight",
@@ -17,7 +18,6 @@ export default function Logo({
       >
         Sycamore DECA
       </span>
-
     </span>
   );
 }
